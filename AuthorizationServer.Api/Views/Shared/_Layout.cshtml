@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+    <script>
+        /*var parse = function (str) {
+            alert(str);
+            //var str = "http://localhost:52126/#access_token=IcI3UPmdmkTqxWJ1XkWgIqTdVFPt35H0so6_qAr6k_KCAtxcPa597F_5S2u2V4X5l0Yizqb7uzcIUgZUCU8dBL4byBPEOF1Z8zuDLkJtQAnirR4WvK6ah1kj01di38teKc9B-Uj7-JEyNUXOfhkvJtroPwHzdWhXrhdt0j-fWMEMYXWhpHpWXGRivkQQl2CBvecgGlPbfmsxaNhgfEnf6Ky1XbqJ6IOJ7G3NwrAnATGKLx-IkMgc3NT0uiC67gsQqaKXsyQWuwv_NfN9PsGJ5M_dKzeParNFPJFIh42WirBkmBBBtctuEnxraQ7wg4GF0ObJjptxqCvrOMPD_vhVi3y3QCEfwwkKE4-R6-GcS6c&token_type=bearer&expires_in=1209600";
+            str = str.split("#")[1];
+            var strs = str.split("&");
+            var dictionary = {};
+            for (var i = 0; i < strs.length; i++) {
+                var strstmp = strs[i].split("=");
+                dictionary[strstmp[0]] = strstmp[1];
+            }
+            console.log(dictionary);
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'Authorization': 'Bearer ' + dictionary["access_token"]
+                },
+                url: "http://localhost:52126/api/Account/RegisterExternal",
+                dataType: "json",
+                data: {
+                    Email: dictionary["access_token"]
+                },
+                success: function (data) {
+                    alert('Success');
+
+                },
+                error: function () {
+                    alert('Error');
+                }
+            });
+        }
+        parse(window.location);*/
+
+
+        window.common = (function () {
+            var common = {};
+
+            common.getFragment = function getFragment() {
+                if (window.location.hash.indexOf("#") === 0) {
+                    return parseQueryString(window.location.hash.substr(1));
+                } else {
+                    return {};
+                }
+            };
+
+            function parseQueryString(queryString) {
+                var data = {},
+                    pairs, pair, separatorIndex, escapedKey, escapedValue, key, value;
+
+                if (queryString === null) {
+                    return data;
+                }
+
+                pairs = queryString.split("&");
+
+                for (var i = 0; i < pairs.length; i++) {
+                    pair = pairs[i];
+                    separatorIndex = pair.indexOf("=");
+
+                    if (separatorIndex === -1) {
+                        escapedKey = pair;
+                        escapedValue = null;
+                    } else {
+                        escapedKey = pair.substr(0, separatorIndex);
+                        escapedValue = pair.substr(separatorIndex + 1);
+                    }
+
+                    key = decodeURIComponent(escapedKey);
+                    value = decodeURIComponent(escapedValue);
+
+                    data[key] = value;
+                }
+
+                return data;
+            }
+
+            return common;
+        })();
+
+        var fragment = common.getFragment();
+
+        window.location.hash = fragment.state || '';
+        window.opener.postMessage(fragment, "http://localhost:53541/index.html");
+        window.close();
+
+    </script>
+</body>
+</html>
