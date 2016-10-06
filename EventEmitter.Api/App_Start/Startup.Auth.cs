@@ -5,9 +5,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using AuthorizationServer.Api.Providers;
+using EventEmitter.Api.Providers;
 
-namespace AuthorizationServer.Api
+namespace EventEmitter.Api
 {
     public partial class Startup
     {

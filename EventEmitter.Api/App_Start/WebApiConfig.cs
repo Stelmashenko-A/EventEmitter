@@ -2,7 +2,7 @@
 using System.Web.Http.Cors;
 using Microsoft.Owin.Security.OAuth;
 
-namespace AuthorizationServer.Api
+namespace EventEmitter.Api
 {
     public static class WebApiConfig
     {

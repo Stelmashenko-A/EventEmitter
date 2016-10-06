@@ -1,4 +1,4 @@
-﻿namespace AuthorizationServer.Api.Models
+﻿namespace EventEmitter.Api.Models
 {
     public class UserLoginInfoViewModel
     {

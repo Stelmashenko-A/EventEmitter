@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace AuthorizationServer.Api
+namespace EventEmitter.Api
 {
     public class RouteConfig
     {

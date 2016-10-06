@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace AuthorizationServer.Api
+namespace EventEmitter.Api
 {
     public class FilterConfig
     {

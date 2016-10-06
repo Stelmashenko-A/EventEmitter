@@ -11,12 +11,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using AuthorizationServer.Api.Models;
-using AuthorizationServer.Api.Results;
 using CredentialStorage;
+using EventEmitter.Api.Models;
+using EventEmitter.Api.Results;
 
 
-namespace AuthorizationServer.Api.Controllers
+namespace EventEmitter.Api.Controllers
 {
     [EnableCors("*", "*", "*")]
     [Authorize]
@@ -211,7 +211,7 @@ namespace AuthorizationServer.Api.Controllers
                 var strengthInBytes = strengthInBits / bitsPerByte;
 
                 var data = new byte[strengthInBytes];
-                Random.GetBytes(data);
+                
                 return HttpServerUtility.UrlTokenEncode(data);
             }
         }

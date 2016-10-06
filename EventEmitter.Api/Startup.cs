@@ -1,9 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(AuthorizationServer.Api.Startup))]
+[assembly: OwinStartup(typeof(EventEmitter.Api.Startup))]
 
-namespace AuthorizationServer.Api
+namespace EventEmitter.Api
 {
     public partial class Startup
     {

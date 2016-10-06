@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AuthorizationServer.Api.Controllers
+namespace EventEmitter.Api.Controllers
 {
     public class HomeController : Controller
     {
