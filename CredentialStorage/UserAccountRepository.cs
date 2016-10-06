@@ -41,5 +41,18 @@ namespace CredentialStorage
                 return query.FirstOrDefault();
             }
         }
+
+        public UserAccount Get(string loginPovider, string loginProviderKey)
+        {
+            using (var db = new AuthorizationServerDatabase())
+            {
+                var query = from p in db.UserAccount
+                            where p.LoginProvider == loginPovider
+                            && p.LoginProviderKey == loginProviderKey
+                            select p;
+
+                return query.FirstOrDefault();
+            }
+        }
     }
 }

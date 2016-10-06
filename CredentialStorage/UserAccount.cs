@@ -15,6 +15,9 @@ namespace CredentialStorage
         [Column(Name = "LoginProvider"), NotNull]
         public string LoginProvider { get; set; }
 
+        [Column(Name = "LoginProviderKey"), NotNull]
+        public string LoginProviderKey { get; set; }
+
         [Column(Name = "Base64Secret"), NotNull]
         public string Base64Secret { get; set; }
 
