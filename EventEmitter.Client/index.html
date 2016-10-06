@@ -22,17 +22,17 @@
                return;*/
            
            $.ajax({
-               type: "POST",
+               type: "Get",
                headers: {
                    'Authorization': 'Bearer ' + event.data["access_token"]
                },
-               url: "http://localhost:18292/api/Account/RegisterExternal",
+               url: "http://localhost:18292/api/Account/UserInfo",
                dataType: "json",
                success: function (data) {
                    $.ajax({
                        type: "GET",
                        headers: {
-                           'Authorization': 'Bearer ' + data["access_token"]
+                           'Authorization': 'Bearer ' + event.data["access_token"]
                        },
                        url: "http://localhost:18292/api/Account/UserInfo",
                        dataType: "json",
