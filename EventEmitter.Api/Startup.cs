@@ -1,7 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using EventEmitter.Api;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(EventEmitter.Api.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace EventEmitter.Api
 {

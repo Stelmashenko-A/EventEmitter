@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using CredentialStorage;
+using EventEmitter.Api.Models;
+using EventEmitter.Api.Results;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using CredentialStorage;
-using EventEmitter.Api.Models;
-using EventEmitter.Api.Results;
-
 
 namespace EventEmitter.Api.Controllers
 {

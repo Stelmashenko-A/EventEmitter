@@ -1,11 +1,11 @@
 ﻿using System;
+using EventEmitter.Api.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using EventEmitter.Api.Providers;
 
 namespace EventEmitter.Api
 {
