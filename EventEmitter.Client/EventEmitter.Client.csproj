@@ -67,6 +67,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="src\components\Header\Header.scss" />
+    <Content Include="src\layouts\CoreLayout\CoreLayout.scss" />
+    <Content Include="src\routes\Home\components\HomeView.scss" />
+    <Content Include="src\styles\core.scss" />
+    <Content Include="src\styles\_base.scss" />
+    <Content Include="tests\.eslintrc" />
+    <Content Include=".editorconfig" />
+    <Content Include=".eslintignore" />
+    <Content Include=".eslintrc" />
+    <Content Include=".gitignore" />
+    <Content Include=".travis.yml" />
+    <Content Include="CHANGELOG.md" />
+    <Content Include="CONTRIBUTING.md" />
+    <Content Include="LICENSE" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -77,6 +93,38 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="jquery-3.1.1.min.js" />
+    <Content Include="server\main.js" />
+    <Content Include="src\components\Header\Header.js" />
+    <Content Include="src\components\Header\index.js" />
+    <Content Include="src\containers\AppContainer.js" />
+    <Content Include="src\index.html" />
+    <Content Include="src\layouts\CoreLayout\CoreLayout.js" />
+    <Content Include="src\layouts\CoreLayout\index.js" />
+    <Content Include="src\main.js" />
+    <Content Include="src\routes\Counter\components\Counter.js" />
+    <Content Include="src\routes\Counter\containers\CounterContainer.js" />
+    <Content Include="src\routes\Counter\index.js" />
+    <Content Include="src\routes\Counter\modules\counter.js" />
+    <Content Include="src\routes\Home\assets\Duck.jpg" />
+    <Content Include="src\routes\Home\components\HomeView.js" />
+    <Content Include="src\routes\Home\index.js" />
+    <Content Include="src\routes\index.js" />
+    <Content Include="src\static\favicon.ico" />
+    <Content Include="src\static\humans.txt" />
+    <Content Include="src\static\robots.txt" />
+    <Content Include="src\store\createStore.js" />
+    <Content Include="src\store\location.js" />
+    <Content Include="src\store\reducers.js" />
+    <Content Include="tests\components\Header\Header.spec.js" />
+    <Content Include="tests\layouts\CoreLayout.spec.js" />
+    <Content Include="tests\routes\Counter\components\Counter.spec.js" />
+    <Content Include="tests\routes\Counter\index.spec.js" />
+    <Content Include="tests\routes\Counter\modules\counter.spec.js" />
+    <Content Include="tests\routes\Home\components\HomeView.spec.js" />
+    <Content Include="tests\routes\Home\index.spec.js" />
+    <Content Include="tests\store\createStore.spec.js" />
+    <Content Include="tests\store\location.spec.js" />
+    <Content Include="tests\test-bundler.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
