@@ -1,0 +1,13 @@
+.first-section{
+  .section-content{
+    padding: 50px 0;
+    position: relative;
+    z-index: 1;
+    .label{
+      font-size: 35px;
+    }
+  }
+  .slick-slider{
+    margin-top: -190px;
+  }
+}
