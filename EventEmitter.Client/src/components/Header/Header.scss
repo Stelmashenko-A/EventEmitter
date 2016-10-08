@@ -1,4 +1,57 @@
-.route--active {
-  font-weight: bold;
-  text-decoration: underline;
+.header{
+  border-width: 0 0 1px;
+
+  .container{
+    .navbar{
+      border: none;
+      .navbar-header{
+        border-bottom: 1px solid #DDDDDD;
+        .logo{
+          float: left;
+          padding: 20px;
+          font-size: 22px;
+          color: #ff40ac;
+        }
+
+        .navbar-toggle{
+          height: 30px;
+          width: 40px;
+          margin: 20px;
+          padding: 0 8px;
+          border: 2px solid #DDDDDD;
+          &:hover{
+            background-color: #DDDDDD;
+          }
+          .icon-bar{
+            height: 2px;
+            width: 20px;
+            background-color: #888;
+            margin-top: 3px;
+
+            &:first-child{
+              margin-top: 0px;
+            }
+          }        
+        }
+      }
+
+      .navbar-collapse{
+        padding: 0;
+        margin-left: 15px;
+        border-bottom: 1px solid #DDDDDD;
+        border-left: 1px solid #DDDDDD;
+
+        .navbar-nav{
+          padding-left: 55px;
+          li{
+            list-style-type: none;
+            text-align: left;
+            color: #30BFB0;
+            font-size: 20px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  } 
 }
