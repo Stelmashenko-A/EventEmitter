@@ -58,6 +58,7 @@ ehthumbs.db
 Icon?
 Thumbs.db
 [Bb]in
+!EventEmitter.Client/[Bb]in
 [Oo]bj
 [Tt]est[Rr]esults
 *.suo
