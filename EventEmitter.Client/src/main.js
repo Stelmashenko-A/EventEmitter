@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
-
+import { connect } from 'react-redux'
 // ========================================================
 // Store Instantiation
 // ========================================================
@@ -66,3 +66,10 @@ if (__DEV__) {
 // Go!
 // ========================================================
 render()
+function mapStateToProps (state) {
+  return {
+    user: state
+  }
+}
+
+export default connect(mapStateToProps)(AppContainer)

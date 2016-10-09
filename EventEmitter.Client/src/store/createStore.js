@@ -24,6 +24,7 @@ export default (initialState = {}) => {
   // ======================================================
   // Store Instantiation and HMR Setup
   // ======================================================
+
   const store = createStore(
     makeRootReducer(),
     initialState,
@@ -33,7 +34,6 @@ export default (initialState = {}) => {
     )
   )
   store.asyncReducers = {}
-
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
   store.unsubscribeHistory = browserHistory.listen(updateLocation(store))
 
