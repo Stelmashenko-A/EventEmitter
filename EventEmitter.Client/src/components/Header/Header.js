@@ -4,25 +4,24 @@ import './Header.scss'
 
 export const Header = (props) => (
   <div className='header'>
-    <div className='container'>
-      <nav className='navbar'>
-        <div className='navbar-header' >
-          <div className='logo'>Event Emitter</div>
-          <button type='button' className='navbar-toggle' onClick={props.switchMobileMenu}>
-            <span className='icon-bar' />
-            <span className='icon-bar' />
-            <span className='icon-bar' />
-          </button>
-        </div>
-        <div className='navbar-collapse'>
-          <ul className='navbar-nav'>
-            <li>Link1</li>
-            <li>Link2</li>
-            <li>Link3</li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+    <nav className='navbar'>
+      <div className='navbar-header' >
+        <div className='logo'>Event Emitter</div>
+        <button type='button' className='navbar-toggle' onClick={props.switchMobileMenu}>
+          <span className='icon-bar' />
+          <span className='icon-bar' />
+          <span className='icon-bar' />
+        </button>
+      </div>
+      <div className={'navbar-collapse ' + (props.header ? 'show-mobile' : 'hidden-mobile')} >
+        <ul className='navbar-nav'>
+          <li>Events</li>
+          <li>Login</li>
+          <li>Support</li>
+          <li>About us</li>
+        </ul>
+      </div>
+    </nav>
 
     <h1>React Redux Starter Kit</h1>
     <IndexLink to='/' activeClassName='route--active'>
@@ -39,7 +38,8 @@ export const Header = (props) => (
 
 )
 Header.propTypes = {
-  switchMobileMenu : React.PropTypes.func.isRequired
+  switchMobileMenu : React.PropTypes.func.isRequired,
+  header :React.PropTypes.bool.isRequired
 }
 
 export default Header

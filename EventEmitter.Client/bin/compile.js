@@ -25,6 +25,5 @@ const compile = () => {
       process.exit(1)
     })
 }
- 
- 
+
 compile()

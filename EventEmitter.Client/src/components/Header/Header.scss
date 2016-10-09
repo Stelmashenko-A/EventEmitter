@@ -1,11 +1,11 @@
 .header{
   border-width: 0 0 1px;
 
-  .container{
     .navbar{
       border: none;
+      border-bottom: 1px solid #DDDDDD;
       .navbar-header{
-        border-bottom: 1px solid #DDDDDD;
+
         .logo{
           float: left;
           padding: 20px;
@@ -38,8 +38,11 @@
       .navbar-collapse{
         padding: 0;
         margin-left: 15px;
-        border-bottom: 1px solid #DDDDDD;
-        border-left: 1px solid #DDDDDD;
+        border: 1px solid #DDDDDD;
+//border-left: 1px solid #DDDDDD;
+        position: fixed;
+        width: 100%;
+        background: white;
 
         .navbar-nav{
           padding-left: 55px;
@@ -53,5 +56,48 @@
         }
       }
     }
+  
+}
+
+@media (min-width: 768px) {
+  .header{
+
+    .navbar{
+      .navbar-header{
+        .logo{
+        }
+
+        .navbar-toggle{
+          &:hover{
+          }
+          .icon-bar{
+
+            &:first-child{
+            }
+          }        
+        }
+      }
+
+      .navbar-collapse{
+        position: relative;
+        width: auto;
+        background: white;
+        margin-left: 200px;
+        border: none;
+        .navbar-nav{
+              float: right;
+          li{
+            margin: 0;
+            font-size: 22px;
+            padding: 20px;
+            &:hover{
+              border-bottom: 2px solid;
+              padding-bottom: 18px;
+            }
+          }
+        }
+      }
+    }
   } 
+
 }

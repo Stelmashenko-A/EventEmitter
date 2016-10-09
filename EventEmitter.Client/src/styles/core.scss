@@ -19,3 +19,12 @@ body {
 *:after {
   box-sizing: inherit;
 }
+@media (max-width: 767px) {
+  .hidden-mobile{
+    visibility:hidden;  
+  }
+
+  .show-mobile{
+    visibility:visible;
+  }
+}

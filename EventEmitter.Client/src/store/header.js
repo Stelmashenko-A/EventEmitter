@@ -36,7 +36,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = true
+const initialState = false
 export default function headerReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
