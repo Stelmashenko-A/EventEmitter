@@ -4,7 +4,6 @@ import './Header.scss'
 
 export const Header = (props) => (
   <div className='header'>
-    <nav className='navbar'>
       <div className='navbar-header' >
         <div className='logo'>Event Emitter</div>
         <button type='button' className='navbar-toggle' onClick={props.switchMobileMenu}>
@@ -21,16 +20,6 @@ export const Header = (props) => (
           <li>About us</li>
         </ul>
       </div>
-    </nav>
-
-    <h1>React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName='route--active'>
-      Home
-    </IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName='route--active'>
-      Counter
-    </Link>
   </div>
     // <IndexLink to='/' activeClassName='route--active'>
       // Home

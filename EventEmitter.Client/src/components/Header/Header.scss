@@ -1,16 +1,18 @@
-.header{
+/*.header{
   border-width: 0 0 1px;
-
-    .navbar{
-      border: none;
-      border-bottom: 1px solid #DDDDDD;
       .navbar-header{
+        display: inline-block;
+        width: 100%;
+
+      border-bottom: 3px solid #DDDDDD;
 
         .logo{
           float: left;
           padding: 20px;
-          font-size: 22px;
+          font-size: 30px;
+          line-height: 30px;
           color: #ff40ac;
+          
         }
 
         .navbar-toggle{
@@ -19,8 +21,17 @@
           margin: 20px;
           padding: 0 8px;
           border: 2px solid #DDDDDD;
+          background-color: #FFF;
+          border-radius: 4px;
+          float: right;
           &:hover{
             background-color: #DDDDDD;
+          }
+          &:focus{
+            outline-color: #DDDDDD;
+          }
+          span{
+            display: block;
           }
           .icon-bar{
             height: 2px;
@@ -37,11 +48,10 @@
 
       .navbar-collapse{
         padding: 0;
-        margin-left: 15px;
         border: 1px solid #DDDDDD;
-//border-left: 1px solid #DDDDDD;
-        position: fixed;
-        width: 100%;
+        position: absolute;
+        width: 85%;
+        margin-left: 15%;
         background: white;
 
         .navbar-nav{
@@ -55,19 +65,89 @@
           }
         }
       }
-    }
+    
+  
+}*/
+
+.header{
+
+      .navbar-header{
+        border-bottom: 1px solid #DDDDDD;
+        .logo{
+          font-size: 30px;
+          color: #ff40ac;
+          display: inline-block;
+          padding: 20px;
+        }
+
+        .navbar-toggle{
+
+          border: 2px solid #DDDDDD;
+          border-radius: 4px;
+          background-color: #FFF;
+          float: right;
+          height: 40px;
+          width: 50px;
+          margin-top: 17px;
+          margin-right: 40px;
+
+          &:hover{
+            background-color: #DDDDDD;
+          }
+          &:focus{
+            outline-color: #DDDDDD;
+          }
+          .icon-bar{
+          
+           background-color: #888;
+           display: block;
+           height: 2px;
+           width: 20px;
+           padding: 0;
+           margin: auto;
+           margin-bottom: 3px;
+            &:first-child{
+              
+            }
+          }        
+        }
+      }
+
+      .navbar-collapse{
+       
+        border-bottom: 1px solid #DDDDDD;
+        border-left: 1px solid #DDDDDD;
+        position: absolute;
+        background-color: #FFF;
+        width: 85%;
+        margin-left: 15%;
+
+        .navbar-nav{
+          margin: 0;
+          padding: 20px 40px;
+          li{
+            list-style-type: none;    
+            color: #30BFB0;
+            font-size: 20px;
+            margin-top: 7px;
+          }
+        }
+      }
+    
   
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .header{
 
-    .navbar{
       .navbar-header{
+                display: inline;
         .logo{
         }
 
         .navbar-toggle{
+          display: none;
+
           &:hover{
           }
           .icon-bar{
@@ -79,17 +159,20 @@
       }
 
       .navbar-collapse{
+        display: inline;
+        margin: 0;
         position: relative;
-        width: auto;
         background: white;
-        margin-left: 200px;
         border: none;
         .navbar-nav{
               float: right;
+              margin: 0;
           li{
             margin: 0;
             font-size: 22px;
             padding: 20px;
+            display: inline-block;
+
             &:hover{
               border-bottom: 2px solid;
               padding-bottom: 18px;
@@ -98,6 +181,55 @@
         }
       }
     }
-  } 
+  
+
+}*/
+
+@media (min-width: 768px) {
+  .header{
+       border-bottom: 1px solid #DDDDDD;
+      .navbar-header{
+        display: inline-block;
+        border: none;
+        .logo{
+        }
+
+        .navbar-toggle{
+          display: none;
+          &:hover{
+          }
+          .icon-bar{
+
+            &:first-child{
+            }
+          }        
+        }
+      }
+
+      .navbar-collapse{
+        display: inline-block;
+        margin: 0;
+        width: auto;
+        border: none;
+        right: 0;
+        .navbar-nav{
+          padding:0;
+          li{
+                    
+            display: inline-block;
+            margin-top: 0;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 30px;
+            &:hover{
+              border-bottom: 2px solid;
+              padding-bottom: 19px;
+              background-color: #DDDDDD;
+            }
+          }
+        }
+      }
+    }
+  
 
 }
