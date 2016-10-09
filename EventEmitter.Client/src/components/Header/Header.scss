@@ -73,6 +73,7 @@
 
       .navbar-header{
         border-bottom: 1px solid #DDDDDD;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
         .logo{
           font-size: 30px;
           color: #ff40ac;
@@ -121,16 +122,21 @@
         background-color: #FFF;
         width: 85%;
         margin-left: 15%;
-
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
         .navbar-nav{
           margin: 0;
-          padding: 20px 40px;
+          padding: 20px 0;
           li{
             list-style-type: none;    
             color: #30BFB0;
             font-size: 20px;
-            margin-top: 7px;
+            padding: 4px 20px;
+            &:hover{
+              border-left: 2px solid;
+              padding-left: 18px;
+            }
           }
+
         }
       }
     
@@ -188,9 +194,11 @@
 @media (min-width: 768px) {
   .header{
        border-bottom: 1px solid #DDDDDD;
+       box-shadow: 0 0 5px rgba(0,0,0,0.2);
       .navbar-header{
         display: inline-block;
         border: none;
+        box-shadow:none;
         .logo{
         }
 
@@ -212,6 +220,7 @@
         width: auto;
         border: none;
         right: 0;
+        box-shadow: none;
         .navbar-nav{
           padding:0;
           li{
@@ -223,6 +232,8 @@
             padding-top: 30px;
             &:hover{
               border-bottom: 2px solid;
+              border-left: none;
+              padding-left: 15px;
               padding-bottom: 19px;
               background-color: #DDDDDD;
             }
