@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Client", "Even
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Api", "EventEmitter.Api\EventEmitter.Api.csproj", "{11A9EB2E-D8F7-43D8-9D3B-E093629990E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Storage", "EventEmitter.Storage\EventEmitter.Storage.csproj", "{86D00CCF-4D67-4E88-AC98-AC463592CAD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{11A9EB2E-D8F7-43D8-9D3B-E093629990E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11A9EB2E-D8F7-43D8-9D3B-E093629990E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11A9EB2E-D8F7-43D8-9D3B-E093629990E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86D00CCF-4D67-4E88-AC98-AC463592CAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D00CCF-4D67-4E88-AC98-AC463592CAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86D00CCF-4D67-4E88-AC98-AC463592CAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D00CCF-4D67-4E88-AC98-AC463592CAD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
