@@ -30,8 +30,6 @@ CREATE TABLE EventEmitter.dbo.[Claims]
 CREATE TABLE EventEmitter.dbo.[UserTypeClaim]
 (
 	UserTypeClaimId UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
-	Name NVARCHAR(255) NOT NULL,
-	[Description] NVARCHAR(255) NOT NULL,
 
 	ClaimId UNIQUEIDENTIFIER NOT NULL,
 	CONSTRAINT fk_ClaimUserType FOREIGN KEY (ClaimId)
@@ -45,7 +43,7 @@ CREATE TABLE EventEmitter.dbo.[UserTypeClaim]
 CREATE TABLE EventEmitter.dbo.[Phones]
 (
 	PhoneId UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
-	Name NVARCHAR(30) NOT NULL,
+	Value NVARCHAR(30) NOT NULL,
 
 	UserAccountId UNIQUEIDENTIFIER NOT NULL,
 	CONSTRAINT fk_PhoneUserAccount FOREIGN KEY (UserAccountId)
@@ -78,7 +76,7 @@ CREATE TABLE EventEmitter.dbo.[Events]
 	Start DATETIME NOT NULL,
 	Duration INT,
 	Slots INT,
-	Price INT,
+	Price FLOAT,
 	
 	EventTypeId UNIQUEIDENTIFIER NOT NULL,
 	CONSTRAINT fk_EventEventTypes FOREIGN KEY (EventTypeId)
