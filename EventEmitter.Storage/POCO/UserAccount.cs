@@ -15,6 +15,10 @@ namespace EventEmitter.Storage.POCO
         [Column(Name = "LoginProvider")]
         public string LoginProvider { get; set; }
 
+        [Column(Name = "LoginProviderKey")]
+        public string LoginProviderKey { get; set; }
+        
+
         [Column(Name = "Base64Secret"), NotNull]
         public string Base64Secret { get; set; }
 
