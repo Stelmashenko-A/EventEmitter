@@ -1,9 +1,8 @@
 using System;
-using LinqToDB;
 using System.Linq;
+using LinqToDB;
 
-
-namespace EventEmitter.Storage
+namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
 {
     public class Repository<T> : IRepository<T> where T : class, IPoco
     {
@@ -57,3 +56,4 @@ namespace EventEmitter.Storage
         }
     }
 }
+
