@@ -4,10 +4,10 @@ using LinqToDB.Mapping;
 namespace EventEmitter.Storage.POCO
 {
     [Table(Name = "Contacts")]
-    public class Contact
+    public class Contact : IPoco
     {
-        [PrimaryKey, Identity]
-        public Guid ContactId { get; set; }
+        [PrimaryKey, Identity, Column(Name = "ContactId")]
+        public Guid Id { get; set; }
 
         [Column(Name = "SenderUserId"), NotNull]
         public Guid SenderUserId { get; set; }

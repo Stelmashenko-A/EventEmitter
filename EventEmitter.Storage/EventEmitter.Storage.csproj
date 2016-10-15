@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="POCO\IPoco.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="EventEmitterDatabase.cs" />
+    <Compile Include="IStrategy.cs" />
     <Compile Include="POCO\Benefit.cs" />
     <Compile Include="POCO\BenefitType.cs" />
     <Compile Include="POCO\Claim.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="POCO\UserType.cs" />
     <Compile Include="POCO\UserTypeClaim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
