@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\BanListManager.cs" />
+    <Compile Include="Services\ContactManager.cs" />
+    <Compile Include="Services\EventManager.cs" />
+    <Compile Include="Services\Messager.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventState.cs" />
@@ -55,6 +59,9 @@
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\RegistrationType.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Services\RegistrationManager.cs" />
+    <Compile Include="Services\Registrator.cs" />
+    <Compile Include="Services\WhieListManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
