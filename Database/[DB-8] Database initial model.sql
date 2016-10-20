@@ -4,8 +4,7 @@ GO
 CREATE TABLE EventEmitter.dbo.[UserTypes]
 (
 	UserTypeId UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
-	Name NVARCHAR(255) NOT NULL,
-	ApplicationBase64Secret NVARCHAR(255) NOT NULL
+	Name NVARCHAR(255) NOT NULL
 ); 
 
 CREATE TABLE EventEmitter.dbo.UserAccounts
@@ -43,7 +42,7 @@ CREATE TABLE EventEmitter.dbo.[UserTypeClaim]
 CREATE TABLE EventEmitter.dbo.[Phones]
 (
 	PhoneId UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
-	Value NVARCHAR(30) NOT NULL,
+	Value NVARCHAR(20) NOT NULL,
 
 	UserAccountId UNIQUEIDENTIFIER NOT NULL,
 	CONSTRAINT fk_PhoneUserAccount FOREIGN KEY (UserAccountId)
