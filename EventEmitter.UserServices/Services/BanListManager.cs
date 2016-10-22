@@ -1,9 +1,19 @@
+using AutoMapper;
+using EventEmitter.Storage.Repositories;
 using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.UserServices.Services
 {
-    class BanListManager : IBanListManager
+    public class BanListManager : IBanListManager
     {
+        private readonly IStopListRecordRepository _stopListRecordRepository;
+        private readonly IMapper _mapper;
+
+        public BanListManager(IMapper mapper, IStopListRecordRepository stopListRecordRepository)
+        {
+            _stopListRecordRepository = stopListRecordRepository;
+            _mapper = mapper;
+        }
         public void AddToBanList(Event obj, User user)
         {
             throw new System.NotImplementedException();
@@ -16,7 +26,7 @@ namespace EventEmitter.UserServices.Services
 
         public bool IsBanned(User user, Event obj)
         {
-            throw new System.NotImplementedException();
+            return _stopListRecordRepository.Contains(user.Id, obj.Id);
         }
     }
 }

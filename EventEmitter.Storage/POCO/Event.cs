@@ -23,5 +23,8 @@ namespace EventEmitter.Storage.POCO
 
         [Column(Name = "EventTypeId"), NotNull]
         public Guid EventTypeId { get; set; }
+
+        [Column(Name = "EventCreatorId"), NotNull]
+        public Guid EventCreatorId { get; set; }
     }
 }

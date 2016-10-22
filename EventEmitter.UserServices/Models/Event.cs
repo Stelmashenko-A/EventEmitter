@@ -15,5 +15,7 @@ namespace EventEmitter.UserServices.Models
         public int Price { get; set; }
 
         public Guid EventTypeId { get; set; }
+
+        public User Creator { get; set; }
     }
 }
