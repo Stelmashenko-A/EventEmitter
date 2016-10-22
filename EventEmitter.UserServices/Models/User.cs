@@ -2,7 +2,7 @@
 
 namespace EventEmitter.UserServices.Models
 {
-    public class UserAccount
+    public class User
     {   
         public Guid Id { get; set; }
 

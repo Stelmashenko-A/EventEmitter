@@ -21,8 +21,8 @@ namespace EventEmitter.UserServices.Infrastructure
                 cfg.CreateMap<Registration, Storage.POCO.Registration>();
                 cfg.CreateMap<Storage.POCO.Registration, Registration>();
 
-                cfg.CreateMap<UserAccount, Storage.POCO.UserAccount>();
-                cfg.CreateMap<Storage.POCO.UserAccount, UserAccount>();
+                cfg.CreateMap<User, Storage.POCO.UserAccount>();
+                cfg.CreateMap<Storage.POCO.UserAccount, User>();
 
             });
         }

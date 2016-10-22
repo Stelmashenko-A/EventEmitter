@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\AutoMapperSetup.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Services\BanListManager.cs" />
     <Compile Include="Services\ContactManager.cs" />
     <Compile Include="Services\EventManager.cs" />
@@ -58,10 +65,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\RegistrationType.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Services\RegistrationManager.cs" />
     <Compile Include="Services\Registrator.cs" />
     <Compile Include="Services\WhieListManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EventEmitter.Storage\EventEmitter.Storage.csproj">
+      <Project>{86d00ccf-4d67-4e88-ac98-ac463592cad7}</Project>
+      <Name>EventEmitter.Storage</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

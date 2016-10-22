@@ -39,7 +39,7 @@ namespace EventEmitter.Api.Controllers
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
         {
-            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+            var externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
             return new UserInfoViewModel
             {
@@ -62,7 +62,7 @@ namespace EventEmitter.Api.Controllers
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
         [Route("ExternalLogin", Name = "ExternalLogin")]
-        public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
+        public IHttpActionResult GetExternalLogin(string provider, string error = null)
         {
             if (error != null)
             {
