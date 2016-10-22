@@ -73,7 +73,9 @@ namespace EventEmitter.UserServices.Services
 
         public IEnumerable<User> Get(Event obj, RegistrationType registrationType)
         {
-            throw new System.NotImplementedException();
+            _eventRepository.Get()
         }
+
+    
     }
 }
