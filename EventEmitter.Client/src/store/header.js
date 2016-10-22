@@ -6,7 +6,7 @@ export const SWITCH_MOBILE_MENU = 'SWITCH_MOBILE_MENU'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function switchMobileMenu (visible = false) {
+export function switchMobileMenu(visible = false) {
   return {
     type    : SWITCH_MOBILE_MENU,
     payload : visible
@@ -20,7 +20,6 @@ export function switchMobileMenu (visible = false) {
     NOTE: This is solely for demonstration purposes. In a real application,
     you'd probably want to dispatch an action of COUNTER_DOUBLE and let the
     reducer take care of this logic.  */
-
 
 export const actions = {
   switchMobileMenu
@@ -37,7 +36,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = false
-export default function headerReducer (state = initialState, action) {
+export default function headerReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

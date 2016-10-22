@@ -7,7 +7,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  header : state.header
+  header: state.header
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

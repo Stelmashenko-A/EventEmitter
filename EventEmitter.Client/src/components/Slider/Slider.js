@@ -2,8 +2,8 @@ import React from 'react'
 import Slick from 'react-slick'
 import './Slider.scss'
 
-var Slider = React.createClass({  
-  render: function () {
+var Slider = React.createClass({
+  render: function() {
     var settings = {
       dots: true,
       infinite: true,

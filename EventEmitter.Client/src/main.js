@@ -66,7 +66,7 @@ if (__DEV__) {
 // Go!
 // ========================================================
 render()
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     user: state
   }

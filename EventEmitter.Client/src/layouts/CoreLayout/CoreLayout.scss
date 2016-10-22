@@ -1,6 +1,13 @@
 .core-layout__viewport {
   padding-top: 4rem;
 }
-.container{
+
+.container {
   padding: 0;
+}
+@media (min-width: 980px) {
+  .wrapper {
+    width: 960px;
+    margin: 0 auto;
+  }
 }
