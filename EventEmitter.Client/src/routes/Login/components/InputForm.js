@@ -1,18 +1,16 @@
 import React from 'react'
-import Description from './Description'
-import InputForm from './InputForm'
 
-export const Login = (props) => (
-    <div>
-        <Description />
-        <InputForm />
-    </div>
+export const InputForm = (props) => (
+  <div>
+    <input type='text' placeholder='Login' />
+    <input type='password' placeholder='Password' />
+    <button>Submit</button>
+    <button onClick={props.google}>Google</button>
+  </div>
 )
 
-Login.propTypes = {
-  counter: React.PropTypes.number.isRequired,
-  doubleAsync: React.PropTypes.func.isRequired,
-  increment: React.PropTypes.func.isRequired
+InputForm.propTypes = {
+  google : React.PropTypes.func.isRequired
 }
 
-export default Login
+export default InputForm

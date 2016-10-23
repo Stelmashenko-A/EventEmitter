@@ -6,15 +6,13 @@ export const Login = (props) => (
   <div style={{ margin: '0 auto' }} >
 
     <Description />
-    <InputForm />
+    <InputForm google={props.google} />
 
   </div>
 )
 
 Login.propTypes = {
-  counter: React.PropTypes.number.isRequired,
-  doubleAsync: React.PropTypes.func.isRequired,
-  increment: React.PropTypes.func.isRequired
+  google: React.PropTypes.func.isRequired
 }
 
 export default Login

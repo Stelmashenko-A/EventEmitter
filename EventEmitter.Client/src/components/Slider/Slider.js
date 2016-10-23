@@ -3,7 +3,7 @@ import Slick from 'react-slick'
 import './Slider.scss'
 
 var Slider = React.createClass({
-  render: function() {
+  render: function () {
     var settings = {
       dots: true,
       infinite: true,
