@@ -1,9 +1,14 @@
 import { injectReducer } from '../../store/reducers'
-
+import { successLogin } from './modules/login.js'
 export default (store) => ({
-  path : 'login',
+  path: 'login',
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
+    window.addEventListener('message', (data) => {
+      if (data.origin === 'http://localhost:18292') {
+        store.dispatch(successLogin(data), false)
+      }
+    })
     /*  Webpack - use 'require.ensure' to create a split point
         and embed an async module loader (jsonp) when bundling   */
     require.ensure([], (require) => {
@@ -18,7 +23,7 @@ export default (store) => ({
       /*  Return getComponent   */
       cb(null, Login)
 
-    /* Webpack named bundle   */
+      /* Webpack named bundle   */
     }, 'login')
   }
 })

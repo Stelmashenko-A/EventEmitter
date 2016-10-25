@@ -4,12 +4,20 @@ import fetch from 'isomorphic-fetch'
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 export const GOOGLE_LOGIN_CLICK = 'GOOGLE_LOGIN_CLICK'
+export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
 
 export const REQUEST_LOGIN = 'REQUEST_LOGIN'
-function requestLogin(login) {
+function requestLogin (login) {
   return {
     type: REQUEST_LOGIN,
     login
+  }
+}
+
+export const successLogin = (event) => {
+  return {
+    type: SUCCESS_LOGIN,
+    payload: event.data
   }
 }
 // ------------------------------------
@@ -54,19 +62,26 @@ export const actions = {
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
+
+const successLoginHandler = (state, action) => {
+  console.log(state)
+  console.log(action)
+  return state
+}
+
 const ACTION_HANDLERS = {
   [GOOGLE_LOGIN_CLICK]: (state, action) => {
-    alert(state)
     login()
     return state
-  }
+  },
+  [SUCCESS_LOGIN]: successLoginHandler
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const initialState = 0
-export default function loginReducer(state = initialState, action) {
+export default function loginReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
@@ -122,7 +137,6 @@ var login = function () {
     // event.source is popup
     // event.data is "hi there yourself!  the secret response is: rheeeeet!"
   }
-  window.addEventListener('message', receiveMessage, false)
 }
 
 export function fetchPosts(login) {
