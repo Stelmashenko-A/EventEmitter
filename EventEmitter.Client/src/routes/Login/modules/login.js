@@ -5,8 +5,27 @@ import fetch from 'isomorphic-fetch'
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 export const GOOGLE_LOGIN_CLICK = 'GOOGLE_LOGIN_CLICK'
 export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
+export const REQUEST_USER = 'REQUEST_USER'
+export const RECEIVE_USER = 'RECEIVE_USER'
 
 export const REQUEST_LOGIN = 'REQUEST_LOGIN'
+
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function increment (value = 1) {
+  return {
+    type: COUNTER_INCREMENT,
+    payload: value
+  }
+}
+
+export function googleLogin () {
+  return {
+    type: GOOGLE_LOGIN_CLICK
+  }
+}
+
 function requestLogin (login) {
   return {
     type: REQUEST_LOGIN,
@@ -15,24 +34,23 @@ function requestLogin (login) {
 }
 
 export const successLogin = (event) => {
-  return {
-    type: SUCCESS_LOGIN,
-    payload: event.data
-  }
-}
-// ------------------------------------
-// Actions
-// ------------------------------------
-export function increment(value = 1) {
-  return {
-    type: COUNTER_INCREMENT,
-    payload: value
+  return (dispatch) => {
+    if (shouldFetchUser(event.data)) {
+      return dispatch(fetchUser(event.data))
+    }
   }
 }
 
-export function googleLogin() {
+export const requestUser = () => {
   return {
-    type: GOOGLE_LOGIN_CLICK
+    type: REQUEST_USER
+  }
+}
+
+export const receiveUser = (user) => {
+  return {
+    type: RECEIVE_USER,
+    payload: user
   }
 }
 
@@ -63,18 +81,11 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 
-const successLoginHandler = (state, action) => {
-  console.log(state)
-  console.log(action)
-  return state
-}
-
 const ACTION_HANDLERS = {
   [GOOGLE_LOGIN_CLICK]: (state, action) => {
     login()
     return state
-  },
-  [SUCCESS_LOGIN]: successLoginHandler
+  }
 }
 
 // ------------------------------------
@@ -139,34 +150,23 @@ var login = function () {
   }
 }
 
-export function fetchPosts(login) {
-  // Thunk middleware knows how to handle functions.
-  // It passes the dispatch method as an argument to the function,
-  // thus making it able to dispatch actions itself.
-
-  return function (dispatch) {
-    // First dispatch: the app state is updated to inform
-    // that the API call is starting.
-
-    dispatch(requestLogin(login))
-
-    // The function called by the thunk middleware can return a value,
-    // that is passed on as the return value of the dispatch method.
-
-    // In this case, we return a promise to wait for.
-    // This is not required by thunk middleware, but it is convenient for us.
-
+function fetchUser (subreddit) {
+  return dispatch => {
+    dispatch(requestUser(subreddit))
     return fetch(`http://www.reddit.com/r/${subreddit}.json`)
       .then(response => response.json())
-      .then(json =>
+      .then(json => dispatch(receiveUser(subreddit, json)))
+  }
+}
 
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
+function shouldFetchUser (state, subreddit) {
+  return true
+}
 
-        dispatch(receivePosts(subreddit, json))
-      )
-
-    // In a real world app, you also want to
-    // catch any error in the network call.
+export function fetchUserIfNeeded (accessData) {
+  return (dispatch) => {
+    if (shouldFetchUser(accessData)) {
+      return dispatch(fetchUser(accessData))
+    }
   }
 }

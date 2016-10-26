@@ -6,7 +6,7 @@ export default (store) => ({
   getComponent (nextState, cb) {
     window.addEventListener('message', (data) => {
       if (data.origin === 'http://localhost:18292') {
-        store.dispatch(successLogin(data), false)
+        store.dispatch(successLogin(data))
       }
     })
     /*  Webpack - use 'require.ensure' to create a split point
