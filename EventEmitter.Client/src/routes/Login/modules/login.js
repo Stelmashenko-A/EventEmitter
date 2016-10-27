@@ -1,4 +1,5 @@
-import fetch from 'isomorphic-fetch'
+
+import { shouldFetchUser, fetchUser } from '../../../store/user'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -8,7 +9,6 @@ export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
 export const REQUEST_USER = 'REQUEST_USER'
 export const RECEIVE_USER = 'RECEIVE_USER'
 
-export const REQUEST_LOGIN = 'REQUEST_LOGIN'
 
 // ------------------------------------
 // Actions
@@ -26,12 +26,6 @@ export function googleLogin () {
   }
 }
 
-function requestLogin (login) {
-  return {
-    type: REQUEST_LOGIN,
-    login
-  }
-}
 
 export const successLogin = (event) => {
   return (dispatch) => {
@@ -54,24 +48,6 @@ export const receiveUser = (user) => {
   }
 }
 
-/*  This is a thunk, meaning it is a function that immediately
-    returns a function for lazy evaluation. It is incredibly useful for
-    creating async actions, especially when combined with redux-thunk!
-
-    NOTE: This is solely for demonstration purposes. In a real application,
-    you'd probably want to dispatch an action of COUNTER_DOUBLE and let the
-    reducer take care of this logic.  */
-
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch(increment(getState().counter))
-        resolve()
-      }, 200)
-    })
-  }
-}
 
 export const actions = {
   googleLogin
@@ -150,23 +126,3 @@ var login = function () {
   }
 }
 
-function fetchUser (subreddit) {
-  return dispatch => {
-    dispatch(requestUser(subreddit))
-    return fetch(`http://www.reddit.com/r/${subreddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receiveUser(subreddit, json)))
-  }
-}
-
-function shouldFetchUser (state, subreddit) {
-  return true
-}
-
-export function fetchUserIfNeeded (accessData) {
-  return (dispatch) => {
-    if (shouldFetchUser(accessData)) {
-      return dispatch(fetchUser(accessData))
-    }
-  }
-}
