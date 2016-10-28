@@ -34,10 +34,11 @@ export const requestUser = () => {
   }
 }
 
-export const receiveUser = (user) => {
+export const receiveUser = (login, user) => {
   return {
     type: RECEIVE_USER,
-    payload: user
+    login,
+    user
   }
 }
 
@@ -57,8 +58,11 @@ export const actions = {
 // ------------------------------------
 
 const ACTION_HANDLERS = {
+  [RECEIVE_USER] : (state, action) => receiveUserHandler(state, action)
 }
-
+function receiveUserHandler (state, action) {
+  return Object.assign(action.user, action.login)
+}
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -73,58 +77,9 @@ window.callparent = function (obj) {
   alert(obj)
 }
 
-var login = function () {
-  window.open('http://localhost:18292/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A18292%2F&', 'Authenticate Account', 'location=0,status=0,width=600,height=750')
-  function receiveMessage (event) {
-    console.log(event)
-    // Do we trust the sender of this message?  (might be
-    // different from what we originally opened, for example).
-    // alert(event.data["access_token"]);
-    /*if (event.origin !== "http://example.org")
-        return;*/
-
-    /*$.ajax({
-      type: "Get",
-      headers: {
-        'Authorization': 'Bearer ' + event.data["access_token"]
-      },
-      url: "http://localhost:18292/api/Account/UserInfo",
-      dataType: "json",
-      success: function (data) {
-        $.ajax({
-          type: "GET",
-          headers: {
-            'Authorization': 'Bearer ' + event.data["access_token"]
-          },
-          url: "http://localhost:18292/api/Account/UserInfo",
-          dataType: "json",
-          data: {
-            Email: "qwe"
-          },
-          success: function (data) {
-            alert('Success');
-
-          },
-          error: function () {
-            alert('Error 2S');
-          }
-        });
-
-      },
-      error: function () {
-        alert('Error');
-      }
-    });*/
-
-    // event.source is popup
-    // event.data is "hi there yourself!  the secret response is: rheeeeet!"
-  }
-}
-
 export function fetchUser (login) {
   return dispatch => {
     dispatch(requestUser(login))
-    console.log(login)
     var fetchInit = { method: 'GET',
                mode: 'cors',
                cache: 'default',
