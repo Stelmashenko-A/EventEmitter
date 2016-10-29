@@ -6,9 +6,10 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using CredentialStorage;
 using EventEmitter.Api.Models;
 using EventEmitter.Api.Results;
+using EventEmitter.UserServices;
+using EventEmitter.UserServices.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -21,14 +22,16 @@ namespace EventEmitter.Api.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-
-        public AccountController()
+        private readonly IAccountManager _accountManager;
+        public AccountController(IAccountManager accountManager)
         {
+            _accountManager = accountManager;
         }
 
-        public AccountController(ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountController(ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IAccountManager accountManager)
         {
             AccessTokenFormat = accessTokenFormat;
+            _accountManager = accountManager;
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
@@ -85,23 +88,23 @@ namespace EventEmitter.Api.Controllers
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 return new ChallengeResult(provider, this);
             }
-            var uar = new UserAccountRepository();
-            var user = uar.Get(externalLogin.LoginProvider, externalLogin.ProviderKey);
+
+
+            var user = _accountManager.GetInfo(externalLogin.LoginProvider, externalLogin.ProviderKey);
 
             var hasRegistered = user != null;
 
             if (!hasRegistered)
             {
-                user = new UserAccount()
+                user = new User
                 {
                     Name = externalLogin.UserName,
                     LoginProvider = externalLogin.LoginProvider,
                     LoginProviderKey = externalLogin.ProviderKey,
                     Base64Secret = "eigiure",
-                    ApplicationId = new Guid("78F73412-15FC-4580-A351-07DA74EAE1A6")
                 };
-                var userAccountRepository = new UserAccountRepository();
-                userAccountRepository.Insert(user);
+
+                _accountManager.Register(user);
             }
 
             Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
@@ -148,7 +151,7 @@ namespace EventEmitter.Api.Controllers
                     response_type = "token",
                     client_id = Startup.PublicClientId,
                     redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
-                    state = state
+                    state
                 });
                 logins.Add(login);
             }
@@ -219,13 +222,12 @@ namespace EventEmitter.Api.Controllers
 
     public class IdentetyBuilder
     {
-        public ClaimsIdentity Build(UserAccount user, string authenticationType)
+        public ClaimsIdentity Build(User user, string authenticationType)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim("Id", user.UserAccountId.ToString()),
-                new Claim("ApplicationId", user.ApplicationId.ToString())
+                new Claim("Id", user.Id.ToString())
             };
             return new ClaimsIdentity(claims, authenticationType);
         }
@@ -233,7 +235,7 @@ namespace EventEmitter.Api.Controllers
 
     public class PropertyBuilder
     {
-        public AuthenticationProperties Build(UserAccount user)
+        public AuthenticationProperties Build(User user)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {

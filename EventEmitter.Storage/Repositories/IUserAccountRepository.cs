@@ -6,5 +6,6 @@ namespace EventEmitter.Storage.Repositories
     public interface IUserAccountRepository : IRepository<UserAccount>
     {
         //IEnumerable<UserAccount> Get(Event @event, EventType eventType);
+        UserAccount Get(string loginProvider, string providerKey);
     }
 }

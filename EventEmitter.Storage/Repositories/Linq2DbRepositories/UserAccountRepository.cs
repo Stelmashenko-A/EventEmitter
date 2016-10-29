@@ -1,18 +1,20 @@
+using System.Linq;
 using EventEmitter.Storage.POCO;
 
 namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
 {
     public class UserAccountRepository : Repository<UserAccount>, IUserAccountRepository
     {
-       /* public IEnumerable<UserAccount> Get(Event @event, EventType eventType)
+        public UserAccount Get(string loginProvider, string providerKey)
         {
             using (var db = new EventEmitterDatabase())
             {
-                var query = from item in db.Events
-                            where item.EventCreatorId == userAccount.Id
+                var query = from item in db.UserAccounts
+                            where item.LoginProvider == loginProvider &&
+                            item.LoginProviderKey == providerKey
                             select item;
-                return query.ToArray();
+                return query.FirstOrDefault();
             }
-        }*/
+        }
     }
 }

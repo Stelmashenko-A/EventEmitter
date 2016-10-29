@@ -86,7 +86,7 @@ export function fetchUser (login) {
                headers: {
                  'Authorization': 'Bearer ' + login.access_token
                } }
-    return fetch(`http://localhost:18292/api/Account/UserInfo`, fetchInit)
+    return fetch(`http://localhost/EventEmitter.Api/api/Account/UserInfo`, fetchInit)
       .then(response => response.json())
       .then(json => dispatch(receiveUser(login, json)))
   }
