@@ -15,7 +15,7 @@ export const Header = (props) => (
     <div className={'navbar-collapse ' + (props.header ? 'show-mobile' : 'hidden-mobile')} >
       <ul className='navbar-nav'>
         <li>Events</li>
-        <li>
+        <li className={(!props.user.login ? '' : 'hidden')}>
           <Link to='/login' activeClassName='route--active'>Login</Link>
         </li>
         <li>Support</li>
@@ -30,7 +30,8 @@ export const Header = (props) => (
 )
 Header.propTypes = {
   switchMobileMenu: React.PropTypes.func.isRequired,
-  header: React.PropTypes.bool.isRequired
+  header: React.PropTypes.bool.isRequired,
+  user: React.PropTypes.object
 }
 
 export default Header

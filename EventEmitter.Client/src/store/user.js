@@ -61,12 +61,12 @@ const ACTION_HANDLERS = {
   [RECEIVE_USER] : (state, action) => receiveUserHandler(state, action)
 }
 function receiveUserHandler (state, action) {
-  return Object.assign(action.user, action.login)
+  return Object.assign({ login: true }, action.user, action.login)
 }
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = { login: false }
 export default function loginReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
@@ -86,7 +86,7 @@ export function fetchUser (login) {
                headers: {
                  'Authorization': 'Bearer ' + login.access_token
                } }
-    return fetch(`http://localhost/EventEmitter.Api/api/Account/UserInfo`, fetchInit)
+    return fetch(`http://localhost:3001/api/Account/UserInfo`, fetchInit)
       .then(response => response.json())
       .then(json => dispatch(receiveUser(login, json)))
   }
