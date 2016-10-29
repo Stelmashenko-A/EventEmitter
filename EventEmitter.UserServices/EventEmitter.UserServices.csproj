@@ -77,8 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAccountManager.cs" />
+    <Compile Include="IClaimManager.cs" />
     <Compile Include="Infrastructure\AutoMapperSetup.cs" />
     <Compile Include="Infrastructure\NinjectSetup.cs" />
+    <Compile Include="Models\Claim.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\BanListManager.cs" />
     <Compile Include="Services\ContactManager.cs" />

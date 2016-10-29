@@ -80,49 +80,5 @@ window.callparent = function (obj) {
 
 var login = function () {
   window.open('http://localhost:3001/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2F&', 'Authenticate Account', 'location=0,status=0,width=600,height=750')
-  function receiveMessage (event) {
-    console.log(event)
-    // Do we trust the sender of this message?  (might be
-    // different from what we originally opened, for example).
-    // alert(event.data["access_token"]);
-    /*if (event.origin !== "http://example.org")
-        return;*/
-
-    /*$.ajax({
-      type: "Get",
-      headers: {
-        'Authorization': 'Bearer ' + event.data["access_token"]
-      },
-      url: "http://localhost:18292/api/Account/UserInfo",
-      dataType: "json",
-      success: function (data) {
-        $.ajax({
-          type: "GET",
-          headers: {
-            'Authorization': 'Bearer ' + event.data["access_token"]
-          },
-          url: "http://localhost:18292/api/Account/UserInfo",
-          dataType: "json",
-          data: {
-            Email: "qwe"
-          },
-          success: function (data) {
-            alert('Success');
-
-          },
-          error: function () {
-            alert('Error 2S');
-          }
-        });
-
-      },
-      error: function () {
-        alert('Error');
-      }
-    });*/
-
-    // event.source is popup
-    // event.data is "hi there yourself!  the secret response is: rheeeeet!"
-  }
 }
 

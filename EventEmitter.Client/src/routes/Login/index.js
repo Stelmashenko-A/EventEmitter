@@ -5,7 +5,7 @@ export default (store) => ({
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     window.addEventListener('message', (data) => {
-      if (data.origin === 'http://localhost:18292') {
+      if (data.origin === 'http://localhost:3001') {
         store.dispatch(successLogin(data))
       }
     })

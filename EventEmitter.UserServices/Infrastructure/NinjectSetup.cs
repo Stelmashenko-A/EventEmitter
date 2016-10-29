@@ -31,6 +31,7 @@ namespace EventEmitter.UserServices.Infrastructure
         {
             kernel.Bind<IAccountManager>().To<AccountManager>();
             kernel.Bind<IUserAccountRepository>().To<UserAccountRepository>();
+            kernel.Bind<ISettingRepository>().To<SettingRepository>();
             AutoMapperSetup autoMapperSetup = new AutoMapperSetup();
             // A reminder
             var config = autoMapperSetup.Setup();

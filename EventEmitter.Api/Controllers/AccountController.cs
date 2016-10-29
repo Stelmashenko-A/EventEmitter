@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using Claim = System.Security.Claims.Claim;
 
 namespace EventEmitter.Api.Controllers
 {

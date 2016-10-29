@@ -24,6 +24,7 @@ namespace EventEmitter.Storage
         public ITable<UserType> UserTypes => GetTable<UserType>();
         public ITable<UserTypeClaim> UserTypeClaims => GetTable<UserTypeClaim>();
         public ITable<WhiteListRecord> WhiteListRecords => GetTable<WhiteListRecord>();
+        public ITable<Setting> Settings => GetTable<Setting>();
 
     }
 }

@@ -17,16 +17,19 @@ namespace EventEmitter.UserServices
     {
         protected IUserAccountRepository UserAccountRepository;
         private readonly IMapper _mapper;
+        private readonly ISettingRepository _settings;
 
-        public AccountManager(IUserAccountRepository userAccountRepository, IMapper mapper)
+        public AccountManager(IUserAccountRepository userAccountRepository, IMapper mapper, ISettingRepository settings)
         {
             UserAccountRepository = userAccountRepository;
             _mapper = mapper;
+            _settings = settings;
         }
 
         public void Register(User user)
-        {
+        {               
             var mappedUser = _mapper.Map<User, UserAccount>(user);
+            mappedUser.UserTypeId = new Guid(_settings.Get("DEFAULT_USER_TYPE").Value);
             UserAccountRepository.Insert(mappedUser);
         }
 
