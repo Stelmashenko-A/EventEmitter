@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import { browserHistory } from 'react-router'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -61,6 +62,7 @@ const ACTION_HANDLERS = {
   [RECEIVE_USER] : (state, action) => receiveUserHandler(state, action)
 }
 function receiveUserHandler (state, action) {
+
   return Object.assign({ login: true }, action.user, action.login)
 }
 // ------------------------------------
@@ -88,7 +90,10 @@ export function fetchUser (login) {
                } }
     return fetch(`http://localhost:3001/api/Account/UserInfo`, fetchInit)
       .then(response => response.json())
-      .then(json => dispatch(receiveUser(login, json)))
+      .then(json => {
+        browserHistory.push('/')
+        dispatch(receiveUser(login, json))
+      })
   }
 }
 
