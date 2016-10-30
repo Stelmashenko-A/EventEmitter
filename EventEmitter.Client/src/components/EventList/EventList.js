@@ -5,6 +5,7 @@ export const EventList = (props) => (
   <div className='header'>
     {(props.events.map((event, i) =>
       <Event
+        key={i}
         owner={event.owner}
         start={event.start}
         duration={event.duration}
@@ -17,7 +18,7 @@ export const EventList = (props) => (
 
 )
 EventList.propTypes = {
-  events: React.PropTypes.object.isRequired
+  events: React.PropTypes.array.isRequired
 }
 
 export default EventList

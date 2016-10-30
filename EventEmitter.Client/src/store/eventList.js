@@ -1,49 +1,58 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-
+export const INIT_EVENTS = 'INIT_EVENTS'
 
 
 // ------------------------------------
 // Actions
 // ------------------------------------
+export function initEvents () {
+  return {
+    type    : INIT_EVENTS
+  }
+}
 
 export const actions = {
+  initEvents
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
-const ACTION_HANDLERS = {
-}
-
-
-// ------------------------------------
-// Reducer
-// ------------------------------------
-const initialState = { 'events': [
+var newState = { 'events': [
     { 'owner':'John Smith',
     'start':'11:11:11 10.10.1900',
      'duration':'10 minutes',
      'price':'0',
-     'descripion':'isrhgyrgurbtgyurbgtubrgy',
+     'description':'isrhgyrgurbtgyurbgtubrgy',
      'slots':'123'
      },
      { 'owner':'Qwer Smith',
     'start':'12:12:12 10.10.1900',
      'duration':'10 minutes',
      'price':'0',
-     'descripion':'isrhgyrgurbtgyurbgtubrgy',
+     'description':'isrhgyrgurbtgyurbgtubrgy',
      'slots':'123'
      },
      { 'owner':'asf asdfsadf',
     'start':'10:10:10 10.10.1900',
      'duration':'10 minutes',
      'price':'0',
-     'descripion':'isrhgyrgurbtgyurbgtubrgy',
+     'description':'isrhgyrgurbtgyurbgtubrgy',
      'slots':'123'
      }] }
-    
+
+const ACTION_HANDLERS = {
+  [INIT_EVENTS] : (state, action) => newState
+}
+
+
+// ------------------------------------
+// Reducer
+// ------------------------------------
+const initialState = { 'events': [] }
+
 export default function eventListReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
