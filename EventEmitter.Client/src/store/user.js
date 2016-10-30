@@ -7,19 +7,11 @@ import { browserHistory } from 'react-router'
 export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
 export const REQUEST_USER = 'REQUEST_USER'
 export const RECEIVE_USER = 'RECEIVE_USER'
-
 export const REQUEST_LOGIN = 'REQUEST_LOGIN'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-
-function requestLogin (login) {
-  return {
-    type: REQUEST_LOGIN,
-    login
-  }
-}
 
 export const successLogin = (event) => {
   return (dispatch) => {
