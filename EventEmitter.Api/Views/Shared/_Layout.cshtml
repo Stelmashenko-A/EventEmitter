@@ -57,7 +57,6 @@
         })();
 
         var fragment = common.getFragment();
-
         window.location.hash = fragment.state || '';
         window.opener.postMessage(fragment, "http://localhost:3000/login");
         window.close();
