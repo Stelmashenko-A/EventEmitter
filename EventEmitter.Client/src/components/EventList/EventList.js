@@ -14,11 +14,16 @@ export const EventList = (props) => (
         slots={event.slots}
        />
     ))}
+
+    <button className='btn btn-default' onClick={props.loading}>
+      Increment
+    </button>
   </div>
 
 )
 EventList.propTypes = {
-  events: React.PropTypes.array.isRequired
+  events: React.PropTypes.array.isRequired,
+  loading: React.PropTypes.func.isRequired
 }
 
 export default EventList

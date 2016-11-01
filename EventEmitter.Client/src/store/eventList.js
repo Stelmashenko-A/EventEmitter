@@ -2,7 +2,10 @@
 // Constants
 // ------------------------------------
 export const INIT_EVENTS = 'INIT_EVENTS'
-
+export const LOAD_EVENTS = 'LOAD_EVENTS'
+export const LOADING_START = 'LOADING_START'
+export const SUCCESS_LOADING = 'SUCCESS_LOADING'
+export const FAILED_LOADING = 'FAILED_LOADING'
 
 // ------------------------------------
 // Actions
@@ -13,8 +16,50 @@ export function initEvents () {
   }
 }
 
+export const loadEvents = () => {
+  return {
+    type:LOAD_EVENTS
+  }
+}
+
+export const loadingStart = () => {
+  return {
+    type:LOADING_START
+  }
+}
+
+export const successLoading = () => {
+  return {
+    type:SUCCESS_LOADING
+  }
+}
+export const loading = () => {
+
+  return (dispatch, getstate) => {
+    dispatch(loadingStart())
+    console.log(getstate().user)
+    var fetchInit = { method: 'GET',
+               mode: 'cors',
+               cache: 'default',
+               headers: {
+                 'Authorization': 'Bearer ' + getstate().user.access_token
+               } }
+    return fetch(`http://localhost:3001/api/Account/UserInfo`, fetchInit)
+      .then(response => response.json())
+      .then(json => {
+        alert(json)
+        dispatch(successLoading())
+      })
+  }
+}
+
+export function fetchEvents () {
+
+}
 export const actions = {
-  initEvents
+  initEvents,
+  loading,
+  successLoading
 }
 
 // ------------------------------------
