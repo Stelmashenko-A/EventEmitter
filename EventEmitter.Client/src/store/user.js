@@ -83,8 +83,8 @@ export function fetchUser (login) {
     return fetch(`http://localhost:3001/api/Account/UserInfo`, fetchInit)
       .then(response => response.json())
       .then(json => {
-        browserHistory.push('/')
         dispatch(receiveUser(login, json))
+        browserHistory.push('/')
       })
   }
 }
