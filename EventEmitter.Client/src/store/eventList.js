@@ -10,9 +10,10 @@ export const FAILED_LOADING = 'FAILED_LOADING'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function initEvents () {
+export function initEvents (newState) {
   return {
-    type    : INIT_EVENTS
+    type    : INIT_EVENTS,
+    payload: newState
   }
 }
 
@@ -47,8 +48,8 @@ export const loading = () => {
     return fetch(`http://localhost:3001/api/Account/UserInfo`, fetchInit)
       .then(response => response.json())
       .then(json => {
-        alert(json)
-        dispatch(successLoading())
+        console.log(json)
+        dispatch(initEvents(newState))
       })
   }
 }
@@ -89,7 +90,7 @@ var newState = { 'events': [
      }] }
 
 const ACTION_HANDLERS = {
-  [INIT_EVENTS] : (state, action) => newState
+  [INIT_EVENTS] : (state, action) => action.payload
 }
 
 
