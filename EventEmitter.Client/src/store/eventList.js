@@ -45,11 +45,11 @@ export const loading = () => {
                headers: {
                  'Authorization': 'Bearer ' + getstate().user.access_token
                } }
-    return fetch(`http://localhost:3001/api/Account/UserInfo`, fetchInit)
+    return fetch(`http://localhost:3001/api/Event?page=3`, fetchInit)
       .then(response => response.json())
       .then(json => {
         console.log(json)
-        dispatch(initEvents(newState))
+        dispatch(initEvents(json))
       })
   }
 }
