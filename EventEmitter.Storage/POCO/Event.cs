@@ -21,6 +21,9 @@ namespace EventEmitter.Storage.POCO
         [Column(Name = "Price"), NotNull]
         public int Price { get; set; }
 
+        [Column(Name = "TimeStamp"), NotNull]
+        public double TimeStamp { get; set; }
+
         [Column(Name = "EventTypeId"), NotNull]
         public Guid EventTypeId { get; set; }
 
