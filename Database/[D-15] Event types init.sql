@@ -1,0 +1,5 @@
+INSERT INTO EventTypes(EventTypeId, Name, [Description]) VALUES ('78E0386C-2596-44BA-8939-36221DC63806' , 'Default Type', 'initial type for start working');
+GO
+
+INSERT INTO Settings(SettingId, Name, Value) VALUES ('626F4AE5-C11E-4C7E-9875-F8B87C402A86' , 'DEFAULT_EVENT_TYPE', '78E0386C-2596-44BA-8939-36221DC63806');
+GO
