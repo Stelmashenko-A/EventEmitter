@@ -40,12 +40,11 @@ export const loading = () => {
     dispatch(loadingStart())
     console.log(getstate().user)
     var fetchInit = { method: 'GET',
-               mode: 'cors',
                cache: 'default',
                headers: {
                  'Authorization': 'Bearer ' + getstate().user.access_token
                } }
-    return fetch(`http://localhost:3001/api/Event?page=3`, fetchInit)
+    return fetch(`http://localhost:3001/api/Event?page=1`, fetchInit)
       .then(response => response.json())
       .then(json => {
         console.log(json)

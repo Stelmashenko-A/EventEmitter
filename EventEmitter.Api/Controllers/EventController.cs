@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Mvc;
+using EventEmitter.UserServices;
+using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.Api.Controllers
 {
-    [EnableCors("*", "*", "*")]
+    [RoutePrefix("api/Event")]
     public class EventController : ApiController
     {
+        private IEventLine _eventLine;
+
+        public EventController(IEventLine eventLine)
+        {
+            this._eventLine = eventLine;
+        }
+
         // GET: api/Event
         public IEnumerable<string> Get()
         {
@@ -26,7 +30,7 @@ namespace EventEmitter.Api.Controllers
         }
         public class EventModel
         {
-            public List<Event> events { get; set; } 
+            public IEnumerable<NamedEvent> events { get; set; } 
       
         }
 
@@ -41,19 +45,9 @@ namespace EventEmitter.Api.Controllers
         }
         public EventModel Get(int page)
         {
-            var e = new Event()
-            {
-                owner = page.ToString(),
-                start = "efe",
-                duration = "efw",
-                price = "efjef",
-                description = "efhi",
-                slots = "ehfiu"
-            };
-            var ev = new EventModel();
-            ev.events = new List<Event>();
-            ev.events.Add(e);
-            return ev;
+            var events = _eventLine.Get(page);
+            var responce = new EventModel {events = events};
+            return responce;
         }
 
         // POST: api/Event

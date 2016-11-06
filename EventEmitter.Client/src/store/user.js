@@ -75,7 +75,6 @@ export function fetchUser (login) {
   return dispatch => {
     dispatch(requestUser(login))
     var fetchInit = { method: 'GET',
-               mode: 'cors',
                cache: 'default',
                headers: {
                  'Authorization': 'Bearer ' + login.access_token

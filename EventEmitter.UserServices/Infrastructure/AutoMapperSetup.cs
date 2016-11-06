@@ -27,6 +27,9 @@ namespace EventEmitter.UserServices.Infrastructure
                 cfg.CreateMap<Claim, Storage.POCO.Enums.Claim>();
                 cfg.CreateMap<Storage.POCO.Enums.Claim, Claim>();
 
+                cfg.CreateMap<NamedEvent, Storage.Models.Event>();
+                cfg.CreateMap<Storage.Models.Event, NamedEvent>();
+
             });
         }
     }

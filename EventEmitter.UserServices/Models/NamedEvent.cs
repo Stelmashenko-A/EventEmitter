@@ -2,7 +2,7 @@
 
 namespace EventEmitter.UserServices.Models
 {
-    public class Event
+    public class NamedEvent
     {
         public Guid Id { get; set; }
 
@@ -14,10 +14,10 @@ namespace EventEmitter.UserServices.Models
 
         public int Price { get; set; }
 
+        public double TimeStamp { get; set; }
+
         public Guid EventTypeId { get; set; }
 
-        public User Creator { get; set; }
-
-        public double TimeStamp { get; set; }
+        public string Author { get; set; }
     }
 }

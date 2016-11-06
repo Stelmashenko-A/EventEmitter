@@ -18,7 +18,6 @@ using Claim = System.Security.Claims.Claim;
 
 namespace EventEmitter.Api.Controllers
 {
-    [EnableCors("*", "*", "*")]
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

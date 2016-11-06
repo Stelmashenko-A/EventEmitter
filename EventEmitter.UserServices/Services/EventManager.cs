@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
@@ -22,9 +23,12 @@ namespace EventEmitter.UserServices.Services
         public void Create(Event obj)
         {
             if (!CanCreate(obj.Creator)) return;
-
+            obj.TimeStamp = DateTime.Now.ToUniversalTime().Subtract(
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                ).TotalMilliseconds;
             var storedEvent = _mapper.Map<Event, Storage.POCO.Event>(obj);
             _eventRepository.Insert(storedEvent);
+            obj.Id = storedEvent.Id;
         }
 
         protected bool CanCreate(User creator)

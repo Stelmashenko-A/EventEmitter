@@ -13,6 +13,6 @@ namespace EventEmitter.UserServices
         IEnumerable<Event> Get(User user);
         IEnumerable<Event> Get(User user, EventState state);
         IEnumerable<User> Get(Event obj);
-        IEnumerable<User> Get(Event obj, RegistrationType registrationType);
+        IEnumerable<User> Get(Event obj, RegistrationType registrationType); 
     }
 }

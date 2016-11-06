@@ -6,12 +6,12 @@ export const EventList = (props) => (
     {(props.events.map((event, i) =>
       <Event
         key={i}
-        owner={event.owner}
-        start={event.start}
-        duration={event.duration}
-        price={event.price}
-        description={event.description}
-        slots={event.slots}
+        owner={event.Author}
+        start={event.Start}
+        duration={event.Duration}
+        price={event.Price}
+        description={event.Description}
+        slots={event.Slots}
        />
     ))}
 
