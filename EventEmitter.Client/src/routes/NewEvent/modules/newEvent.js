@@ -3,7 +3,10 @@
 // Constants
 // ------------------------------------
 
-
+export const DESCRIPCION_CHANGED = 'DESCRIPCION_CHANGED'
+export const DURATION_CHANGED = 'DURATION_CHANGED'
+export const SLOTS_CHANGED = 'SLOTS_CHANGED'
+export const SUBMITED = 'SUBMITED'
 
 // ------------------------------------
 // Actions
