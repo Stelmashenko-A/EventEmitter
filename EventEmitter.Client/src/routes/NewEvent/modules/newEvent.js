@@ -18,8 +18,24 @@ export function descriptionChanged (e) {
   }
 }
 
+export function durationChanged (e) {
+  return {
+    type: DURATION_CHANGED,
+    payload: e.target.value
+  }
+}
+
+export function slotsChanged (e) {
+  return {
+    type: SLOTS_CHANGED,
+    payload: e.target.value
+  }
+}
+
 export const actions = {
-  descriptionChanged
+  descriptionChanged,
+  durationChanged,
+  slotsChanged
 }
 
 // ------------------------------------
@@ -28,8 +44,16 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [DESCRIPCION_CHANGED]: (state, action) => {
-    console.log(action.payload)
-    return { Description : action.payload }
+    return Object.assign(state, { Description : action.payload })
+  },
+
+  [DURATION_CHANGED]: (state, action) => {
+    console.log(state)
+    return Object.assign(state, { Duration : action.payload })
+  },
+
+  [SLOTS_CHANGED]: (state, action) => {
+    return Object.assign(state, { Slots : action.payload })
   }
 }
 
