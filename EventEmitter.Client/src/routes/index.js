@@ -9,7 +9,7 @@ import NewEvent from './NewEvent'
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
-export const createRoutes = (store) => ({
+export const createRoutes = (store, qwer) => ({
   path        : '/',
   component   : CoreLayout,
   indexRoute  : Home(store),

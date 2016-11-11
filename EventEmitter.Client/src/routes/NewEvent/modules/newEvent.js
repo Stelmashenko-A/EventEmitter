@@ -1,4 +1,4 @@
-
+import moment from 'moment'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -7,6 +7,7 @@ export const DESCRIPCION_CHANGED = 'DESCRIPCION_CHANGED'
 export const DURATION_CHANGED = 'DURATION_CHANGED'
 export const SLOTS_CHANGED = 'SLOTS_CHANGED'
 export const SUBMITED = 'SUBMITED'
+export const START_CHANGED = 'START_CHANGED'
 
 // ------------------------------------
 // Actions
@@ -31,11 +32,21 @@ export function slotsChanged (e) {
     payload: e.target.value
   }
 }
+export function startChanged (date,t,d) {
+  console.log(t)
+    console.log(d)
+  return {
+    type: START_CHANGED,
+    payload: date
+  }
+}
+
 
 export const actions = {
   descriptionChanged,
   durationChanged,
-  slotsChanged
+  slotsChanged,
+  startChanged
 }
 
 // ------------------------------------
@@ -44,16 +55,19 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [DESCRIPCION_CHANGED]: (state, action) => {
-    return Object.assign(state, { Description : action.payload })
+    return Object.assign({}, state, { Description : action.payload })
   },
 
   [DURATION_CHANGED]: (state, action) => {
-    console.log(state)
-    return Object.assign(state, { Duration : action.payload })
+    return Object.assign({}, state, { Duration : action.payload })
   },
 
   [SLOTS_CHANGED]: (state, action) => {
-    return Object.assign(state, { Slots : action.payload })
+    return Object.assign({}, state, { Slots : action.payload })
+  },
+
+  [START_CHANGED]: (state, action) => {
+    return Object.assign({}, state, { Start : Object.assign(action.payload) })
   }
 }
 
@@ -61,7 +75,8 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  Description: '12345'
+  Description: '12345',
+  Start: moment()
 }
 export default function loginReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
