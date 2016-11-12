@@ -35,7 +35,6 @@ export const successLoading = () => {
   }
 }
 export const loading = () => {
-
   return (dispatch, getstate) => {
     dispatch(loadingStart())
     console.log(getstate().user)

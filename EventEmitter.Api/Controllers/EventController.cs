@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
 
@@ -36,12 +35,12 @@ namespace EventEmitter.Api.Controllers
 
         public class Event
         {
-             public string owner { get; set; }
-            public string start { get; set; }
-            public string duration { get; set; }
-            public string price { get; set; }
-            public string description { get; set; }
-            public string slots { get; set; }
+            public string Owner { get; set; }
+            public DateTime Start { get; set; }
+            public string Duration { get; set; }
+            public string Price { get; set; }
+            public string Description { get; set; }
+            public string Slots { get; set; }
         }
         public EventModel Get(int page)
         {
@@ -49,10 +48,12 @@ namespace EventEmitter.Api.Controllers
             var responce = new EventModel {events = events};
             return responce;
         }
-
         // POST: api/Event
-        public void Post([FromBody]string value)
+        public async void Post([FromBody]Event value)
         {
+            var body = await Request.Content.ReadAsStringAsync();
+            int i = 0;
+
         }
 
         // PUT: api/Event/5

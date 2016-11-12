@@ -18,6 +18,9 @@ export const Header = (props) => (
         <li className={(!props.user.login ? '' : 'hidden')}>
           <Link to='/login' activeClassName='route--active'>Login</Link>
         </li>
+        <li className={(props.user.login ? '' : 'hidden')}>
+          <Link to='/newEvent' activeClassName='route--active'>New Event</Link>
+        </li>
         <li>Support</li>
         <li>About us</li>
       </ul>

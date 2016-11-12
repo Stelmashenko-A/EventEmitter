@@ -54,16 +54,24 @@ const ACTION_HANDLERS = {
   [RECEIVE_USER] : (state, action) => receiveUserHandler(state, action)
 }
 function receiveUserHandler (state, action) {
-
-  return Object.assign({ login: true }, action.user, action.login)
+  var newState = Object.assign({ login: true }, action.user, action.login)
+  localStorage.setItem('user', JSON.stringify(newState))
+  return newState
 }
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { login: false }
+function getInitialSate () {
+  var storedUser = JSON.parse(localStorage.getItem('user'))
+  console.log(storedUser)
+  if (storedUser !== null) {
+    return storedUser
+  }
+  return { login: false }
+}
+const initialState = getInitialSate()
 export default function loginReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
-
   return handler ? handler(state, action) : state
 }
 

@@ -16,10 +16,10 @@ export const Event = (props) => (
 Event.propTypes = {
   owner: React.PropTypes.string.isRequired,
   start: React.PropTypes.string.isRequired,
-  duration: React.PropTypes.string.isRequired,
-  price: React.PropTypes.string.isRequired,
+  duration: React.PropTypes.number.isRequired,
+  price: React.PropTypes.number.isRequired,
   description: React.PropTypes.string.isRequired,
-  slots: React.PropTypes.string.isRequired
+  slots: React.PropTypes.number.isRequired
 }
 
 export default Event

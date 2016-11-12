@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 import NewEvent from '../components/NewEventView'
-import { descriptionChanged, slotsChanged, durationChanged, startChanged } from '../modules/NewEvent'
+import { descriptionChanged, slotsChanged, durationChanged, startChanged, submit } from '../modules/NewEvent'
 const mapDispatchToProps = {
   descriptionChanged,
   slotsChanged,
   durationChanged,
-  startChanged
+  startChanged,
+  submit
 }
 
 const mapStateToProps = (state) => ({
