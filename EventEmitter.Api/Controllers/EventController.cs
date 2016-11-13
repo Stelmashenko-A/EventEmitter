@@ -6,8 +6,9 @@ using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.Api.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Event")]
-    public class EventController : ApiController
+    public class EventController : CommonController
     {
         private IEventLine _eventLine;
 
@@ -51,6 +52,7 @@ namespace EventEmitter.Api.Controllers
         // POST: api/Event
         public async void Post([FromBody]Event value)
         {
+            var u = Account;
             var body = await Request.Content.ReadAsStringAsync();
             int i = 0;
 

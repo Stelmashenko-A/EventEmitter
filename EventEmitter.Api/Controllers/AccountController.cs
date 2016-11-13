@@ -227,7 +227,8 @@ namespace EventEmitter.Api.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim("Id", user.Id.ToString())
+
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
             return new ClaimsIdentity(claims, authenticationType);
         }

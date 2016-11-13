@@ -45,7 +45,7 @@ export function startChanged (date) {
 export function submit (date) {
   return (dispatch, getstate) => {
     console.log()
-    return dispatch(createEvent(getstate().login, getstate().newEvent))
+    return dispatch(createEvent(getstate().user, getstate().newEvent))
   }
 }
 
@@ -97,7 +97,7 @@ export default function loginReducer (state = initialState, action) {
 export function createEvent (login, newEvent) {
   return dispatch => {
     // dispatch(requestUser(login))
-    console.log(newEvent)
+    console.log(login)
     var fetchInit = {
       body: JSON.stringify(newEvent),
       method: 'POST',
