@@ -1,6 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import Button from 'grommet/components/Button';
 
 
 export const NewEvent = (props) => (
@@ -11,9 +12,8 @@ export const NewEvent = (props) => (
     <input type='text' value={props.Description} onChange={props.descriptionChanged} />
     <input type='number' value={props.Slots} onChange={props.slotsChanged} />
     <input type='number' value={props.Duration} onChange={props.durationChanged} />
-    <input type='button' value='Submit' onClick={props.submit} />
+    <Button type='button' label='Submit' onClick={props.submit} primary />
     <DatePicker onChange={props.startChanged} selected={props.Start} />
-
   </div>
 )
 
