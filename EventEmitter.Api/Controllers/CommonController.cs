@@ -3,8 +3,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Web.Http;
+using AutoMapper;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
+using Microsoft.AspNet.Identity;
 using Ninject;
 
 namespace EventEmitter.Api.Controllers
@@ -17,16 +19,16 @@ namespace EventEmitter.Api.Controllers
         [Inject]
         public IAccountManager AccountManager { get; set; }
 
+        [Inject]
+        public IMapper Mapper { get; set; }
+
         public User Account
         {
             get
             {
                 if (_account != null) return _account;
 
-                var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
-                if (identity == null) return _account;
-
-                var strGuid = identity.Claims.Where(item => item.Type == "Id").Select(item => item.Value).FirstOrDefault();
+                var strGuid = User.Identity.GetUserId();
                 if (strGuid == null) return _account;
 
                 var guid = new Guid(strGuid);

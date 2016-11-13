@@ -10,38 +10,22 @@ using EventEmitter.UserServices.Services;
 
 namespace EventEmitter.UserServices.Infrastructure
 {
-    public class NinjectDependencyResolver : IDependencyResolver
+
+    public class NinjectServiceDependencyResolver
     {
-        private IKernel kernel;
-        public NinjectDependencyResolver(IKernel kernelParam)
+        public void AddBindings(IKernel kernel)
         {
-            kernel = kernelParam;
-            AddBindings();
-        }
-        public object GetService(Type serviceType)
-        {
-            return kernel.TryGet(serviceType);
-        }
-
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
-            return kernel.GetAll(serviceType);
-        }
-
-        private void AddBindings()
-        {
-            AutoMapperSetup autoMapperSetup = new AutoMapperSetup();
-            var config = autoMapperSetup.Setup();
-            var mapper = config.CreateMapper();
-            kernel.Bind<IMapper>().ToConstant(mapper);
             kernel.Bind<IAccountManager>().To<AccountManager>();
             kernel.Bind<IUserAccountRepository>().To<UserAccountRepository>();
             kernel.Bind<ISettingRepository>().To<SettingRepository>();
             kernel.Bind<IEventRepository>().To<EventRepository>();
-            kernel.Bind<IEventLine>().To<EventLine>(); 
-
+            kernel.Bind<IEventLine>().To<EventLine>();
+            kernel.Bind<IEventManager>().To<EventManager>();
+            /* AutoMapperSetup autoMapperSetup = new AutoMapperSetup();
+             var config = autoMapperSetup.Setup();
+             var mapper = config.CreateMapper();
+             kernel.Bind<IMapper>().ToConstant(mapper);*/
             // A reminder
-
         }
     }
 }

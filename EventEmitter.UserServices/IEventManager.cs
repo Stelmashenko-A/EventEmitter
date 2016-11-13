@@ -5,7 +5,7 @@ namespace EventEmitter.UserServices
 {
     public interface IEventManager
     {
-        void Create(Event obj);
+        void Create(Event obj, User owner);
         void Delete(Event obj);
         void Open(Event obj);
         void Close(Event obj);

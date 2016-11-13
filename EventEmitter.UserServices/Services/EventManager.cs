@@ -10,23 +10,26 @@ namespace EventEmitter.UserServices.Services
     public class EventManager : IEventManager
     {
         private readonly IEventRepository _eventRepository;
-        private readonly IUserAccountRepository _userAccountRepository;
+        private readonly ISettingRepository _settings;
         private readonly IMapper _mapper;
 
-        public EventManager(IEventRepository eventRepository, IMapper mapper, IUserAccountRepository userAccountRepository)
+        public EventManager(IEventRepository eventRepository, IMapper mapper, IUserAccountRepository userAccountRepository, ISettingRepository settings)
         {
             _eventRepository = eventRepository;
             _mapper = mapper;
-            _userAccountRepository = userAccountRepository;
+            _settings = settings;
         }
 
-        public void Create(Event obj)
+        public void Create(Event obj, User creator)
         {
-            if (!CanCreate(obj.Creator)) return;
+            if (!CanCreate(creator)) return;
+            obj.Creator = creator;
             obj.TimeStamp = DateTime.Now.ToUniversalTime().Subtract(
                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 ).TotalMilliseconds;
+            obj.EventTypeId = new Guid(_settings.Get("DEFAULT_EVENT_TYPE").Value);
             var storedEvent = _mapper.Map<Event, Storage.POCO.Event>(obj);
+            storedEvent.EventCreatorId = creator.Id;
             _eventRepository.Insert(storedEvent);
             obj.Id = storedEvent.Id;
         }

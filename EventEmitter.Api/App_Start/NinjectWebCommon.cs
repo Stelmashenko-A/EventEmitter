@@ -1,8 +1,8 @@
 using System.Web.Mvc;
-using EventEmitter.UserServices.Infrastructure;
+using EventEmitter.Api.Infrastructure;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(EventEmitter.Api.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(EventEmitter.Api.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(EventEmitter.Api.App_Start.NinjectWebCommon), "Stop")]
 
 namespace EventEmitter.Api.App_Start
 {
@@ -16,7 +16,7 @@ namespace EventEmitter.Api.App_Start
 
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -25,7 +25,7 @@ namespace EventEmitter.Api.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -33,7 +33,7 @@ namespace EventEmitter.Api.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
         
         /// <summary>
@@ -64,7 +64,8 @@ namespace EventEmitter.Api.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
+            DependencyResolver.SetResolver(new EventEmitterDependencyResolver(kernel));
         }        
     }
 }

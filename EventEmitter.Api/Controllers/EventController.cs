@@ -11,10 +11,12 @@ namespace EventEmitter.Api.Controllers
     public class EventController : CommonController
     {
         private IEventLine _eventLine;
+        private IEventManager _eventManager;
 
-        public EventController(IEventLine eventLine)
+        public EventController(IEventLine eventLine, IEventManager eventManager)
         {
             this._eventLine = eventLine;
+            _eventManager = eventManager;
         }
 
         // GET: api/Event
@@ -43,6 +45,8 @@ namespace EventEmitter.Api.Controllers
             public string Description { get; set; }
             public string Slots { get; set; }
         }
+
+        [AllowAnonymous]
         public EventModel Get(int page)
         {
             var events = _eventLine.Get(page);
@@ -51,10 +55,9 @@ namespace EventEmitter.Api.Controllers
         }
         // POST: api/Event
         public async void Post([FromBody]Event value)
-        {
-            var u = Account;
-            var body = await Request.Content.ReadAsStringAsync();
-            int i = 0;
+        {var @event = Mapper.Map<Event, UserServices.Models.Event>(value);
+
+            _eventManager.Create(@event,Account);
 
         }
 
