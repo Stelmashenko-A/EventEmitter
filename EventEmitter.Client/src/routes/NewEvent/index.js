@@ -1,5 +1,4 @@
 import { injectReducer } from '../../store/reducers'
-import { InitState } from '../routeEnter'
 export default (store) => ({
   path: 'newEvent',
   /*  Async getComponent is only invoked when route matches   */
