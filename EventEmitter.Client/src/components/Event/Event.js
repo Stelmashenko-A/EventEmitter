@@ -15,7 +15,7 @@ export const Event = (props) => (
         </Label>
       } thumbnail={<Image src='/img/carousel-1.png' />} heading={
         <Heading tag='h2' strong>
-          <div>{props.start}</div>
+          <div>{props.name}</div>
         </Heading>
       } description={
         <Paragraph size='large' margin='medium'>
@@ -27,14 +27,12 @@ export const Event = (props) => (
         </Paragraph>
       } />
     </Box>
-
-    
-
   </div>
 
 )
 Event.propTypes = {
   owner: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired,
   start: React.PropTypes.string.isRequired,
   duration: React.PropTypes.number.isRequired,
   price: React.PropTypes.number.isRequired,

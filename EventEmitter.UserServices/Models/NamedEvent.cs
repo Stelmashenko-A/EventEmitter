@@ -8,6 +8,8 @@ namespace EventEmitter.UserServices.Models
 
         public DateTime Start { get; set; }
 
+        public string Name { get; set; }
+
         public int Duration { get; set; }
 
         public int Slots { get; set; }

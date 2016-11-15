@@ -44,6 +44,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                        select new Models.Event
                        {
                            Id = p.Id,
+                           Name = p.Name,
                            Duration = p.Duration,
                            EventTypeId = p.EventTypeId,
                            Price = p.Price,

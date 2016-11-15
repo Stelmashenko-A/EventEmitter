@@ -40,6 +40,7 @@ namespace EventEmitter.Api.Controllers
         {
             public string Owner { get; set; }
             public DateTime Start { get; set; }
+            public string Name { get; set; }
             public string Duration { get; set; }
             public string Price { get; set; }
             public string Description { get; set; }

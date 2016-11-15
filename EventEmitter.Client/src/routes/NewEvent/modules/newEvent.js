@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch'
 // ------------------------------------
 // Constants
 // ------------------------------------
-
+export const NAME_CHANGED = 'NAME_CHANGED'
 export const DESCRIPCION_CHANGED = 'DESCRIPCION_CHANGED'
 export const DURATION_CHANGED = 'DURATION_CHANGED'
 export const SLOTS_CHANGED = 'SLOTS_CHANGED'
@@ -15,6 +15,13 @@ export const SUBMITED = 'SUBMITED'
 // ------------------------------------
 // Actions
 // ------------------------------------
+export function nameChanged (e) {
+  return {
+    type: NAME_CHANGED,
+    payload: e.target.value
+  }
+}
+
 export function descriptionChanged (e) {
   return {
     type: DESCRIPCION_CHANGED,
@@ -50,6 +57,7 @@ export function submit (date) {
 }
 
 export const actions = {
+  nameChanged,
   descriptionChanged,
   durationChanged,
   slotsChanged,
@@ -62,6 +70,10 @@ export const actions = {
 // ------------------------------------
 
 const ACTION_HANDLERS = {
+  [NAME_CHANGED]: (state, action) => {
+    return Object.assign({}, state, { Name : action.payload })
+  },
+
   [DESCRIPCION_CHANGED]: (state, action) => {
     return Object.assign({}, state, { Description : action.payload })
   },
@@ -83,7 +95,8 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  Description: '12345',
+  Name: '',
+  Description: '',
   Start: moment(),
   Slots: 1,
   Duration: 1

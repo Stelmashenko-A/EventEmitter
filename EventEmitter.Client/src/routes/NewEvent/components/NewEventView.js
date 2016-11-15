@@ -9,6 +9,7 @@ export const NewEvent = (props) => (
   newevent
 
         Name:
+    <input type='text' value={props.Name} onChange={props.nameChanged} />
     <input type='text' value={props.Description} onChange={props.descriptionChanged} />
     <input type='number' value={props.Slots} onChange={props.slotsChanged} />
     <input type='number' value={props.Duration} onChange={props.durationChanged} />
@@ -23,10 +24,12 @@ NewEvent.propTypes = {
   Price: React.PropTypes.number,
   Description: React.PropTypes.string,
   Slots: React.PropTypes.number,
+  Name:React.PropTypes.string,
   descriptionChanged: React.PropTypes.func.isRequired,
   slotsChanged: React.PropTypes.func.isRequired,
   durationChanged: React.PropTypes.func.isRequired,
   startChanged: React.PropTypes.func.isRequired,
+  nameChanged: React.PropTypes.func.isRequired,
   submit:React.PropTypes.func.isRequired
 }
 

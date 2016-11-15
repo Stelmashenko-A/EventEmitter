@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import NewEvent from '../components/NewEventView'
 import {
+    nameChanged,
     descriptionChanged,
     slotsChanged,
     durationChanged,
@@ -9,6 +10,7 @@ import {
   } from '../modules/newEvent'
 
 const mapDispatchToProps = {
+  nameChanged,
   descriptionChanged,
   slotsChanged,
   durationChanged,
@@ -17,6 +19,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
+  Name: state.newEvent.Name,
   Description: state.newEvent.Description,
   Duration: state.newEvent.Duration,
   Slots: state.newEvent.Slots,

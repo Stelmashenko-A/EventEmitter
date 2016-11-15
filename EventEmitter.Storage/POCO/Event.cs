@@ -12,6 +12,9 @@ namespace EventEmitter.Storage.POCO
         [Column(Name = "Start"), NotNull]
         public DateTime Start { get; set; }
 
+        [Column(Name = "Name"), NotNull]
+        public string Name { get; set; }
+
         [Column(Name = "Duration"), NotNull]
         public int Duration { get; set; }
 

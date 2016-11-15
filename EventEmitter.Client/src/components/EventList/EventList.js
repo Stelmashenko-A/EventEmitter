@@ -12,6 +12,7 @@ export const EventList = (props) => (
         price={event.Price}
         description={event.Description}
         slots={event.Slots}
+        name={event.Name}
        />
     ))}
 
