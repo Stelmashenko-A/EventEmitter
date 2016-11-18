@@ -15,6 +15,9 @@ namespace EventEmitter.Storage.POCO
         [Column(Name = "Name"), NotNull]
         public string Name { get; set; }
 
+        [Column(Name = "Description"), NotNull]
+        public string Description { get; set; }
+
         [Column(Name = "Duration"), NotNull]
         public int Duration { get; set; }
 
