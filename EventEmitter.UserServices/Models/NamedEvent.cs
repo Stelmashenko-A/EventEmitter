@@ -23,5 +23,7 @@ namespace EventEmitter.UserServices.Models
         public Guid EventTypeId { get; set; }
 
         public string Author { get; set; }
+
+        public string Image { get; set; }
     }
 }

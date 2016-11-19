@@ -35,5 +35,8 @@ namespace EventEmitter.Storage.POCO
 
         [Column(Name = "EventCreatorId"), NotNull]
         public Guid EventCreatorId { get; set; }
+
+        [Column(Name = "Image")]
+        public string Image { get; set; }
     }
 }

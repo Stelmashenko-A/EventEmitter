@@ -51,8 +51,8 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                            Slots = p.Slots,
                            Start = p.Start,
                            TimeStamp = p.TimeStamp,
-                           Author = c.Name
-
+                           Author = c.Name,
+                           Image = p.Image
                        };
                 return mappedQuery.ToArray();
 

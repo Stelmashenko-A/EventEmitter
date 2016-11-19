@@ -8,7 +8,8 @@ export const DESCRIPCION_CHANGED = 'DESCRIPCION_CHANGED'
 export const DURATION_CHANGED = 'DURATION_CHANGED'
 export const SLOTS_CHANGED = 'SLOTS_CHANGED'
 export const START_CHANGED = 'START_CHANGED'
-
+export const IMG_CHANGED = 'IMG_CHANGED'
+export const IMG_CONVERTED = 'IMG_CONVERTED'
 export const SUBMITED = 'SUBMITED'
 
 
@@ -49,19 +50,31 @@ export function startChanged (date) {
   }
 }
 
-export function submit (date) {
-  return (dispatch, getstate) => {
-    console.log()
-    return dispatch(createEvent(getstate().user, getstate().newEvent))
+export function imgChanged (img) {
+  return {
+    type: IMG_CHANGED,
+    payload: img[0]
   }
 }
 
+export function submit (date) {
+  return (dispatch, getstate) => {
+    return dispatch(createEvent(getstate().newEvent))
+  }
+}
+
+export function imgConverted (text) {
+  return (dispatch, getstate) => {
+    return dispatch(sendEvent(getstate().user, getstate().newEvent, text))
+  }
+}
 export const actions = {
   nameChanged,
   descriptionChanged,
   durationChanged,
   slotsChanged,
   startChanged,
+  imgChanged,
   submit
 }
 
@@ -71,23 +84,28 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [NAME_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Name : action.payload })
+    return Object.assign({}, state, { Name: action.payload })
   },
 
   [DESCRIPCION_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Description : action.payload })
+    return Object.assign({}, state, { Description: action.payload })
   },
 
   [DURATION_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Duration : parseInt(action.payload) })
+    return Object.assign({}, state, { Duration: parseInt(action.payload) })
   },
 
   [SLOTS_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Slots : parseInt(action.payload) })
+    return Object.assign({}, state, { Slots: parseInt(action.payload) })
   },
 
   [START_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Start : Object.assign(action.payload) })
+    return Object.assign({}, state, { Start: Object.assign(action.payload) })
+  },
+
+  [IMG_CHANGED]: (state, action) => {
+    // console.log(reader.readAsBinaryString(action.payload.preview))
+    return Object.assign({}, state, { Image: Object.assign(action.payload) })
   }
 }
 
@@ -99,7 +117,8 @@ const initialState = {
   Description: '',
   Start: moment(),
   Slots: 1,
-  Duration: 1
+  Duration: 1,
+  Image: {}
 }
 export default function loginReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
@@ -107,12 +126,27 @@ export default function loginReducer (state = initialState, action) {
   return handler ? handler(state, action) : state
 }
 
-export function createEvent (login, newEvent) {
+export function createEvent (newEvent) {
   return dispatch => {
     // dispatch(requestUser(login))
-    console.log(login)
+    var reader = new FileReader()
+
+    reader.onload = function (readerEvt) {
+      var binaryString = readerEvt.target.result
+      var base64 = 'data:image;base64,' + btoa(binaryString)
+      dispatch(imgConverted(base64))
+    }
+    console.log(newEvent)
+    reader.readAsBinaryString(newEvent.Image)
+  }
+}
+
+export function sendEvent (login, newEvent, text) {
+  return dispatch => {
+    // dispatch(requestUser(login))
+
     var fetchInit = {
-      body: JSON.stringify(newEvent),
+      body: JSON.stringify(Object.assign({}, newEvent, { Image : text })),
       method: 'POST',
       cache: 'default',
       headers: {
@@ -129,4 +163,3 @@ export function createEvent (login, newEvent) {
       })
   }
 }
-

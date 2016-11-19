@@ -100,6 +100,7 @@
     "react": "^15.0.0",
     "react-datepicker": "^0.34.0",
     "react-dom": "^15.0.0",
+    "react-dropzone": "^3.7.3",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.0",
     "redux": "^3.6.0",

@@ -23,5 +23,7 @@ namespace EventEmitter.UserServices.Models
         public User Creator { get; set; }
 
         public double TimeStamp { get; set; }
+
+        public string Image { get; set; }
     }
 }

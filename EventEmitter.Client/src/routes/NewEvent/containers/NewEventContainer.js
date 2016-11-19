@@ -6,6 +6,7 @@ import {
     slotsChanged,
     durationChanged,
     startChanged,
+    imgChanged,
     submit
   } from '../modules/newEvent'
 
@@ -15,6 +16,7 @@ const mapDispatchToProps = {
   slotsChanged,
   durationChanged,
   startChanged,
+  imgChanged,
   submit
 }
 
@@ -23,7 +25,8 @@ const mapStateToProps = (state) => ({
   Description: state.newEvent.Description,
   Duration: state.newEvent.Duration,
   Slots: state.newEvent.Slots,
-  Start: state.newEvent.Start
+  Start: state.newEvent.Start,
+  Image: state.newEvent.Image
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewEvent)

@@ -13,6 +13,7 @@ export const EventList = (props) => (
         description={event.Description}
         slots={event.Slots}
         name={event.Name}
+        image={event.Image}
        />
     ))}
 

@@ -14,5 +14,6 @@ namespace EventEmitter.Storage.Models
         public double TimeStamp { get; set; }
         public Guid EventTypeId { get; set; }
         public string Author { get; set; }
+        public string Image { get; set; }
     }
 }

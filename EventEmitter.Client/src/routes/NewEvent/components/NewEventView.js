@@ -8,6 +8,7 @@ import NumberInput from 'grommet/components/NumberInput'
 import Table from 'grommet/components/Table'
 import TableRow from 'grommet/components/TableRow'
 import Heading from 'grommet/components/Heading'
+import Dropzone from 'react-dropzone'
 
 export const NewEvent = (props) => (
   <div style={{ margin: '0 auto' }} >
@@ -15,6 +16,12 @@ export const NewEvent = (props) => (
 
     <Table>
       <tbody>
+      <input type='file' onChange={props.imgChanged} />
+        <Dropzone onDrop={props.imgChanged} multiple='false' >
+          
+          <Label>Try dropping some files here, or click to select files to upload.</Label>
+        </Dropzone>
+
         <TableRow>
           <td><Label>Name:</Label></td>
           <td><TextInput value={props.Name} onDOMChange={props.nameChanged} /></td>
@@ -39,8 +46,6 @@ export const NewEvent = (props) => (
           <td><Label>Date:</Label></td>
           <td><DatePicker onChange={props.startChanged} selected={props.Start} /></td>
         </TableRow>
-
-
       </tbody>
     </Table>
     <Button type='button' label='Submit' onClick={props.submit} primary />
@@ -53,12 +58,14 @@ NewEvent.propTypes = {
   Price: React.PropTypes.number,
   Description: React.PropTypes.string,
   Slots: React.PropTypes.number,
+  Image: React.PropTypes.object,
   Name: React.PropTypes.string,
   descriptionChanged: React.PropTypes.func.isRequired,
   slotsChanged: React.PropTypes.func.isRequired,
   durationChanged: React.PropTypes.func.isRequired,
   startChanged: React.PropTypes.func.isRequired,
   nameChanged: React.PropTypes.func.isRequired,
+  imgChanged:React.PropTypes.func.isRequired,
   submit: React.PropTypes.func.isRequired
 }
 

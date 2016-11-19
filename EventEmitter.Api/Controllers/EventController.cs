@@ -45,6 +45,7 @@ namespace EventEmitter.Api.Controllers
             public string Price { get; set; }
             public string Description { get; set; }
             public string Slots { get; set; }
+            public string Image { get; set; }
         }
 
         [AllowAnonymous]
