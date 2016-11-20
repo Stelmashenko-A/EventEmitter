@@ -43,7 +43,7 @@ export const loading = () => {
                headers: {
                  'Authorization': 'Bearer ' + getstate().user.access_token
                } }
-    return fetch(`http://localhost:3001/api/Event?page=1`, fetchInit)
+    return fetch(`http://localhost:3001/api/Event?page=` + getstate().eventList.page, fetchInit)
       .then(response => response.json())
       .then(json => {
         console.log(json)
@@ -64,38 +64,18 @@ export const actions = {
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
-var newState = { 'events': [
-    { 'owner':'John Smith',
-    'start':'11:11:11 10.10.1900',
-     'duration':'10 minutes',
-     'price':'0',
-     'description':'isrhgyrgurbtgyurbgtubrgy',
-     'slots':'123'
-     },
-     { 'owner':'Qwer Smith',
-    'start':'12:12:12 10.10.1900',
-     'duration':'10 minutes',
-     'price':'0',
-     'description':'isrhgyrgurbtgyurbgtubrgy',
-     'slots':'123'
-     },
-     { 'owner':'asf asdfsadf',
-    'start':'10:10:10 10.10.1900',
-     'duration':'10 minutes',
-     'price':'0',
-     'description':'isrhgyrgurbtgyurbgtubrgy',
-     'slots':'123'
-     }] }
 
 const ACTION_HANDLERS = {
-  [INIT_EVENTS] : (state, action) => action.payload
+  [INIT_EVENTS] : (state, action) => Object.assign({}, { 'events':state.events.concat(action.payload.events) }, { 'page':state.page + 1 })
 }
 
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { 'events': [] }
+const initialState = {
+  'events': [],
+  'page':1 }
 
 export default function eventListReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

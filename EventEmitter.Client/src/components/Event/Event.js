@@ -9,7 +9,7 @@ import Tile from 'grommet/components/Tile'
 
 export const Event = (props) => (
   <div className='event-block'>
-    <Tile basis="small"  colorIndex="neutral-2">
+    <Tile basis='small' colorIndex='neutral-2'>
 
 
       <Image src={props.image} s />
@@ -19,7 +19,7 @@ export const Event = (props) => (
       <Heading tag='h3'>
         <div>{props.owner}</div>
       </Heading>
-      <Paragraph  >
+      <Paragraph>
         <div>{props.start}</div>
         <div>{props.duration}</div>
         <div>{props.price}</div>

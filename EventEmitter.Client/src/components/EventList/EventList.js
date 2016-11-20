@@ -2,10 +2,11 @@ import React from 'react'
 import './EventList.scss'
 import Event from '../Event/Event'
 import Tiles from 'grommet/components/Tiles'
+import Button from 'grommet/components/Button'
 export const EventList = (props) => (
-  <div className='header'>
+  <div className='event-list'>
     <Tiles colorIndex='light-2' justify='center'>
-      {(props.events.map((event, i) =>
+      {(props.eventList.events.map((event, i) =>
         <Event
           key={i}
           owner={event.Author}
@@ -19,14 +20,12 @@ export const EventList = (props) => (
           />
       ))}
     </Tiles>
-    <button className='btn btn-default' onClick={props.loading}>
-      Increment
-    </button>
+    <Button label='Load more' onClick={props.loading} />
   </div>
 
 )
 EventList.propTypes = {
-  events: React.PropTypes.array.isRequired,
+  eventList: React.PropTypes.array.object,
   loading: React.PropTypes.func.isRequired
 }
 
