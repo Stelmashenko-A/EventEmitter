@@ -8,17 +8,26 @@ import NumberInput from 'grommet/components/NumberInput'
 import Table from 'grommet/components/Table'
 import TableRow from 'grommet/components/TableRow'
 import Heading from 'grommet/components/Heading'
+import Toast from 'grommet/components/Toast'
 import Dropzone from 'react-dropzone'
+
+function saved (success, toastClosed) {
+  if (success) {
+    return <Toast status='ok' onClose={toastClosed} >
+      A short message to let the user know something.
+    </Toast>
+  }
+}
 
 export const NewEvent = (props) => (
   <div style={{ margin: '0 auto' }} >
+    {saved(props.Saved, props.toastClosed)}
     <Heading strong uppercase tag='h1' align='center' margin='middle'>new event</Heading>
 
     <Table>
       <tbody>
-      <input type='file' onChange={props.imgChanged} />
         <Dropzone onDrop={props.imgChanged} multiple='false' >
-          
+
           <Label>Try dropping some files here, or click to select files to upload.</Label>
         </Dropzone>
 
@@ -54,6 +63,7 @@ export const NewEvent = (props) => (
 
 NewEvent.propTypes = {
   Start: React.PropTypes.object,
+  Saved: React.PropTypes.boolean,
   Duration: React.PropTypes.number,
   Price: React.PropTypes.number,
   Description: React.PropTypes.string,
@@ -65,8 +75,9 @@ NewEvent.propTypes = {
   durationChanged: React.PropTypes.func.isRequired,
   startChanged: React.PropTypes.func.isRequired,
   nameChanged: React.PropTypes.func.isRequired,
-  imgChanged:React.PropTypes.func.isRequired,
-  submit: React.PropTypes.func.isRequired
+  imgChanged: React.PropTypes.func.isRequired,
+  submit: React.PropTypes.func.isRequired,
+  toastClosed: React.PropTypes.func.isRequired
 }
 
 export default NewEvent

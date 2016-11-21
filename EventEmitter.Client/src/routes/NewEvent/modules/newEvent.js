@@ -11,7 +11,8 @@ export const START_CHANGED = 'START_CHANGED'
 export const IMG_CHANGED = 'IMG_CHANGED'
 export const IMG_CONVERTED = 'IMG_CONVERTED'
 export const SUBMITED = 'SUBMITED'
-
+export const ADDED = 'ADDED'
+export const TOAST_CLOSED = 'TOAST_CLOSED'
 
 // ------------------------------------
 // Actions
@@ -68,6 +69,19 @@ export function imgConverted (text) {
     return dispatch(sendEvent(getstate().user, getstate().newEvent, text))
   }
 }
+
+export function added () {
+  return {
+    type: ADDED
+  }
+}
+
+export function toastClosed () {
+  return {
+    type: TOAST_CLOSED
+  }
+}
+
 export const actions = {
   nameChanged,
   descriptionChanged,
@@ -75,7 +89,9 @@ export const actions = {
   slotsChanged,
   startChanged,
   imgChanged,
-  submit
+  submit,
+  toastClosed,
+  added
 }
 
 // ------------------------------------
@@ -84,28 +100,35 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [NAME_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Name: action.payload })
+    return Object.assign({}, state, { Name: action.payload, Saved: false  })
   },
 
   [DESCRIPCION_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Description: action.payload })
+    return Object.assign({}, state, { Description: action.payload, Saved: false })
   },
 
   [DURATION_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Duration: parseInt(action.payload) })
+    return Object.assign({}, state, { Duration: parseInt(action.payload), Saved: false })
   },
 
   [SLOTS_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Slots: parseInt(action.payload) })
+    return Object.assign({}, state, { Slots: parseInt(action.payload), Saved: false })
   },
 
   [START_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Start: Object.assign(action.payload) })
+    return Object.assign({}, state, { Start: Object.assign(action.payload), Saved: false })
   },
 
   [IMG_CHANGED]: (state, action) => {
-    // console.log(reader.readAsBinaryString(action.payload.preview))
-    return Object.assign({}, state, { Image: Object.assign(action.payload) })
+    return Object.assign({}, state, { Image: Object.assign(action.payload), Saved: false })
+  },
+
+  [ADDED]:(state, action) => {
+    return Object.assign({}, initialState, { Saved: true })
+  },
+
+  [TOAST_CLOSED]:(state, action) => {
+    return Object.assign({}, state, { Saved: false })
   }
 }
 
@@ -118,7 +141,8 @@ const initialState = {
   Start: moment(),
   Slots: 1,
   Duration: 1,
-  Image: {}
+  Image: {},
+  Saved: false
 }
 export default function loginReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
@@ -136,15 +160,13 @@ export function createEvent (newEvent) {
       var base64 = 'data:image;base64,' + btoa(binaryString)
       dispatch(imgConverted(base64))
     }
-    console.log(newEvent)
+
     reader.readAsBinaryString(newEvent.Image)
   }
 }
 
 export function sendEvent (login, newEvent, text) {
   return dispatch => {
-    // dispatch(requestUser(login))
-
     var fetchInit = {
       body: JSON.stringify(Object.assign({}, newEvent, { Image : text })),
       method: 'POST',
@@ -156,10 +178,10 @@ export function sendEvent (login, newEvent, text) {
       }
     }
     return fetch(`http://localhost:3001/api/Event`, fetchInit)
-      .then(response => response.json())
-      .then(json => {
-        // dispatch(receiveUser(login, json))
-        // browserHistory.push('/')
+      .then(response => {
+        if (response.status === 204) {
+          dispatch(added())
+        }
       })
   }
 }

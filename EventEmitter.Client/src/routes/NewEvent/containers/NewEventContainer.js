@@ -7,7 +7,8 @@ import {
     durationChanged,
     startChanged,
     imgChanged,
-    submit
+    submit,
+    toastClosed
   } from '../modules/newEvent'
 
 const mapDispatchToProps = {
@@ -17,7 +18,8 @@ const mapDispatchToProps = {
   durationChanged,
   startChanged,
   imgChanged,
-  submit
+  submit,
+  toastClosed
 }
 
 const mapStateToProps = (state) => ({
@@ -26,7 +28,8 @@ const mapStateToProps = (state) => ({
   Duration: state.newEvent.Duration,
   Slots: state.newEvent.Slots,
   Start: state.newEvent.Start,
-  Image: state.newEvent.Image
+  Image: state.newEvent.Image,
+  Saved: state.newEvent.Saved
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewEvent)
