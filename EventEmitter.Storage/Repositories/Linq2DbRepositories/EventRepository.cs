@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventEmitter.Storage.POCO;
@@ -56,6 +57,35 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                            Description = p.Description
                        };
                 return mappedQuery.ToArray();
+
+            }
+        }
+
+        public Models.Event GetNamed(Guid id)
+        {
+            using (var db = new EventEmitterDatabase())
+            {
+                var query = from item in db.Events
+                            where item.Id == id
+                            select item;
+
+                var mappedQuery = from p in query
+                                  join c in db.UserAccounts on p.EventCreatorId equals c.Id
+                                  select new Models.Event
+                                  {
+                                      Id = p.Id,
+                                      Name = p.Name,
+                                      Duration = p.Duration,
+                                      EventTypeId = p.EventTypeId,
+                                      Price = p.Price,
+                                      Slots = p.Slots,
+                                      Start = p.Start,
+                                      TimeStamp = p.TimeStamp,
+                                      Author = c.Name,
+                                      Image = p.Image,
+                                      Description = p.Description
+                                  };
+                return mappedQuery.FirstOrDefault();
 
             }
         }

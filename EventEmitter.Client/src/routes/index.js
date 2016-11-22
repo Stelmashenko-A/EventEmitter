@@ -4,6 +4,7 @@ import Home from './Home'
 import CounterRoute from './Counter'
 import LoginRoute from './Login'
 import NewEvent from './NewEvent'
+import Events from './Events'
 
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -16,7 +17,8 @@ export const createRoutes = (store, qwer) => ({
   childRoutes : [
     CounterRoute(store),
     LoginRoute(store),
-    NewEvent(store)
+    NewEvent(store),
+    Events(store)
   ]
 })
 

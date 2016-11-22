@@ -19,17 +19,7 @@ namespace EventEmitter.Api.Controllers
             _eventManager = eventManager;
         }
 
-        // GET: api/Event
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/Event/5
-        public string Get(Guid id)
-        {
-            return "value";
-        }
         public class EventModel
         {
             public IEnumerable<NamedEvent> events { get; set; } 
@@ -57,7 +47,8 @@ namespace EventEmitter.Api.Controllers
         }
         // POST: api/Event
         public async void Post([FromBody]Event value)
-        {var @event = Mapper.Map<Event, UserServices.Models.Event>(value);
+        {
+            var @event = Mapper.Map<Event, UserServices.Models.Event>(value);
 
             _eventManager.Create(@event,Account);
 
@@ -71,6 +62,12 @@ namespace EventEmitter.Api.Controllers
         // DELETE: api/Event/5
         public void Delete(int id)
         {
+        }
+
+        [AllowAnonymous]
+        public NamedEvent Get(Guid id)
+        {
+            return _eventManager.Get(id);
         }
     }
 }
