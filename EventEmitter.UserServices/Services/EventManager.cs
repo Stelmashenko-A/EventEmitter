@@ -84,6 +84,10 @@ namespace EventEmitter.UserServices.Services
             throw new System.NotImplementedException();
         }
 
-    
+        public NamedEvent Get(Guid eventGuid)
+        {
+            var @event = _eventRepository.GetNamed(eventGuid);
+            return _mapper.Map<Storage.Models.Event, NamedEvent>(@event);
+        }
     }
 }

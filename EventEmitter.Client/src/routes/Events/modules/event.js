@@ -34,7 +34,6 @@ export const startLoadEvent = (id) => {
     return fetch(`http://localhost:3001/api/Event?id=A46918BB-139B-4A97-A3CF-0C94A7D42312`, fetchInit)
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         dispatch(eventLoaded(json))
       })
   }
@@ -48,7 +47,9 @@ export const actions = {
 // ------------------------------------
 
 const ACTION_HANDLERS = {
-
+  [EVENT_LOADED]: (state, action) => {
+    return Object.assign({}, state, action.payload)
+  }
 }
 
 // ------------------------------------

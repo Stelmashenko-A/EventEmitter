@@ -100,7 +100,7 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [NAME_CHANGED]: (state, action) => {
-    return Object.assign({}, state, { Name: action.payload, Saved: false  })
+    return Object.assign({}, state, { Name: action.payload, Saved: false })
   },
 
   [DESCRIPCION_CHANGED]: (state, action) => {
