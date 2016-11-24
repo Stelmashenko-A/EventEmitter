@@ -5,12 +5,12 @@ import Image from 'grommet/components/Image'
 export const Event = (props) => (
   <div style={{ margin: '0 auto' }} >
     <Image src={props.Image} />
-    <Label>{props.Start}</Label>
-    <Label>{props.Duration}</Label>
-    <Label>{props.Price}</Label>
-    <Label>{props.Description}</Label>
-    <Label>{props.Slots}</Label>
-    <Label>{props.Name}</Label>
+    <Label>Start:</Label><Label>{props.Start}</Label>
+    <Label>Duration:</Label><Label>{props.Duration}</Label>
+    <Label>Price:</Label><Label>{props.Price}</Label>
+    <Label>Description:</Label><Label>{props.Description}</Label>
+    <Label>Slots:</Label><Label>{props.Slots}</Label>
+    <Label>Name:</Label><Label>{props.Name}</Label>
   </div>
 )
 
