@@ -21,11 +21,11 @@ body {
 }
 @media (max-width: 767px) {
   .hidden-mobile{
-    visibility:hidden;  
+    display:none;  
   }
 
   .show-mobile{
-    visibility:visible;
+    display:block;
   }
 }
 

@@ -1,16 +1,63 @@
 import React from 'react'
 import Label from 'grommet/components/Label'
 import Image from 'grommet/components/Image'
+import Tiles from 'grommet/components/Tiles'
+import Tile from 'grommet/components/Tile'
+
+import './EventView.scss'
 
 export const Event = (props) => (
-  <div style={{ margin: '0 auto' }} >
+  <div className='event'>
     <Image src={props.Image} />
-    <Label>Start:</Label><Label>{props.Start}</Label>
-    <Label>Duration:</Label><Label>{props.Duration}</Label>
-    <Label>Price:</Label><Label>{props.Price}</Label>
-    <Label>Description:</Label><Label>{props.Description}</Label>
-    <Label>Slots:</Label><Label>{props.Slots}</Label>
-    <Label>Name:</Label><Label>{props.Name}</Label>
+    <Tiles>
+      <Tile>
+        <Label>Start:</Label>
+      </Tile>
+      <Tile>
+        <Label>{props.Start}</Label>
+      </Tile>
+    </Tiles>
+
+    <Tiles>
+      <Tile>
+        <Label>Duration:</Label>
+      </Tile>
+      <Tile>
+        <Label>{props.Duration}</Label>
+      </Tile>
+    </Tiles>
+    <Tiles>
+      <Tile>
+        <Label>Price:</Label>
+      </Tile>
+      <Tile>
+        <Label>{props.Price}</Label>
+      </Tile>
+    </Tiles>
+    <Tiles>
+      <Tile>
+        <Label>Description:</Label>
+      </Tile>
+      <Tile>
+        <Label>{props.Description}</Label>
+      </Tile>
+    </Tiles>
+    <Tiles>
+      <Tile>
+        <Label>Slots:</Label>
+      </Tile>
+      <Tile>
+        <Label>{props.Slots}</Label>
+      </Tile>
+    </Tiles>
+    <Tiles>
+      <Tile>
+        <Label>Name:</Label>
+      </Tile>
+      <Tile>
+        <Label>{props.Name}</Label>
+      </Tile>
+    </Tiles>
   </div>
 )
 
