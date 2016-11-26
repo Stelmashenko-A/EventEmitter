@@ -10,12 +10,12 @@ namespace EventEmitter.Api.Controllers
     [RoutePrefix("api/Event")]
     public class EventController : CommonController
     {
-        private IEventLine _eventLine;
-        private IEventManager _eventManager;
+        private readonly IEventLine _eventLine;
+        private readonly IEventManager _eventManager;
 
         public EventController(IEventLine eventLine, IEventManager eventManager)
         {
-            this._eventLine = eventLine;
+            _eventLine = eventLine;
             _eventManager = eventManager;
         }
 

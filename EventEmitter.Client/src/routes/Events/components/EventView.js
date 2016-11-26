@@ -3,7 +3,7 @@ import Label from 'grommet/components/Label'
 import Image from 'grommet/components/Image'
 import Tiles from 'grommet/components/Tiles'
 import Tile from 'grommet/components/Tile'
-
+import Button from 'grommet/components/Button'
 import './EventView.scss'
 
 export const Event = (props) => (
@@ -58,6 +58,7 @@ export const Event = (props) => (
         <Label>{props.Name}</Label>
       </Tile>
     </Tiles>
+    <Button label='Go!' onClick={props.register} />
   </div>
 )
 
@@ -68,7 +69,9 @@ Event.propTypes = {
   Description: React.PropTypes.string,
   Slots: React.PropTypes.number,
   Image: React.PropTypes.string,
-  Name: React.PropTypes.string
+  Name: React.PropTypes.string,
+  Id: React.PropTypes.string,
+  register:React.PropTypes.function
 }
 
 export default Event

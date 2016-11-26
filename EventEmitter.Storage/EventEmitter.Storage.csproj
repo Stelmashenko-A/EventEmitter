@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Models\Event.cs" />
     <Compile Include="POCO\Enums\Claim.cs" />
+    <Compile Include="POCO\Enums\RegistrationType.cs" />
     <Compile Include="POCO\IPoco.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="EventEmitterDatabase.cs" />

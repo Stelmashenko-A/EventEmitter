@@ -10,7 +10,7 @@ namespace EventEmitter.Storage.POCO
         public Guid Id { get; set; }
 
         [Column(Name = "RegistrationTypeId"), NotNull]
-        public Guid RegistrationTypeId { get; set; }
+        public Enums.RegistrationType Type { get; set; }
 
         [Column(Name = "UserAccountId"), NotNull]
         public Guid UserAccountId { get; set; }

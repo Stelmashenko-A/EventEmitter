@@ -1,8 +1,4 @@
 ﻿using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using AutoMapper;
 using EventEmitter.Storage.Repositories;
 using EventEmitter.Storage.Repositories.Linq2DbRepositories;
 using EventEmitter.UserServices.Services;
@@ -21,6 +17,9 @@ namespace EventEmitter.UserServices.Infrastructure
             kernel.Bind<IEventRepository>().To<EventRepository>();
             kernel.Bind<IEventLine>().To<EventLine>();
             kernel.Bind<IEventManager>().To<EventManager>();
+            kernel.Bind<IRegistrator>().To<Registrator>();
+            kernel.Bind<IRegistrationRepository>().To<RegistrationRepository>();
+            
             /* AutoMapperSetup autoMapperSetup = new AutoMapperSetup();
              var config = autoMapperSetup.Setup();
              var mapper = config.CreateMapper();
