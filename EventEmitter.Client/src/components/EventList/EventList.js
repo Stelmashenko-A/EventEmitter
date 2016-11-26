@@ -17,6 +17,7 @@ export const EventList = (props) => (
           slots={event.Slots}
           name={event.Name}
           image={event.Image}
+          id={event.Id}
           />
       ))}
     </Tiles>

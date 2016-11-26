@@ -1,11 +1,10 @@
 import React from 'react'
 import './Event.scss'
-import Card from 'grommet/components/Card'
-import Label from 'grommet/components/Label'
 import Heading from 'grommet/components/Heading'
 import Paragraph from 'grommet/components/Paragraph'
 import Image from 'grommet/components/Image'
 import Tile from 'grommet/components/Tile'
+import Button from 'grommet/components/Button'
 
 export const Event = (props) => (
   <div className='event-block'>
@@ -26,7 +25,7 @@ export const Event = (props) => (
         <div>{props.slots}</div>
         <div>{props.description}</div>
       </Paragraph>
-
+      <Button label='More info' href={'event/' + props.id} primary accent />
     </Tile>
   </div>
 
@@ -39,7 +38,8 @@ Event.propTypes = {
   price: React.PropTypes.number.isRequired,
   description: React.PropTypes.string.isRequired,
   slots: React.PropTypes.number.isRequired,
-  image: React.PropTypes.string.isRequired
+  image: React.PropTypes.string.isRequired,
+  id:React.PropTypes.string.isRequired
 }
 
 export default Event
