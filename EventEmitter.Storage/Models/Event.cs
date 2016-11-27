@@ -1,4 +1,5 @@
 ﻿using System;
+using RegistrationType = EventEmitter.Storage.POCO.Enums.RegistrationType;
 
 namespace EventEmitter.Storage.Models
 {
@@ -15,5 +16,6 @@ namespace EventEmitter.Storage.Models
         public Guid EventTypeId { get; set; }
         public string Author { get; set; }
         public string Image { get; set; }
+        public RegistrationType Type { get; set; }
     }
 }

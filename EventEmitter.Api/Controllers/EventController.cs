@@ -41,7 +41,7 @@ namespace EventEmitter.Api.Controllers
         [AllowAnonymous]
         public EventModel Get(int page)
         {
-            var events = _eventLine.Get(page);
+            var events = _eventLine.Get(Account, page);
             var responce = new EventModel {events = events};
             return responce;
         }
@@ -67,7 +67,7 @@ namespace EventEmitter.Api.Controllers
         [AllowAnonymous]
         public NamedEvent Get(Guid id)
         {
-            return _eventManager.Get(id);
+            return _eventManager.Get(Account, id);
         }
     }
 }

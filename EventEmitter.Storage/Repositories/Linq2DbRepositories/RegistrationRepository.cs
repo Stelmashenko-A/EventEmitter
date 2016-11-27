@@ -16,5 +16,14 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                                                          && item.Type == type);
             }
         }
+
+        public bool Get(Guid userId, Guid eventId)
+        {
+            using (var db = new EventEmitterDatabase())
+            {
+                return db.Registrations.Any(item => item.UserAccountId == userId
+                                                         && item.EventId == eventId);
+            }
+        }
     }
 }

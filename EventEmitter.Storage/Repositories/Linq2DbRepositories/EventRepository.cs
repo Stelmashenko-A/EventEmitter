@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using EventEmitter.Storage.POCO;
+using RegistrationType = EventEmitter.Storage.POCO.Enums.RegistrationType;
 
 namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
 {
@@ -30,7 +33,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
             }
         }
 
-        public IEnumerable<Models.Event> GetNamed(int page, int pageSize, double timestamp)
+        public IEnumerable<Models.Event> GetNamed(UserAccount userAccount, int page, int pageSize, double timestamp)
         {
             using (var db = new EventEmitterDatabase())
             {
@@ -39,29 +42,30 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                             select item;
 
                 query = query.Skip((page - 1) * pageSize).Take(pageSize);
-                var g = query.ToArray();
-                var mappedQuery = from p in query
-                       join c in db.UserAccounts on p.EventCreatorId equals c.Id
-                       select new Models.Event
-                       {
-                           Id = p.Id,
-                           Name = p.Name,
-                           Duration = p.Duration,
-                           EventTypeId = p.EventTypeId,
-                           Price = p.Price,
-                           Slots = p.Slots,
-                           Start = p.Start,
-                           TimeStamp = p.TimeStamp,
-                           Author = c.Name,
-                           Image = p.Image,
-                           Description = p.Description
-                       };
+                var mappedQuery = from @event in query
+                                  from registration in db.Registrations.Where(item => item.EventId == @event.Id && item.UserAccountId == userAccount.Id).DefaultIfEmpty()
+                                  from account in db.UserAccounts.Where(item => item.Id == @event.EventCreatorId)
+                                  select new Models.Event
+                                  {
+                                      Id = @event.Id,
+                                      Name = @event.Name,
+                                      Duration = @event.Duration,
+                                      EventTypeId = @event.EventTypeId,
+                                      Price = @event.Price,
+                                      Slots = @event.Slots,
+                                      Start = @event.Start,
+                                      TimeStamp = @event.TimeStamp,
+                                      Author = account.Name,
+                                      Image = @event.Image,
+                                      Description = @event.Description,
+                                      Type = registration == null ? RegistrationType.None : registration.Type
+                                  };
                 return mappedQuery.ToArray();
 
             }
         }
 
-        public Models.Event GetNamed(Guid id)
+        public Models.Event GetNamed(UserAccount userAccount, Guid id)
         {
             using (var db = new EventEmitterDatabase())
             {
@@ -71,6 +75,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
 
                 var mappedQuery = from p in query
                                   join c in db.UserAccounts on p.EventCreatorId equals c.Id
+                                  join r in db.Registrations on c.Id equals userAccount.Id
                                   select new Models.Event
                                   {
                                       Id = p.Id,
@@ -83,7 +88,8 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                                       TimeStamp = p.TimeStamp,
                                       Author = c.Name,
                                       Image = p.Image,
-                                      Description = p.Description
+                                      Description = p.Description,
+                                      Type = r.Type
                                   };
                 return mappedQuery.FirstOrDefault();
 

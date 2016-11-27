@@ -2,7 +2,10 @@
 {
     public enum RegistrationType
     {
-        Go,
-        Interested
+        None = 0,
+
+        Interested = 1,
+
+        Go = 2
     }
 }

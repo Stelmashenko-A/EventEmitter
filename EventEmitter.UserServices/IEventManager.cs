@@ -16,6 +16,6 @@ namespace EventEmitter.UserServices
         IEnumerable<User> Get(Event obj);
         IEnumerable<User> Get(Event obj, RegistrationType registrationType);
 
-        NamedEvent Get(Guid eventGuid);
+        NamedEvent Get(User user, Guid eventGuid);
     }
 }

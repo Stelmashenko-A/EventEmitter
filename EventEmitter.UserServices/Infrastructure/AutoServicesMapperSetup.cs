@@ -27,6 +27,9 @@ namespace EventEmitter.UserServices.Infrastructure
 
             cfg.CreateMap<NamedEvent, Storage.Models.Event>();
             cfg.CreateMap<Storage.Models.Event, NamedEvent>();
+
+            cfg.CreateMap<RegistrationType, Storage.POCO.Enums.RegistrationType>();
+            cfg.CreateMap<Storage.POCO.Enums.RegistrationType, RegistrationType>();
         }
     }
 }

@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using EventEmitter.Storage.POCO;
 using EventEmitter.Storage.Repositories;
 using EventEmitter.UserServices.Models;
+using Event = EventEmitter.UserServices.Models.Event;
+using RegistrationType = EventEmitter.UserServices.Models.RegistrationType;
 
 namespace EventEmitter.UserServices.Services
 {
@@ -84,9 +87,10 @@ namespace EventEmitter.UserServices.Services
             throw new System.NotImplementedException();
         }
 
-        public NamedEvent Get(Guid eventGuid)
+        public NamedEvent Get(User user, Guid eventGuid)
         {
-            var @event = _eventRepository.GetNamed(eventGuid);
+            var storedUser = _mapper.Map<User, UserAccount>(user);
+            var @event = _eventRepository.GetNamed(storedUser, eventGuid);
             return _mapper.Map<Storage.Models.Event, NamedEvent>(@event);
         }
     }

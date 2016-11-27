@@ -6,7 +6,7 @@ namespace EventEmitter.UserServices
 {
     public interface IEventLine
     {
-        IEnumerable<NamedEvent> Get(int page);
-        IEnumerable<NamedEvent> Get(int page, Guid start);
+        IEnumerable<NamedEvent> Get(User user, int page);
+        IEnumerable<NamedEvent> Get(User user, int page, Guid start);
     }
 }

@@ -8,7 +8,7 @@ namespace EventEmitter.Storage.Repositories
     {
         IEnumerable<Event> GetCreated(UserAccount userAccount);
         IEnumerable<Event> Get(int page, int pageSize, double timestamp);
-        IEnumerable<Models.Event> GetNamed(int page, int pageSize, double timestamp);
-        Models.Event GetNamed(Guid id);
+        IEnumerable<Models.Event> GetNamed(UserAccount userAccount, int page, int pageSize, double timestamp);
+        Models.Event GetNamed(UserAccount userAccount, Guid id);
     }
 }

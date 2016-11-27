@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using EventEmitter.Storage.POCO;
 using EventEmitter.Storage.Repositories;
 using EventEmitter.UserServices.Models;
 
@@ -23,16 +24,18 @@ namespace EventEmitter.UserServices.Services
         /// <summary>
         /// page counting from 1
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public IEnumerable<NamedEvent> Get(int page = 1)
+        public IEnumerable<NamedEvent> Get(User user, int page = 1)
         {
             int pageSize;
             if (!int.TryParse(_settings.Get("PAGE_SIZE").Value, out pageSize))
             {
                 return new List<NamedEvent>();
             }
-            var events = _eventRepository.GetNamed(page, pageSize, double.MaxValue);
+            var storedUser = _mapper.Map<User, UserAccount>(user);
+            var events = _eventRepository.GetNamed(storedUser, page, pageSize, double.MaxValue);
             return events.Select(@event => _mapper.Map<Storage.Models.Event, NamedEvent>(@event));
 
         }
@@ -40,10 +43,11 @@ namespace EventEmitter.UserServices.Services
         /// <summary>
         /// page counting from 1
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="page"></param>
         /// <param name="start"></param>
         /// <returns></returns>
-        public IEnumerable<NamedEvent> Get(int page, Guid start)
+        public IEnumerable<NamedEvent> Get(User user,int page, Guid start)
         {
             int pageSize;
             if (!int.TryParse(_settings.Get("PAGE_SIZE").Value, out pageSize))
@@ -51,7 +55,8 @@ namespace EventEmitter.UserServices.Services
                 return null;
             }
             var timeStamp = _eventRepository.Get(start).TimeStamp;
-            var events = _eventRepository.GetNamed(page, pageSize, timeStamp);
+            var storedUser = _mapper.Map<User, UserAccount>(user);
+            var events = _eventRepository.GetNamed(storedUser, page, pageSize, timeStamp);
             return events.Select(@event => _mapper.Map<Storage.Models.Event, NamedEvent>(@event));
         }
     }

@@ -24,6 +24,8 @@ namespace EventEmitter.UserServices.Models
 
         public string Author { get; set; }
 
+        public RegistrationType Type { get; set; }
+
         public string Image { get; set; }
     }
 }
