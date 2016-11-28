@@ -6,59 +6,36 @@ import Tile from 'grommet/components/Tile'
 import Button from 'grommet/components/Button'
 import './EventView.scss'
 
+function renderButtons (registrationType, callback) {
+  if (registrationType === 0) {
+    return <Button label='Go!' onClick={callback} />
+  }
+  return <Button label='Remove registration' />
+}
+function row (label, value) {
+  return <Tiles>
+    <Tile>
+      <Label>{label}</Label>
+    </Tile>
+    <Tile>
+      <Label>{value}</Label>
+    </Tile>
+  </Tiles>
+}
+
+
 export const Event = (props) => (
   <div className='event'>
     <Image src={props.Image} />
-    <Tiles>
-      <Tile>
-        <Label>Start:</Label>
-      </Tile>
-      <Tile>
-        <Label>{props.Start}</Label>
-      </Tile>
-    </Tiles>
 
-    <Tiles>
-      <Tile>
-        <Label>Duration:</Label>
-      </Tile>
-      <Tile>
-        <Label>{props.Duration}</Label>
-      </Tile>
-    </Tiles>
-    <Tiles>
-      <Tile>
-        <Label>Price:</Label>
-      </Tile>
-      <Tile>
-        <Label>{props.Price}</Label>
-      </Tile>
-    </Tiles>
-    <Tiles>
-      <Tile>
-        <Label>Description:</Label>
-      </Tile>
-      <Tile>
-        <Label>{props.Description}</Label>
-      </Tile>
-    </Tiles>
-    <Tiles>
-      <Tile>
-        <Label>Slots:</Label>
-      </Tile>
-      <Tile>
-        <Label>{props.Slots}</Label>
-      </Tile>
-    </Tiles>
-    <Tiles>
-      <Tile>
-        <Label>Name:</Label>
-      </Tile>
-      <Tile>
-        <Label>{props.Name}</Label>
-      </Tile>
-    </Tiles>
-    <Button label='Go!' onClick={props.register} />
+    {row('Start', props.Start)}
+    {row('Duration:', props.Duration)}
+    {row('Price:', props.Price)}
+    {row('Description:', props.Description)}
+    {row('Slots:', props.Slots)}
+    {row('Name:', props.Name)}
+    {renderButtons(props.RegistrationType, props.register)}
+
   </div>
 )
 
@@ -71,7 +48,8 @@ Event.propTypes = {
   Image: React.PropTypes.string,
   Name: React.PropTypes.string,
   Id: React.PropTypes.string,
-  register:React.PropTypes.function
+  RegistrationType: React.PropTypes.number,
+  register: React.PropTypes.function
 }
 
 export default Event

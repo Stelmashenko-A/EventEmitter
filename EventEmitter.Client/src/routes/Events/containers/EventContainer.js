@@ -13,7 +13,8 @@ const mapStateToProps = (state) => ({
   Slots: state.event.Slots,
   Start: state.event.Start,
   Image: state.event.Image,
-  Id: state.event.Id
+  Id: state.event.Id,
+  RegistrationType: state.event.Type
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Event)
