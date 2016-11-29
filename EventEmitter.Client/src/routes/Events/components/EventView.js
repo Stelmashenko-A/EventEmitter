@@ -6,11 +6,16 @@ import Tile from 'grommet/components/Tile'
 import Button from 'grommet/components/Button'
 import './EventView.scss'
 
-function renderButtons (registrationType, callback) {
+function renderButtons (registrationType, go, interested, dismiss) {
   if (registrationType === 0) {
-    return <Button label='Go!' onClick={callback} />
+    return <div>
+      <Button label='Go!' onClick={go} />
+      <Button label='Interested' onClick={interested} />
+    </div>
   }
-  return <Button label='Remove registration' />
+  return <div>
+    <Button label='Remove registration' onClick={dismiss} />
+  </div>
 }
 function row (label, value) {
   return <Tiles>
@@ -34,7 +39,7 @@ export const Event = (props) => (
     {row('Description:', props.Description)}
     {row('Slots:', props.Slots)}
     {row('Name:', props.Name)}
-    {renderButtons(props.RegistrationType, props.register)}
+    {renderButtons(props.RegistrationType, props.register, props.interested, props.dismiss)}
 
   </div>
 )
@@ -49,7 +54,9 @@ Event.propTypes = {
   Name: React.PropTypes.string,
   Id: React.PropTypes.string,
   RegistrationType: React.PropTypes.number,
-  register: React.PropTypes.function
+  register: React.PropTypes.function,
+  interested: React.PropTypes.function,
+  dismiss: React.PropTypes.function
 }
 
 export default Event

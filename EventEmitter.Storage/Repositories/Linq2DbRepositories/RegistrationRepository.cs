@@ -17,11 +17,30 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
             }
         }
 
-        public bool Get(Guid userId, Guid eventId)
+        public bool Contains(Guid userId, Guid eventId)
         {
             using (var db = new EventEmitterDatabase())
             {
                 return db.Registrations.Any(item => item.UserAccountId == userId
+                                                         && item.EventId == eventId);
+            }
+        }
+
+        public Registration Get(Guid userId, Guid eventId, RegistrationType type)
+        {
+            using (var db = new EventEmitterDatabase())
+            {
+                return db.Registrations.FirstOrDefault(item => item.UserAccountId == userId
+                                                         && item.EventId == eventId
+                                                         && item.Type == type);
+            }
+        }
+
+        public Registration Get(Guid userId, Guid eventId)
+        {
+            using (var db = new EventEmitterDatabase())
+            {
+                return db.Registrations.FirstOrDefault(item => item.UserAccountId == userId
                                                          && item.EventId == eventId);
             }
         }

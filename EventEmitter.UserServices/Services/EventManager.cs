@@ -83,7 +83,7 @@ namespace EventEmitter.UserServices.Services
 
         public IEnumerable<User> Get(Event obj, RegistrationType registrationType)
         {
-            // _eventRepository.Get()
+            // _eventRepository.Contains()
             throw new System.NotImplementedException();
         }
 

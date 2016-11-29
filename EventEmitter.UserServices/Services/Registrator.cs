@@ -24,6 +24,11 @@ namespace EventEmitter.UserServices.Services
         {
             try
             {
+                var registration = _registrationRepository.Get(user.Id, eventId);
+                if (registration != null)
+                {
+                    return false;
+                }
                 var type = _mapper.Map<RegistrationType, Storage.POCO.Enums.RegistrationType>(registrationType);
                 if (_registrationRepository.Contains(user.Id, eventId, type))
                 {
@@ -38,9 +43,19 @@ namespace EventEmitter.UserServices.Services
             }
         }
 
-        public void RemoveRegistration(User user, Event selectedEvent)
+        public bool TryRemoveRegistration(User user, Guid selectedEvent)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var registration = _registrationRepository.Get(user.Id, selectedEvent);
+                if (registration == null) return false;
+                _registrationRepository.Delete(registration);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

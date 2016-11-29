@@ -16,7 +16,7 @@ namespace EventEmitter.Api.Controllers
             _registrator = registrator;
         }
 
-
+        [Route("Register")]
         public IHttpActionResult Register(Guid id)
         {
             if (_registrator.TryRegister(Account, id, RegistrationType.Go))
@@ -24,6 +24,26 @@ namespace EventEmitter.Api.Controllers
                 return Ok();
             }
             return BadRequest();
-        }       
+        }
+
+        [Route("Interested")]
+        public IHttpActionResult Interested(Guid id)
+        {
+            if (_registrator.TryRegister(Account, id, RegistrationType.Interested))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [Route("Dismiss")]
+        public IHttpActionResult Dismiss(Guid id)
+        {
+            if (_registrator.TryRemoveRegistration(Account, id))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

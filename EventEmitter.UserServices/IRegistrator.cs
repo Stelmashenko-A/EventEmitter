@@ -6,6 +6,6 @@ namespace EventEmitter.UserServices
     public interface IRegistrator
     {
         bool TryRegister(User user, Guid eventId, RegistrationType registrationType);
-        void RemoveRegistration(User user, Event selectedEvent);
+        bool TryRemoveRegistration(User user, Guid selectedEvent);
     }
 }

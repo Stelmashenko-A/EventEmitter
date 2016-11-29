@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
 import Event from '../components/EventView'
-import { register } from '../modules/event'
+import { register, interested, dismiss } from '../modules/event'
 
 const mapDispatchToProps = {
-  register:register
+  register: register,
+  interested: interested,
+  dismiss: dismiss
 }
 
 const mapStateToProps = (state) => ({
