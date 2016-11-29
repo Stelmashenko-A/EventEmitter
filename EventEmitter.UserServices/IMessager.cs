@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.UserServices
 {
     public interface IMessager
     {
-        void Send(User to, User from, Message message);
-        IEnumerable<Message> GetAll(User to);
-        IEnumerable<Message> GetAll(User to, User from);
+        void Send(Guid eventTo, User from, string message);
+        IEnumerable<Message> GetAll(Guid eventTo);
+        IEnumerable<Message> GetAll(Guid eventTo, User from);
     }
 }

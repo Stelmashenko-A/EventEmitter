@@ -1,23 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
+using EventEmitter.Storage.Repositories;
 using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.UserServices.Services
 {
-    class Messager : IMessager
+    public class Messager : IMessager
     {
-        public void Send(User to, User @from, Message message)
+        private readonly IMessageRepository _messageRepository;
+        private readonly IMapper _mapper;
+
+        public Messager(IMessageRepository messageRepository, IMapper mapper)
         {
-            throw new System.NotImplementedException();
+            _messageRepository = messageRepository;
+            _mapper = mapper;
         }
 
-        public IEnumerable<Message> GetAll(User to)
+        public void Send(Guid eventTo, User @from, string message)
         {
-            throw new System.NotImplementedException();
+            var messageModel = new Storage.POCO.Message
+            {
+                EventId = eventTo,
+                Text = message,
+                Time = DateTime.Now,
+                UserAccountId = @from.Id
+            };
+            _messageRepository.Insert(messageModel);
         }
 
-        public IEnumerable<Message> GetAll(User to, User @from)
+        public IEnumerable<Message> GetAll(Guid eventTo)
         {
-            throw new System.NotImplementedException();
+            return _messageRepository.GetAll(eventTo)
+                .Select(item => _mapper.Map<Storage.POCO.Message, Message>(item));
+        }
+
+        public IEnumerable<Message> GetAll(Guid eventTo, User @from)
+        {
+            throw new NotImplementedException();
         }
     }
 }

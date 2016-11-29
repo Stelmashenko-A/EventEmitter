@@ -16,6 +16,12 @@ export const INTERESTED_SUCCESS = 'INTERESTED_SUCCESS'
 export const DISMISS = 'DISMISS'
 export const DISMISS_START = 'DISMISS_START'
 export const DISMISS_SUCCESS = 'DISMISS_SUCCESS'
+
+export const MESSAGE_CHANGED = 'MESSAGE_CHANGED'
+
+export const SEND_MESSAGE = 'SEND_MESSAGE'
+export const SEND_MESSAGE_START = 'SEND_MESSAGE_START'
+export const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -86,6 +92,26 @@ export function dismissSuccess () {
   }
 }
 
+export function messageChanged (e) {
+  return {
+    type: MESSAGE_CHANGED,
+    payload: e.target.value
+  }
+}
+
+export function sendMessageStart () {
+  return {
+    type: SEND_MESSAGE_START
+  }
+}
+
+export function sendMessageSuccess (message) {
+  return {
+    type: SEND_MESSAGE_SUCCESS,
+    payload: message
+  }
+}
+
 export function register () {
   return (dispatch, getstate) => {
     return dispatch(registerRequest(getstate().event.Id))
@@ -101,6 +127,12 @@ export function interested () {
 export function dismiss () {
   return (dispatch, getstate) => {
     return dispatch(dismissRequest(getstate().event.Id))
+  }
+}
+
+export function sendMessage () {
+  return (dispatch, getstate) => {
+    return dispatch(sendMessageRequest(getstate().event.Id, getstate().event.message))
   }
 }
 
@@ -156,8 +188,32 @@ export const dismissRequest = (id) => {
       .then(response => {
         console.log(response.status)
         if (response.status === 200) {
-
           dispatch(dismissSuccess())
+        }
+      })
+  }
+}
+
+export const sendMessageRequest = (eventId, message) => {
+  return (dispatch, getstate) => {
+    dispatch(sendMessageStart())
+    var data = {
+      text:message,
+      eventId:eventId
+    }
+    var fetchInit = { method: 'POST',
+               cache: 'default',
+               body:JSON.stringify(data),
+               headers: {
+                 'Authorization': 'Bearer ' + getstate().user.access_token,
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+               } }
+    return fetch(`http://localhost:3001/api/Message`, fetchInit)
+      .then(response => {
+        console.log(response.status)
+        if (response.status === 200) {
+          dispatch(sendMessageSuccess(message))
         }
       })
   }
@@ -178,29 +234,28 @@ const ACTION_HANDLERS = {
   },
 
   [REGISTER_SUCCESS]: (state, action) => {
-    console.log(REGISTER_SUCCESS)
     return Object.assign({}, state, { Type:2 })
   },
 
   [INTERESTED_SUCCESS]: (state, action) => {
-    console.log(INTERESTED_SUCCESS)
     return Object.assign({}, state, { Type:1 })
   },
 
   [DISMISS_SUCCESS]: (state, action) => {
-              console.log(DISMISS_SUCCESS)
     return Object.assign({}, state, { Type:0 })
-  }
+  },
 
+  [MESSAGE_CHANGED]: (state, action) => {
+    return Object.assign({}, state, { message:action.payload })
+  }
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = { message:'' }
 export default function loginReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
-
   return handler ? handler(state, action) : state
 }
 
