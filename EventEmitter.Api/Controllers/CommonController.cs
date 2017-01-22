@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading;
 using System.Web.Http;
 using AutoMapper;
 using EventEmitter.UserServices;

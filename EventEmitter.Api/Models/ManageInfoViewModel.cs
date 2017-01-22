@@ -2,6 +2,7 @@
 
 namespace EventEmitter.Api.Models
 {
+    //todo: for what
     public class ManageInfoViewModel
     {
         public string LocalLoginProvider { get; set; }

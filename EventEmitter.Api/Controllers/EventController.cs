@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Http;
+using EventEmitter.Api.Models.Event;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
+using Event = EventEmitter.Api.Models.Event.Event;
 
 namespace EventEmitter.Api.Controllers
 {
@@ -10,47 +11,28 @@ namespace EventEmitter.Api.Controllers
     [RoutePrefix("api/Event")]
     public class EventController : CommonController
     {
-        private readonly IEventLine _eventLine;
-        private readonly IEventManager _eventManager;
+        protected readonly IEventLine EventLine;
+        protected readonly IEventManager EventManager;
 
         public EventController(IEventLine eventLine, IEventManager eventManager)
         {
-            _eventLine = eventLine;
-            _eventManager = eventManager;
-        }
-
-        // GET: api/Event/5
-        public class EventModel
-        {
-            public IEnumerable<NamedEvent> events { get; set; } 
-      
-        }
-
-        public class Event
-        {
-            public string Owner { get; set; }
-            public DateTime Start { get; set; }
-            public string Name { get; set; }
-            public string Duration { get; set; }
-            public string Price { get; set; }
-            public string Description { get; set; }
-            public string Slots { get; set; }
-            public string Image { get; set; }
+            EventLine = eventLine;
+            EventManager = eventManager;
         }
 
         [AllowAnonymous]
         public EventModel Get(int page)
         {
-            var events = _eventLine.Get(Account, page);
+            var events = EventLine.Get(Account, page);
             var responce = new EventModel {events = events};
             return responce;
         }
         // POST: api/Event
-        public async void Post([FromBody]Event value)
+        public void Post([FromBody]Event value)
         {
             var @event = Mapper.Map<Event, UserServices.Models.Event>(value);
 
-            _eventManager.Create(@event,Account);
+            EventManager.Create(@event,Account);
 
         }
 
@@ -67,7 +49,7 @@ namespace EventEmitter.Api.Controllers
         [AllowAnonymous]
         public NamedEvent Get(Guid id)
         {
-            return _eventManager.Get(Account, id);
+            return EventManager.Get(Account, id);
         }
     }
 }

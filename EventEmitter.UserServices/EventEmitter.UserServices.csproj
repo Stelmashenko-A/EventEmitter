@@ -76,6 +76,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\ClaimManager.cs" />
+    <Compile Include="Services\AccountManager.cs" />
     <Compile Include="Models\NamedEvent.cs" />
     <Compile Include="Services\EventLine.cs" />
     <Compile Include="IAccountManager.cs" />

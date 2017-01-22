@@ -9,13 +9,13 @@ namespace EventEmitter.UserServices.Services
 {
     public class Messager : IMessager
     {
-        private readonly IMessageRepository _messageRepository;
-        private readonly IMapper _mapper;
+        protected readonly IMessageRepository MessageRepository;
+        protected readonly IMapper Mapper;
 
         public Messager(IMessageRepository messageRepository, IMapper mapper)
         {
-            _messageRepository = messageRepository;
-            _mapper = mapper;
+            MessageRepository = messageRepository;
+            Mapper = mapper;
         }
 
         public void Send(Guid eventTo, User @from, string message)
@@ -27,13 +27,13 @@ namespace EventEmitter.UserServices.Services
                 Time = DateTime.Now,
                 UserAccountId = @from.Id
             };
-            _messageRepository.Insert(messageModel);
+            MessageRepository.Insert(messageModel);
         }
 
         public IEnumerable<Message> GetAll(Guid eventTo)
         {
-            return _messageRepository.GetAll(eventTo)
-                .Select(item => _mapper.Map<Storage.POCO.Message, Message>(item));
+            return MessageRepository.GetAll(eventTo)
+                .Select(item => Mapper.Map<Storage.POCO.Message, Message>(item));
         }
 
         public IEnumerable<Message> GetAll(Guid eventTo, User @from)

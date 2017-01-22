@@ -6,13 +6,13 @@ namespace EventEmitter.UserServices.Services
 {
     public class BanListManager : IBanListManager
     {
-        private readonly IStopListRecordRepository _stopListRecordRepository;
-        private readonly IMapper _mapper;
+        protected readonly IStopListRecordRepository StopListRecordRepository;
+        protected readonly IMapper Mapper;
 
         public BanListManager(IMapper mapper, IStopListRecordRepository stopListRecordRepository)
         {
-            _stopListRecordRepository = stopListRecordRepository;
-            _mapper = mapper;
+            StopListRecordRepository = stopListRecordRepository;
+            Mapper = mapper;
         }
         public void AddToBanList(Event obj, User user)
         {
@@ -26,7 +26,7 @@ namespace EventEmitter.UserServices.Services
 
         public bool IsBanned(User user, Event obj)
         {
-            return _stopListRecordRepository.Contains(user.Id, obj.Id);
+            return StopListRecordRepository.Contains(user.Id, obj.Id);
         }
     }
 }

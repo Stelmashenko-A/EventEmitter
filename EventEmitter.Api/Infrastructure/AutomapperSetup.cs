@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.Configuration;
-using EventEmitter.Api.Controllers;
 using EventEmitter.UserServices.Infrastructure;
 using EventEmitter.UserServices.Models;
 
@@ -23,7 +18,7 @@ namespace EventEmitter.Api.Infrastructure
 
         protected void AddMaps(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<EventController.Event, Event>();
+            cfg.CreateMap<Models.Event.Event, Event>();
         }
     }
 }

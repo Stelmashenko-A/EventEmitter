@@ -2,7 +2,7 @@
 
 namespace EventEmitter.UserServices.Services
 {
-    class WhieListManager : IWhieListManager
+    public class WhieListManager : IWhieListManager
     {
         public void AddToWhiteList(Event obj, User user)
         {

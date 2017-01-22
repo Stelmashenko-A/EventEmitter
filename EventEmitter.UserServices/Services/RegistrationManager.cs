@@ -3,7 +3,7 @@ using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.UserServices.Services
 {
-    class RegistrationManager : IRegistrationManager
+    public class RegistrationManager : IRegistrationManager
     {
         public IEnumerable<Registration> GetAll()
         {

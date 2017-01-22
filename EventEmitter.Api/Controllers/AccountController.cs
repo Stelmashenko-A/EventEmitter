@@ -143,16 +143,16 @@ namespace EventEmitter.Api.Controllers
                 var login = new ExternalLoginViewModel
                 {
                     Name = description.Caption,
-                    State = state
+                    State = state,
+                    Url = Url.Route("ExternalLogin", new
+                    {
+                        provider = description.AuthenticationType,
+                        response_type = "token",
+                        client_id = Startup.PublicClientId,
+                        redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
+                        state
+                    })
                 };
-                login.Url = Url.Route("ExternalLogin", new
-                {
-                    provider = description.AuthenticationType,
-                    response_type = "token",
-                    client_id = Startup.PublicClientId,
-                    redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
-                    state
-                });
                 logins.Add(login);
             }
 

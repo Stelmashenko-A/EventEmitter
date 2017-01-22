@@ -12,15 +12,17 @@ namespace EventEmitter.UserServices.Services
 {
     public class EventManager : IEventManager
     {
-        private readonly IEventRepository _eventRepository;
-        private readonly ISettingRepository _settings;
-        private readonly IMapper _mapper;
+        protected readonly IEventRepository EventRepository;
+        protected readonly ISettingRepository Settings;
+        protected readonly IMapper Mapper;
+
+        protected const string DefaultEventType = "DEFAULT_EVENT_TYPE";
 
         public EventManager(IEventRepository eventRepository, IMapper mapper, IUserAccountRepository userAccountRepository, ISettingRepository settings)
         {
-            _eventRepository = eventRepository;
-            _mapper = mapper;
-            _settings = settings;
+            EventRepository = eventRepository;
+            Mapper = mapper;
+            Settings = settings;
         }
 
         public void Create(Event obj, User creator)
@@ -30,10 +32,10 @@ namespace EventEmitter.UserServices.Services
             obj.TimeStamp = DateTime.Now.ToUniversalTime().Subtract(
                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 ).TotalMilliseconds;
-            obj.EventTypeId = new Guid(_settings.Get("DEFAULT_EVENT_TYPE").Value);
-            var storedEvent = _mapper.Map<Event, Storage.POCO.Event>(obj);
+            obj.EventTypeId = new Guid(Settings.Get(DefaultEventType).Value);
+            var storedEvent = Mapper.Map<Event, Storage.POCO.Event>(obj);
             storedEvent.EventCreatorId = creator.Id;
-            _eventRepository.Insert(storedEvent);
+            EventRepository.Insert(storedEvent);
             obj.Id = storedEvent.Id;
         }
 
@@ -46,8 +48,8 @@ namespace EventEmitter.UserServices.Services
         {
             if (!CanDelete(obj.Creator)) return;
 
-            var storedEvent = _mapper.Map<Event, Storage.POCO.Event>(obj);
-            _eventRepository.Delete(storedEvent);
+            var storedEvent = Mapper.Map<Event, Storage.POCO.Event>(obj);
+            EventRepository.Delete(storedEvent);
         }
 
         private bool CanDelete(User creator)
@@ -67,8 +69,8 @@ namespace EventEmitter.UserServices.Services
 
         public IEnumerable<Event> Get(User user)
         {
-            var events = _eventRepository.GetCreated(_mapper.Map<User, Storage.POCO.UserAccount>(user));
-            return events.Select(@event => _mapper.Map<Storage.POCO.Event, Event>(@event));
+            var events = EventRepository.GetCreated(Mapper.Map<User, UserAccount>(user));
+            return events.Select(@event => Mapper.Map<Storage.POCO.Event, Event>(@event));
         }
 
         public IEnumerable<Event> Get(User user, EventState state)
@@ -89,9 +91,9 @@ namespace EventEmitter.UserServices.Services
 
         public NamedEvent Get(User user, Guid eventGuid)
         {
-            var storedUser = _mapper.Map<User, UserAccount>(user);
-            var @event = _eventRepository.GetNamed(storedUser, eventGuid);
-            return _mapper.Map<Storage.Models.Event, NamedEvent>(@event);
+            var storedUser = Mapper.Map<User, UserAccount>(user);
+            var @event = EventRepository.GetNamed(storedUser, eventGuid);
+            return Mapper.Map<Storage.Models.Event, NamedEvent>(@event);
         }
     }
 }

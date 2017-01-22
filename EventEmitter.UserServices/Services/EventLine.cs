@@ -10,15 +10,17 @@ namespace EventEmitter.UserServices.Services
 {
     public class EventLine : IEventLine
     {
-        private readonly IEventRepository _eventRepository;
-        private readonly IMapper _mapper;
-        private readonly ISettingRepository _settings;
+        protected readonly IEventRepository EventRepository;
+        protected readonly IMapper Mapper;
+        protected readonly ISettingRepository Settings;
+
+        protected const string PageSize = "PAGE_SIZE";
 
         public EventLine(IEventRepository eventRepository, IMapper mapper, ISettingRepository settings)
         {
-            _eventRepository = eventRepository;
-            _mapper = mapper;
-            _settings = settings;
+            EventRepository = eventRepository;
+            Mapper = mapper;
+            Settings = settings;
         }
 
         /// <summary>
@@ -30,13 +32,13 @@ namespace EventEmitter.UserServices.Services
         public IEnumerable<NamedEvent> Get(User user, int page = 1)
         {
             int pageSize;
-            if (!int.TryParse(_settings.Get("PAGE_SIZE").Value, out pageSize))
+            if (!int.TryParse(Settings.Get(PageSize).Value, out pageSize))
             {
                 return new List<NamedEvent>();
             }
-            var storedUser = _mapper.Map<User, UserAccount>(user);
-            var events = _eventRepository.GetNamed(storedUser, page, pageSize, double.MaxValue);
-            return events.Select(@event => _mapper.Map<Storage.Models.Event, NamedEvent>(@event));
+            var storedUser = Mapper.Map<User, UserAccount>(user);
+            var events = EventRepository.GetNamed(storedUser, page, pageSize, double.MaxValue);
+            return events.Select(@event => Mapper.Map<Storage.Models.Event, NamedEvent>(@event));
 
         }
 
@@ -50,14 +52,14 @@ namespace EventEmitter.UserServices.Services
         public IEnumerable<NamedEvent> Get(User user,int page, Guid start)
         {
             int pageSize;
-            if (!int.TryParse(_settings.Get("PAGE_SIZE").Value, out pageSize))
+            if (!int.TryParse(Settings.Get(PageSize).Value, out pageSize))
             {
                 return null;
             }
-            var timeStamp = _eventRepository.Get(start).TimeStamp;
-            var storedUser = _mapper.Map<User, UserAccount>(user);
-            var events = _eventRepository.GetNamed(storedUser, page, pageSize, timeStamp);
-            return events.Select(@event => _mapper.Map<Storage.Models.Event, NamedEvent>(@event));
+            var timeStamp = EventRepository.Get(start).TimeStamp;
+            var storedUser = Mapper.Map<User, UserAccount>(user);
+            var events = EventRepository.GetNamed(storedUser, page, pageSize, timeStamp);
+            return events.Select(@event => Mapper.Map<Storage.Models.Event, NamedEvent>(@event));
         }
     }
 }

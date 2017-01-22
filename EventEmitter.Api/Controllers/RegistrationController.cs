@@ -9,17 +9,17 @@ namespace EventEmitter.Api.Controllers
     [RoutePrefix("api/Registration")]
     public class RegistrationController : CommonController
     {
-        private readonly IRegistrator _registrator;
+        protected readonly IRegistrator Registrator;
 
         public RegistrationController(IRegistrator registrator)
         {
-            _registrator = registrator;
+            Registrator = registrator;
         }
 
         [Route("Register")]
         public IHttpActionResult Register(Guid id)
         {
-            if (_registrator.TryRegister(Account, id, RegistrationType.Go))
+            if (Registrator.TryRegister(Account, id, RegistrationType.Go))
             {
                 return Ok();
             }
@@ -29,7 +29,7 @@ namespace EventEmitter.Api.Controllers
         [Route("Interested")]
         public IHttpActionResult Interested(Guid id)
         {
-            if (_registrator.TryRegister(Account, id, RegistrationType.Interested))
+            if (Registrator.TryRegister(Account, id, RegistrationType.Interested))
             {
                 return Ok();
             }
@@ -39,7 +39,7 @@ namespace EventEmitter.Api.Controllers
         [Route("Dismiss")]
         public IHttpActionResult Dismiss(Guid id)
         {
-            if (_registrator.TryRemoveRegistration(Account, id))
+            if (Registrator.TryRemoveRegistration(Account, id))
             {
                 return Ok();
             }

@@ -2,39 +2,38 @@
 using AutoMapper;
 using EventEmitter.Storage.Repositories;
 using EventEmitter.UserServices.Models;
-using Event = EventEmitter.UserServices.Models.Event;
 using Registration = EventEmitter.Storage.POCO.Registration;
 using RegistrationType = EventEmitter.UserServices.Models.RegistrationType;
 
 namespace EventEmitter.UserServices.Services
 {
-    class Registrator : IRegistrator
+    public class Registrator : IRegistrator
     {
-        private readonly IRegistrationRepository _registrationRepository;
-        private readonly IMapper _mapper;
+        protected readonly IRegistrationRepository RegistrationRepository;
+        protected readonly IMapper Mapper;
 
 
         public Registrator(IRegistrationRepository registrationRepository, IMapper mapper)
         {
-            _registrationRepository = registrationRepository;
-            _mapper = mapper;
+            RegistrationRepository = registrationRepository;
+            Mapper = mapper;
         }
 
         public bool TryRegister(User user, Guid eventId, RegistrationType registrationType)
         {
             try
             {
-                var registration = _registrationRepository.Get(user.Id, eventId);
+                var registration = RegistrationRepository.Get(user.Id, eventId);
                 if (registration != null)
                 {
                     return false;
                 }
-                var type = _mapper.Map<RegistrationType, Storage.POCO.Enums.RegistrationType>(registrationType);
-                if (_registrationRepository.Contains(user.Id, eventId, type))
+                var type = Mapper.Map<RegistrationType, Storage.POCO.Enums.RegistrationType>(registrationType);
+                if (RegistrationRepository.Contains(user.Id, eventId, type))
                 {
                     return false;
                 }
-                _registrationRepository.Insert(new Registration { EventId = eventId, UserAccountId = user.Id, Type = type });
+                RegistrationRepository.Insert(new Registration { EventId = eventId, UserAccountId = user.Id, Type = type });
                 return true;
             }
             catch (Exception)
@@ -47,9 +46,9 @@ namespace EventEmitter.UserServices.Services
         {
             try
             {
-                var registration = _registrationRepository.Get(user.Id, selectedEvent);
+                var registration = RegistrationRepository.Get(user.Id, selectedEvent);
                 if (registration == null) return false;
-                _registrationRepository.Delete(registration);
+                RegistrationRepository.Delete(registration);
                 return true;
             }
             catch (Exception)

@@ -5,6 +5,7 @@ import fetch from 'isomorphic-fetch'
 
 export const EVENT_LOADING_START = 'EVENT_LOADING_START'
 export const EVENT_LOADED = 'EVENT_LOADED'
+export const MESSAGES_LOADED = 'MESSAGES_LOADED'
 export const GO = 'GO'
 export const REGISTER_START = 'REGISTER_START'
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
@@ -38,6 +39,13 @@ export function eventLoaded (event) {
   }
 }
 
+export function messagesLoaded (event) {
+  return {
+    type: MESSAGES_LOADED,
+    payload:event
+  }
+}
+
 export const startLoadEvent = (id) => {
   return (dispatch, getstate) => {
     dispatch(loadingStart())
@@ -55,6 +63,26 @@ export const startLoadEvent = (id) => {
       })
   }
 }
+
+export const startLoadMessages = (id) => {
+  return (dispatch, getstate) => {
+    var fetchInit = { method: 'GET',
+               cache: 'default',
+               headers: {
+                 'Authorization': 'Bearer ' + getstate().user.access_token,
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+               } }
+    return fetch(`http://localhost:3001/api/Message?id=` + id, fetchInit)
+      .then(response => response.json())
+      .then(json => {
+        dispatch(messagesLoaded(json))
+      })
+  }
+}
+
+
+
 export function registerStart () {
   return {
     type: REGISTER_START
@@ -232,6 +260,11 @@ const ACTION_HANDLERS = {
   [EVENT_LOADED]: (state, action) => {
     return Object.assign({}, state, action.payload)
   },
+
+  [MESSAGES_LOADED]: (state, action) => {
+    return Object.assign({}, state, { messages: action.payload })
+  },
+
 
   [REGISTER_SUCCESS]: (state, action) => {
     return Object.assign({}, state, { Type:2 })

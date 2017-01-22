@@ -19,7 +19,8 @@ const mapStateToProps = (state) => ({
   Image: state.event.Image,
   Id: state.event.Id,
   RegistrationType: state.event.Type,
-  Message: state.event.message
+  Message: state.event.message,
+  Messages: state.event.messages
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Event)

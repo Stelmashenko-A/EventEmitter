@@ -1,39 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
+using EventEmitter.Api.Models.Message;
 using EventEmitter.UserServices;
 
 namespace EventEmitter.Api.Controllers
 {
     public class MessageController : CommonController
     {
-        private IMessager _messager;
+        protected IMessager Messager;
 
         public MessageController(IMessager messager)
         {
-            _messager = messager;
-        }
-
-        // GET: api/Message
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+            Messager = messager;
         }
 
         // GET: api/Message/5
-        public string Get(int id)
+        public IEnumerable<string> Get(Guid id)
         {
-            return "value";
+            return Messager.GetAll(id).Select(item => item.Text);
         }
-        public class MessageModel
-        {
-            public string text { get; set; }
-            public Guid eventId { get; set; }
-        }
+
         // POST: api/Message
         public IHttpActionResult Post([FromBody] MessageModel data)
         {
-            _messager.Send(data.eventId,Account,data.text);
+            Messager.Send(data.eventId,Account,data.text);
             return Ok();
         }
 

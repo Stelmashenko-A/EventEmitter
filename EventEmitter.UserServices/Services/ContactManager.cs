@@ -2,7 +2,7 @@ using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.UserServices.Services
 {
-    class ContactManager : IContactManager
+    public class ContactManager : IContactManager
     {
         public void Share(Contact contact, User @from, User to)
         {

@@ -71,6 +71,7 @@ Event.propTypes = {
   Name: React.PropTypes.string,
   Id: React.PropTypes.string,
   Message: React.PropTypes.string,
+  Messages: React.PropTypes.array,
   RegistrationType: React.PropTypes.number,
   register: React.PropTypes.function,
   interested: React.PropTypes.function,
