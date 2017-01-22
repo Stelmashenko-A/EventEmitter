@@ -8,7 +8,7 @@ AS
 GO
 
 CREATE TRIGGER AtleastOneEventType  
-ON UserTypes  
+ON EventTypes  
 FOR DELETE
 AS
 	DECLARE @TABLE_SIZE	INTEGER
@@ -17,7 +17,7 @@ AS
 GO
 
 CREATE TRIGGER AtleastOneBenefitType  
-ON UserTypes  
+ON BenefitTypes  
 FOR DELETE
 AS
 	DECLARE @TABLE_SIZE	INTEGER
