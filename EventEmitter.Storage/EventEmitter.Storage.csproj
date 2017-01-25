@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Event.cs" />
+    <Compile Include="POCO\Category.cs" />
     <Compile Include="POCO\Enums\Claim.cs" />
     <Compile Include="POCO\Enums\RegistrationType.cs" />
     <Compile Include="POCO\IPoco.cs" />
@@ -68,9 +69,11 @@
     <Compile Include="POCO\UserType.cs" />
     <Compile Include="POCO\UserTypeClaim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\ISettingRepository.cs" />
     <Compile Include="Repositories\Linq2DbRepositories\BenefitRepository.cs" />
     <Compile Include="Repositories\Linq2DbRepositories\BenefitTypeRepository.cs" />
+    <Compile Include="Repositories\Linq2DbRepositories\CategotyRepository.cs" />
     <Compile Include="Repositories\Linq2DbRepositories\ClaimRepository.cs" />
     <Compile Include="Repositories\Linq2DbRepositories\ContactRepository.cs" />
     <Compile Include="Repositories\Linq2DbRepositories\EventRepository.cs" />

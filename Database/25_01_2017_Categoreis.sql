@@ -1,0 +1,18 @@
+CREATE TABLE EventEmitter.dbo.Category
+(
+	CategoryId UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+	Name NVARCHAR(255) NOT NULL,
+	Code NVARCHAR(8) NOT NULL,
+	[Description] NVARCHAR(255)
+)
+GO
+
+ALTER TABLE Events
+ADD CategoryId UNIQUEIDENTIFIER
+GO
+
+ALTER TABLE Events
+ADD CONSTRAINT fk_Category
+FOREIGN KEY (CategoryId)
+REFERENCES Category(CategoryId)
+GO
