@@ -10,7 +10,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
         {
             using (var db = new EventEmitterDatabase())
             {
-                item.Id = (Guid) db.InsertWithIdentity(item);
+                db.Insert(item);
             }
         }
 

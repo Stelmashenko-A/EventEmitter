@@ -36,7 +36,7 @@ namespace EventEmitter.UserServices.Services
                 RegistrationRepository.Insert(new Registration { EventId = eventId, UserAccountId = user.Id, Type = type });
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
