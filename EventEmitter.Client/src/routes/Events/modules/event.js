@@ -67,12 +67,13 @@ export const startLoadEvent = (id) => {
 export const startLoadMessages = (id) => {
   return (dispatch, getstate) => {
     var fetchInit = { method: 'GET',
-               cache: 'default',
-               headers: {
-                 'Authorization': 'Bearer ' + getstate().user.access_token,
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               } }
+      cache: 'default',
+      headers: {
+        'Authorization': 'Bearer ' + getstate().user.access_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
     return fetch(`http://localhost:3001/api/Message?id=` + id, fetchInit)
       .then(response => response.json())
       .then(json => {
@@ -168,12 +169,13 @@ export const registerRequest = (id) => {
   return (dispatch, getstate) => {
     dispatch(registerStart(id))
     var fetchInit = { method: 'POST',
-               cache: 'default',
-               headers: {
-                 'Authorization': 'Bearer ' + getstate().user.access_token,
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               } }
+      cache: 'default',
+      headers: {
+        'Authorization': 'Bearer ' + getstate().user.access_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
     return fetch(`http://localhost:3001/api/Registration/Register?id=` + id, fetchInit)
       .then(response => {
         if (response.status === 200) {
@@ -187,12 +189,13 @@ export const interestedRequest = (id) => {
   return (dispatch, getstate) => {
     dispatch(interestedStart(id))
     var fetchInit = { method: 'POST',
-               cache: 'default',
-               headers: {
-                 'Authorization': 'Bearer ' + getstate().user.access_token,
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               } }
+      cache: 'default',
+      headers: {
+        'Authorization': 'Bearer ' + getstate().user.access_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
     return fetch(`http://localhost:3001/api/Registration/Interested?id=` + id, fetchInit)
       .then(response => {
         if (response.status === 200) {
@@ -206,12 +209,13 @@ export const dismissRequest = (id) => {
   return (dispatch, getstate) => {
     dispatch(dismissStart(id))
     var fetchInit = { method: 'POST',
-               cache: 'default',
-               headers: {
-                 'Authorization': 'Bearer ' + getstate().user.access_token,
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               } }
+      cache: 'default',
+      headers: {
+        'Authorization': 'Bearer ' + getstate().user.access_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
     return fetch(`http://localhost:3001/api/Registration/Dismiss?id=` + id, fetchInit)
       .then(response => {
         console.log(response.status)
@@ -230,13 +234,14 @@ export const sendMessageRequest = (eventId, message) => {
       eventId:eventId
     }
     var fetchInit = { method: 'POST',
-               cache: 'default',
-               body:JSON.stringify(data),
-               headers: {
-                 'Authorization': 'Bearer ' + getstate().user.access_token,
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               } }
+      cache: 'default',
+      body:JSON.stringify(data),
+      headers: {
+        'Authorization': 'Bearer ' + getstate().user.access_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
     return fetch(`http://localhost:3001/api/Message`, fetchInit)
       .then(response => {
         console.log(response.status)
@@ -264,7 +269,6 @@ const ACTION_HANDLERS = {
   [MESSAGES_LOADED]: (state, action) => {
     return Object.assign({}, state, { messages: action.payload })
   },
-
 
   [REGISTER_SUCCESS]: (state, action) => {
     return Object.assign({}, state, { Type:2 })

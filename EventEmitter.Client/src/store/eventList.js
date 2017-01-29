@@ -37,7 +37,6 @@ export const successLoading = () => {
 export const loading = () => {
   return (dispatch, getstate) => {
     dispatch(loadingStart())
-    console.log(getstate().user)
     var fetchInit = { method: 'GET',
                cache: 'default',
                headers: {
@@ -46,18 +45,33 @@ export const loading = () => {
     return fetch(`http://localhost:3001/api/Event?page=` + getstate().eventList.page, fetchInit)
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         dispatch(initEvents(json))
       })
   }
 }
 
-export function fetchEvents () {
-
+export function fetchEvents (user, eventList) {
+  return function (dispatch) {
+    console.log(eventList)
+    dispatch(loadingStart())
+    var fetchInit = { method: 'GET',
+      cache: 'default',
+      headers: {
+        'Authorization': 'Bearer ' + user.access_token
+      }
+    }
+    return fetch(`http://localhost:3001/api/Event?page=` + eventList.page, fetchInit)
+      .then(response => response.json())
+      .then(json => {
+        
+        dispatch(initEvents(json))
+      })
+  }
 }
 export const actions = {
   initEvents,
   loading,
+  fetchEvents,
   successLoading
 }
 
@@ -75,7 +89,8 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
   'events': [],
-  'page':1 }
+  'page':1
+}
 
 export default function eventListReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

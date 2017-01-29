@@ -19,6 +19,8 @@ namespace EventEmitter.Api.Infrastructure
         protected void AddMaps(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<Models.Event.Event, Event>();
+            cfg.CreateMap<Models.Category.CategoryModel, Category>();
+            cfg.CreateMap<Category, Models.Category.CategoryModel>();
         }
     }
 }

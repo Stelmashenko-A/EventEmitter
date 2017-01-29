@@ -3,7 +3,7 @@ import Label from 'grommet/components/Label'
 import Image from 'grommet/components/Image'
 import Tiles from 'grommet/components/Tiles'
 import Tile from 'grommet/components/Tile'
-import Button from 'grommet/components/Button'
+import { Button } from 'react-mdl'
 import Form from 'grommet/components/Form'
 import FormFields from 'grommet/components/FormFields'
 import FormField from 'grommet/components/FormField'
@@ -13,12 +13,12 @@ import './EventView.scss'
 function renderButtons (registrationType, go, interested, dismiss) {
   if (registrationType === 0) {
     return <div className='buttons'>
-      <Button label='Go!' onClick={go} />
-      <Button label='Interested' onClick={interested} />
+      <Button raised colored onClick={go} >Go!</Button>
+      <Button raised accent onClick={interested} >Interested</Button>
     </div>
   }
   return <div className='buttons'>
-    <Button label='Remove registration' onClick={dismiss} />
+    <Button onClick={dismiss} >Remove registration</Button>
   </div>
 }
 function row (label, value) {
@@ -55,7 +55,7 @@ export const Event = (props) => (
         </fieldset>
       </FormFields>
       <Footer pad={{ vertical: 'medium' }}>
-        <Button label='Send message' primary onClick={props.sendMessage} />
+        <Button onClick={props.sendMessage} >Send message</Button>
       </Footer>
     </Form>
   </div>
@@ -73,11 +73,11 @@ Event.propTypes = {
   Message: React.PropTypes.string,
   Messages: React.PropTypes.array,
   RegistrationType: React.PropTypes.number,
-  register: React.PropTypes.function,
-  interested: React.PropTypes.function,
-  dismiss: React.PropTypes.function,
-  sendMessage: React.PropTypes.function,
-  messageChanged: React.PropTypes.function
+  register: React.PropTypes.func,
+  interested: React.PropTypes.func,
+  dismiss: React.PropTypes.func,
+  sendMessage: React.PropTypes.func,
+  messageChanged: React.PropTypes.func
 }
 
 export default Event

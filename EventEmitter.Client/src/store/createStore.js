@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
-
+import { fetchCategories } from './../modules/Categories'
 export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
@@ -43,6 +43,7 @@ export default (initialState = {}) => {
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
+  store.dispatch(fetchCategories())
 
   return store
 }

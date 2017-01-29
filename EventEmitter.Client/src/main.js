@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 import { connect } from 'react-redux'
-import 'grommet/scss/vanilla/index.scss'
+import 'react-mdl/extra/material.css'
+import 'react-mdl/extra/material.js'
 // ========================================================
 // Store Instantiation
 // ========================================================

@@ -33,6 +33,9 @@ namespace EventEmitter.UserServices.Infrastructure
 
             cfg.CreateMap<RegistrationType, Storage.POCO.Enums.RegistrationType>();
             cfg.CreateMap<Storage.POCO.Enums.RegistrationType, RegistrationType>();
+
+            cfg.CreateMap<Category, Storage.POCO.Category>();
+            cfg.CreateMap<Storage.POCO.Category, Category>();
         }
     }
 }

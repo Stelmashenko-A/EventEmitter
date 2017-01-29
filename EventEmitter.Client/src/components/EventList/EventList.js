@@ -2,7 +2,7 @@ import React from 'react'
 import './EventList.scss'
 import Event from '../Event/Event'
 import Tiles from 'grommet/components/Tiles'
-import Button from 'grommet/components/Button'
+import Button from './../../components/Button'
 
 function renderEvent (event, i) {
   if (event != null) {
@@ -24,7 +24,7 @@ function renderEvent (event, i) {
 export const EventList = (props) => (
   <div className='event-list'>
     <Tiles colorIndex='light-2' justify='center'>
-      {(props.eventList.events.map((event, i) =>
+      {(props.events.map((event, i) =>
          renderEvent(event, i)
       ))}
     </Tiles>
@@ -33,7 +33,7 @@ export const EventList = (props) => (
 
 )
 EventList.propTypes = {
-  eventList: React.PropTypes.array.object,
+  events: React.PropTypes.array,
   loading: React.PropTypes.func.isRequired
 }
 

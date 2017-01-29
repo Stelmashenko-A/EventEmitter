@@ -214,7 +214,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Models\Category\CategoryModel.cs" />
     <Compile Include="Models\Message\MessageModel.cs" />
     <Compile Include="Models\Event\EventModel.cs" />
     <Compile Include="Models\Event\Event.cs" />

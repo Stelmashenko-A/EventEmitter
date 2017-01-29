@@ -21,6 +21,8 @@ namespace EventEmitter.UserServices.Infrastructure
             kernel.Bind<IRegistrationRepository>().To<RegistrationRepository>();
             kernel.Bind<IMessageRepository>().To<MessageRepository>();
             kernel.Bind<IMessager>().To<Messager>();
+            kernel.Bind<ICategoryRepository>().To<CategotyRepository>();
+            kernel.Bind<ICategoryService>().To<CategoryService>();
 
             /* AutoMapperSetup autoMapperSetup = new AutoMapperSetup();
              var config = autoMapperSetup.Setup();

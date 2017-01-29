@@ -133,8 +133,7 @@ webpackConfig.module.loaders.push({
 
 webpackConfig.sassLoader = {
   includePaths : [paths.client('styles'),
-  paths.base('node_modules'),
-  paths.base('node_modules/grommet/node_modules')]
+  paths.base('node_modules')]
 }
 
 webpackConfig.postcss = [

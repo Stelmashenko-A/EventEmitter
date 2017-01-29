@@ -1,7 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import Button from 'grommet/components/Button'
+import { Button } from 'react-mdl'
 import TextInput from 'grommet/components/TextInput'
 import Label from 'grommet/components/Label'
 import NumberInput from 'grommet/components/NumberInput'
@@ -57,7 +57,7 @@ export const NewEvent = (props) => (
         </TableRow>
       </tbody>
     </Table>
-    <Button type='button' label='Submit' onClick={props.submit} primary />
+    <Button onClick={props.submit} >Submit </Button>
   </div>
 )
 

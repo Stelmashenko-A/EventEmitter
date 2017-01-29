@@ -11,6 +11,7 @@ namespace EventEmitter.Storage
 
         public ITable<Benefit> Benefits => GetTable<Benefit>();
         public ITable<BenefitType> BenefitType => GetTable<BenefitType>();
+        public ITable<Category> Categories => GetTable<Category>();
         public ITable<Claim> Claims => GetTable<Claim>();
         public ITable<Contact> Contacts => GetTable<Contact>();
         public ITable<Event> Events => GetTable<Event>();

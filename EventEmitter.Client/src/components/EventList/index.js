@@ -7,7 +7,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  eventList : state.eventList,
+  events : state.eventList.events,
   user:state.user
 })
 

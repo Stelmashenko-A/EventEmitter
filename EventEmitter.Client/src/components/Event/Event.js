@@ -1,31 +1,30 @@
 import React from 'react'
 import './Event.scss'
 import Heading from 'grommet/components/Heading'
-import Paragraph from 'grommet/components/Paragraph'
+
 import Image from 'grommet/components/Image'
 import Tile from 'grommet/components/Tile'
-import Button from 'grommet/components/Button'
+import { Button } from 'react-mdl'
 
 export const Event = (props) => (
   <div className='event-block'>
     <Tile basis='small' colorIndex='neutral-2'>
 
 
-      <Image src={props.image} s />
+      <Image src={props.image} />
       <Heading tag='h2' strong>
         <div>{props.name}</div>
       </Heading>
       <Heading tag='h3'>
         <div>{props.owner}</div>
       </Heading>
-      <Paragraph>
-        <div>{props.start}</div>
-        <div>{props.duration}</div>
-        <div>{props.price}</div>
-        <div>{props.slots}</div>
-        <div>{props.description}</div>
-      </Paragraph>
-      <Button label='More info' href={'event/' + props.id} primary accent />
+
+      <div>{props.start}</div>
+      <div>{props.duration}</div>
+      <div>{props.price}</div>
+      <div>{props.slots}</div>
+      <div>{props.description}</div>
+      <Button raised accent ripple href={'/event/' + props.id} >Button</Button>
     </Tile>
   </div>
 
