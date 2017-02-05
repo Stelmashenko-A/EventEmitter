@@ -4,7 +4,8 @@ import Home from './Home'
 import CounterRoute from './Counter'
 import LoginRoute from './Login'
 import NewEvent from './NewEvent'
-import Events from './Events'
+import Event from './Event'
+import Category from './Category'
 
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -18,7 +19,8 @@ export const createRoutes = (store, qwer) => ({
     CounterRoute(store),
     LoginRoute(store),
     NewEvent(store),
-    Events(store)
+    Event(store),
+    Category(store)
   ]
 })
 
