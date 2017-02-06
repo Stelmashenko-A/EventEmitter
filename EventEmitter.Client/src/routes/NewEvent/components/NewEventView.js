@@ -22,11 +22,11 @@ function saved (success, toastClosed) {
 export const NewEvent = (props) => (
   <div style={{ margin: '0 auto' }} >
     {saved(props.Saved, props.toastClosed)}
-    <Heading strong uppercase tag='h1' align='center' margin='middle'>new event</Heading>
+    <Heading strong uppercase tag='h1' align='center' margin='medium'>new event</Heading>
 
     <Table>
       <tbody>
-        <Dropzone onDrop={props.imgChanged} multiple='false' >
+        <Dropzone onDrop={props.imgChanged} >
 
           <Label>Try dropping some files here, or click to select files to upload.</Label>
         </Dropzone>
@@ -63,7 +63,7 @@ export const NewEvent = (props) => (
 
 NewEvent.propTypes = {
   Start: React.PropTypes.object,
-  Saved: React.PropTypes.boolean,
+  Saved: React.PropTypes.bool,
   Duration: React.PropTypes.number,
   Price: React.PropTypes.number,
   Description: React.PropTypes.string,

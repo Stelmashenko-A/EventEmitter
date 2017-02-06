@@ -29,7 +29,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = { }
-export default function categoryReducer (state = initialState, action) {
+export default function eventlineReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }

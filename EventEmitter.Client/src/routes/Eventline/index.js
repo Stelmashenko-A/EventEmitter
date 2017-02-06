@@ -1,8 +1,9 @@
 import { injectReducer } from '../../store/reducers'
 import { loadEvents } from '../routeEnter'
 export default (store) => ({
-  path: 'category/:categoryCode',
+  path: 'eventline',
   onEnter : loadEvents(store),
+  onChange: loadEvents(store),
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
@@ -10,17 +11,17 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Event = require('./containers/CategoryContainer').default
-      const reducer = require('./modules/category').default
+      const Eventline = require('./containers/EventlineContainer').default
+      const reducer = require('./modules/eventline').default
 
       /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'event', reducer })
+      injectReducer(store, { key: 'eventline', reducer })
 
       /*  Return getComponent   */
-      cb(null, Event)
+      cb(null, Eventline)
 
       /* Webpack named bundle   */
-    }, 'event')
+    }, 'eventline')
   }
 })
 

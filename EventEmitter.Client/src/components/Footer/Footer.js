@@ -12,7 +12,7 @@ function toArray (dict) {
 }
 
 function renderRow (category, i) {
-  return <Link key={i} to={'/category/' + category.Code} activeClassName='route--active'>{category.Name}</Link>
+  return <Link key={i} to={'/eventline?cat=' + category.Code} activeClassName='route--active'>{category.Name}</Link>
 }
 
 function renderCategories (categories, columnsNumber) {

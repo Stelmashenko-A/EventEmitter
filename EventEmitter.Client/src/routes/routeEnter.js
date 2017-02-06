@@ -3,9 +3,12 @@ import { initState } from '../store/location'
 import { startLoadEvent, startLoadMessages } from './Event/modules/event'
 
 export const loadEvents = (store) => (nextState, replace) => {
-  console.log(store)
+  console.log(nextState)
   var state = store.getState()
-  var code = nextState.params.categoryCode !== undefined ? nextState.params.categoryCode : ''
+
+    var code = nextState.location.query.cat !== undefined ? nextState.location.query.cat : ''
+  console.log(nextState)
+
   store.dispatch(initEvents(code))
   store.dispatch(fetchEvents(state.user, 1, code))
 }

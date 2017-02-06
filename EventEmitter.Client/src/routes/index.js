@@ -5,7 +5,7 @@ import CounterRoute from './Counter'
 import LoginRoute from './Login'
 import NewEvent from './NewEvent'
 import Event from './Event'
-import Category from './Category'
+import Eventline from './Eventline'
 
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -20,7 +20,7 @@ export const createRoutes = (store, qwer) => ({
     LoginRoute(store),
     NewEvent(store),
     Event(store),
-    Category(store)
+    Eventline(store)
   ]
 })
 
