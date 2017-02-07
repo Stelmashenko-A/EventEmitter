@@ -49,7 +49,7 @@ namespace EventEmitter.UserServices.Services
         /// <param name="page"></param>
         /// <param name="start"></param>
         /// <returns></returns>
-        public IEnumerable<NamedEvent> Get(User user,int page, Guid start)
+        public IEnumerable<NamedEvent> Get(User user, int page, Guid start)
         {
             int pageSize;
             if (!int.TryParse(Settings.Get(PageSize).Value, out pageSize))
@@ -59,6 +59,31 @@ namespace EventEmitter.UserServices.Services
             var timeStamp = EventRepository.Get(start).TimeStamp;
             var storedUser = Mapper.Map<User, UserAccount>(user);
             var events = EventRepository.GetNamed(storedUser, page, pageSize, timeStamp);
+            return events.Select(@event => Mapper.Map<Storage.Models.Event, NamedEvent>(@event));
+        }
+
+        public IEnumerable<NamedEvent> Get(User user, int page, string categoryCode)
+        {
+            int pageSize;
+            if (!int.TryParse(Settings.Get(PageSize).Value, out pageSize))
+            {
+                return new List<NamedEvent>();
+            }
+            var storedUser = Mapper.Map<User, UserAccount>(user);
+            var events = EventRepository.GetNamed(storedUser, page, pageSize, double.MaxValue, categoryCode);
+            return events.Select(@event => Mapper.Map<Storage.Models.Event, NamedEvent>(@event));
+        }
+
+        public IEnumerable<NamedEvent> Get(User user, int page, Guid start, string categoryCode)
+        {
+            int pageSize;
+            if (!int.TryParse(Settings.Get(PageSize).Value, out pageSize))
+            {
+                return null;
+            }
+            var timeStamp = EventRepository.Get(start).TimeStamp;
+            var storedUser = Mapper.Map<User, UserAccount>(user);
+            var events = EventRepository.GetNamed(storedUser, page, pageSize, timeStamp, categoryCode);
             return events.Select(@event => Mapper.Map<Storage.Models.Event, NamedEvent>(@event));
         }
     }

@@ -1,9 +1,9 @@
 import { injectReducer } from '../../store/reducers'
-import { loadEvents } from '../routeEnter'
+import { loadEventsOnEnter, loadEventsOnChange } from '../routeEnter'
 export default (store) => ({
   path: 'eventline',
-  onEnter : loadEvents(store),
-  onChange: loadEvents(store),
+  onEnter : loadEventsOnEnter(store),
+  onChange: loadEventsOnChange(store),
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point

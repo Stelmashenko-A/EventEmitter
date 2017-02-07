@@ -4,12 +4,12 @@
 export default {
   component : HomeView
 }*/
-import { loadEvents } from '../routeEnter'
+import { loadEventsOnEnter } from '../routeEnter'
 //import { injectReducer } from '../../store/reducers'
 //import { successLogin } from './modules/login.js'
 export default (store) => ({
   /*  Async getComponent is only invoked when route matches   */
-  onEnter : loadEvents(store),
+  onEnter : loadEventsOnEnter(store),
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
         and embed an async module loader (jsonp) when bundling   */

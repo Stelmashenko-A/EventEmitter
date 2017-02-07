@@ -39,7 +39,7 @@ namespace EventEmitter.Storage.POCO
         [Column(Name = "Image")]
         public string Image { get; set; }
 
-        [Column(Name = "CategotyId")]
-        public Guid CategotyId { get; set; }
+        [Column(Name = "CategoryId")]
+        public Guid CategoryId { get; set; }
     }
 }

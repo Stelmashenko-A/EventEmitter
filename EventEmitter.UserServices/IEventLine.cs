@@ -8,5 +8,7 @@ namespace EventEmitter.UserServices
     {
         IEnumerable<NamedEvent> Get(User user, int page);
         IEnumerable<NamedEvent> Get(User user, int page, Guid start);
+        IEnumerable<NamedEvent> Get(User user, int page,string categoryCode);
+        IEnumerable<NamedEvent> Get(User user, int page, Guid start, string categoryCode);
     }
 }

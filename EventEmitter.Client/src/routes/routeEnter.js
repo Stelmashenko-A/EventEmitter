@@ -2,15 +2,23 @@ import { fetchEvents, initEvents } from '../store/eventList'
 import { initState } from '../store/location'
 import { startLoadEvent, startLoadMessages } from './Event/modules/event'
 
-export const loadEvents = (store) => (nextState, replace) => {
-  console.log(nextState)
+function _loadEvents (store, nextState) {
   var state = store.getState()
-
-    var code = nextState.location.query.cat !== undefined ? nextState.location.query.cat : ''
-  console.log(nextState)
+ console.log("load")
+  var code = nextState.location.query.cat !== undefined ? nextState.location.query.cat : ''
 
   store.dispatch(initEvents(code))
   store.dispatch(fetchEvents(state.user, 1, code))
+}
+
+export const loadEventsOnEnter = (store) => (nextState, replace) => {
+  console.log("enter")
+  _loadEvents(store, nextState)
+}
+
+export const loadEventsOnChange = (store) => (prevState, nextState, replace) => {
+    console.log("change")
+  _loadEvents(store, nextState)
 }
 
 export const loadEvent = (store) => (nextState, replace) => {

@@ -76,7 +76,7 @@ export function fetchEvents (user, page, categoryCode) {
     }
     var url = `http://localhost:3001/api/Event?page=` + page
     if (categoryCode !== '' && categoryCode !== undefined) {
-      url = url + '&category' + categoryCode
+      url = url + '&cat=' + categoryCode
     }
     console.log(url)
     return fetch(url, fetchInit)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
 using EventEmitter.UserServices;
@@ -24,6 +25,19 @@ namespace EventEmitter.Api.Controllers
         public EventModel Get(int page)
         {
             var events = EventLine.Get(Account, page);
+
+
+            var responce = new EventModel { events = events };
+            return responce;
+        }
+
+        [AllowAnonymous]
+        public EventModel Get(int page, string cat)
+        {
+            var events = string.IsNullOrEmpty(cat) ?
+                EventLine.Get(Account, page) :
+                EventLine.Get(Account, page, cat);
+
             var responce = new EventModel {events = events};
             return responce;
         }
