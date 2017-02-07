@@ -1,7 +1,7 @@
 import React from 'react'
 import './Event.scss'
 import Heading from 'grommet/components/Heading'
-
+import { Link } from 'react-router'
 import Image from 'grommet/components/Image'
 import Tile from 'grommet/components/Tile'
 import { Button } from 'react-mdl'
@@ -24,7 +24,7 @@ export const Event = (props) => (
       <div>{props.price}</div>
       <div>{props.slots}</div>
       <div>{props.description}</div>
-      <Button raised accent ripple href={'/event/' + props.id} >Button</Button>
+      <Button raised accent ripple component={Link} to={'/event/' + props.id} >Button</Button>
     </Tile>
   </div>
 
