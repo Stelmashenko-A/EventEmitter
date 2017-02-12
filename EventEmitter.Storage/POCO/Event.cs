@@ -41,5 +41,8 @@ namespace EventEmitter.Storage.POCO
 
         [Column(Name = "CategoryId")]
         public Guid CategoryId { get; set; }
+
+        [Column(Name = "ShortDescription")]
+        public string ShortDescription { get; set; }
     }
 }

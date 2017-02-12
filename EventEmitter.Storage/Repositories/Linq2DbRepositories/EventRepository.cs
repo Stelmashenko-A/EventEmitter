@@ -55,7 +55,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                                       TimeStamp = @event.TimeStamp,
                                       Author = account.Name,
                                       Image = @event.Image,
-                                      Description = @event.Description,
+                                      Description = @event.ShortDescription,
                                       Type = registration == null ? RegistrationType.None : registration.Type
                                   };
                 return mappedQuery.ToArray();
@@ -88,7 +88,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                                       TimeStamp = @event.TimeStamp,
                                       Author = account.Name,
                                       Image = @event.Image,
-                                      Description = @event.Description,
+                                      Description = @event.ShortDescription,
                                       Type = registration == null ? RegistrationType.None : registration.Type
                                   };
                 return mappedQuery.ToArray();
