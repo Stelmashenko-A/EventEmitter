@@ -1,4 +1,4 @@
-import EHeader from './Header'
+import EDrawer from './Drawer'
 import { connect } from 'react-redux'
 import { switchMobileMenu } from './../../store/header'
 
@@ -11,4 +11,4 @@ const mapStateToProps = (state) => ({
   user:state.user
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EHeader)
+export default connect(mapStateToProps, mapDispatchToProps)(EDrawer)

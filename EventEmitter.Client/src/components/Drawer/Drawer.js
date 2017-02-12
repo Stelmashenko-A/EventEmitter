@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
-import './Header.scss'
-import { Header, Navigation } from 'react-mdl'
-export const EHeader = (props) => (
-  <Header title={<span><Link to='/'>Event Emitter</Link></span>}>
+import { Navigation, Drawer } from 'react-mdl'
+export const EDrawer = (props) => (
+  <Drawer title='Title'>
     <Navigation>
+      <Link
+        to='/'
+        activeClassName='route--active'>Home</Link>
       <Link
         className={(!props.user.login ? '' : 'hidden')}
         to='/login'
@@ -18,13 +20,17 @@ export const EHeader = (props) => (
       <li>Support</li>
       <li>Support</li>
     </Navigation>
-  </Header>
-)
+  </Drawer>
+  // <IndexLink to='/' activeClassName='route--active'>
+  // Home
+  // </IndexLink>
 
-EHeader.propTypes = {
+
+)
+EDrawer.propTypes = {
   switchMobileMenu: React.PropTypes.func.isRequired,
   header: React.PropTypes.bool.isRequired,
   user: React.PropTypes.object
 }
 
-export default EHeader
+export default EDrawer

@@ -101,6 +101,9 @@ webpackConfig.module.loaders = [{
 }, {
   test   : /\.json$/,
   loader : 'json'
+}, {
+  test: /\.jsx$/,
+  loader: 'babel-loader?stage=0'
 }
 ]
 
