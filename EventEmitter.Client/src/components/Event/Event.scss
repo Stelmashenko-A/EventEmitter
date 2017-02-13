@@ -1,8 +1,40 @@
-@media (max-width: 45em) {
-    .event-block img { width:100%; }
-}
-.event-block{
-    .grommetux-button{
-        margin-bottom: 20px; 
+@import '../../styles/mixins.scss';
+
+.event-block {
+  width: 220px;
+  display: inline-block;
+
+  .card {
+    width: 220px;
+    margin: auto;
+
+    .title {
+      color: #fff;
+      height: 176px;
+
     }
+
+    .button {
+      margin: auto;
+      display: block;
+    }
+  }
+
+  img {
+    width: 220px;
+  }
+
+  //border: solid 5px;
+  //@include border;
+
+  .event-info {
+
+    padding: 7px;
+  }
+
+}
+@media (max-width: 767px) {
+  .facet_sidebar {
+    display: none;
+  }
 }

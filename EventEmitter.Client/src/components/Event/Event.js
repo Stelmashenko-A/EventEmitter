@@ -1,31 +1,23 @@
 import React from 'react'
 import './Event.scss'
-import Heading from 'grommet/components/Heading'
 import { Link } from 'react-router'
-import Image from 'grommet/components/Image'
-import Tile from 'grommet/components/Tile'
-import { Button } from 'react-mdl'
+import { Button, Card, CardTitle, CardActions, CardText } from 'react-mdl'
 
 export const Event = (props) => (
   <div className='event-block'>
-    <Tile basis='small' colorIndex='neutral-2'>
-
-
-      <Image src={props.image} />
-      <Heading tag='h2' strong>
-        <div>{props.name}</div>
-      </Heading>
-      <Heading tag='h3'>
-        <div>{props.owner}</div>
-      </Heading>
-
-      <div>{props.start}</div>
-      <div>{props.duration}</div>
-      <div>{props.price}</div>
-      <div>{props.slots}</div>
-      <div>{props.description}</div>
-      <Button raised accent ripple component={Link} to={'/event/' + props.id} >Button</Button>
-    </Tile>
+    <Card shadow={3} className='card'>
+      <CardTitle className='title' style={{ background: 'url(' + props.image + ') center / cover' }}>
+        {props.name}
+      </CardTitle>
+      <CardText>
+        <div className='owner'>{props.owner}</div>
+        <div className='start'>Start: <span>{props.start}</span></div>
+        <div className='owner'>About: <span>{props.description}</span></div>
+      </CardText>
+      <CardActions border>
+        <Button className='button' raised accent ripple component={Link} to={'/event/' + props.id} >More info</Button>
+      </CardActions>
+    </Card>
   </div>
 
 )
@@ -38,7 +30,7 @@ Event.propTypes = {
   description: React.PropTypes.string.isRequired,
   slots: React.PropTypes.number.isRequired,
   image: React.PropTypes.string.isRequired,
-  id:React.PropTypes.string.isRequired
+  id: React.PropTypes.string.isRequired
 }
 
 export default Event

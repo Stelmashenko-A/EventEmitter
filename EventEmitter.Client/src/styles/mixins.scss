@@ -1,0 +1,23 @@
+@import 'variables.scss';
+/*Border color*/
+@mixin border() {
+  &.pink {
+    border-color: $pink;
+  }
+
+  &.blue {
+    border-color: $blue;
+  }
+
+  &.dark-blue {
+    border-color: $dark-blue;
+  }
+
+  &.red {
+    border-color: $red;
+  }
+
+  &.sand {
+    border-color: $sand;
+  }
+}
