@@ -1,7 +1,6 @@
 import React from 'react'
 import './EventList.scss'
 import Event from '../Event/Event'
-import Tiles from 'grommet/components/Tiles'
 import Button from './../../components/Button'
 
 function renderEvent (event, i) {
@@ -23,12 +22,13 @@ function renderEvent (event, i) {
 
 export const EventList = (props) => (
   <div className='event-list'>
-    <Tiles colorIndex='light-2' justify='center'>
-      {(props.events.map((event, i) =>
+    {(props.events.map((event, i) =>
          renderEvent(event, i)
       ))}
-    </Tiles>
-    <Button label='Load more' onClick={props.loading} />
+    <div className='clearfix' />
+    <div className='load-more-btn'>
+      <Button label='Load more' onClick={props.loading} />
+    </div>
   </div>
 
 )

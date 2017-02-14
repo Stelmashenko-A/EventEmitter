@@ -1,10 +1,33 @@
 .event-list {
-  button {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
 
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  .event-block {
+    padding: 5px;
+  }
+
+  .load-more-btn {
+    margin-top: 30px;
+
+    .mdl-button {
+      width: 300px;
+    }
+  }
+
+  .clearfix {
     width: 100%;
-    margin: 20px auto;
-    max-width: none;
-    position: relative;
-    display: block;
+    clear: both;
   }
 }

@@ -1,7 +1,6 @@
 @import '../../styles/mixins.scss';
 
 .event-block {
-  width: 220px;
   display: inline-block;
 
   .card {
@@ -11,7 +10,20 @@
     .title {
       color: #fff;
       height: 176px;
+      position: relative;
+      padding: 0;
 
+      h2 {
+        position: absolute;
+        padding: 10px 15px;
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(0,0,0,0.7)
+      }
+    }
+
+    .card-text {
+      height: 150px;
     }
 
     .button {

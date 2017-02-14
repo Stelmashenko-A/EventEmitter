@@ -9,7 +9,7 @@ export const Event = (props) => (
       <CardTitle className='title' style={{ background: 'url(' + props.image + ') center / cover' }}>
         {props.name}
       </CardTitle>
-      <CardText>
+      <CardText className='card-text'>
         <div className='owner'>{props.owner}</div>
         <div className='start'>Start: <span>{props.start}</span></div>
         <div className='owner'>About: <span>{props.description}</span></div>
