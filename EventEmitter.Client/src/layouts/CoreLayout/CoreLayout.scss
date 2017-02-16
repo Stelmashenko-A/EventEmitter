@@ -2,12 +2,21 @@
   padding-top: 4rem;
 }
 
-.container {
-  padding: 0;
+.wrapper {
+  width: 100%;
+
+  .container {
+    padding: 0;
+    width: 100%;
+
+    .core-layout__viewport {
+      width: 100%;
+    }
+  }
 }
 @media (min-width: 980px) {
   .wrapper {
-    width: auto;
+    padding: 0 30px;
     margin: 0 auto;
   }
 }

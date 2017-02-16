@@ -1,17 +1,12 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { Button } from 'react-mdl'
-import TextInput from 'grommet/components/TextInput'
+import { Button, Textfield, CardTitle, Grid, Cell } from 'react-mdl'
 import Label from 'grommet/components/Label'
-import NumberInput from 'grommet/components/NumberInput'
-import Table from 'grommet/components/Table'
-import TableRow from 'grommet/components/TableRow'
-import Heading from 'grommet/components/Heading'
 import Toast from 'grommet/components/Toast'
 import Dropzone from 'react-dropzone'
-
-function saved (success, toastClosed) {
+import './NewEventView.scss'
+function saved(success, toastClosed) {
   if (success) {
     return <Toast status='ok' onClose={toastClosed} >
       A short message to let the user know something.
@@ -20,43 +15,62 @@ function saved (success, toastClosed) {
 }
 
 export const NewEvent = (props) => (
-  <div style={{ margin: '0 auto' }} >
+  <div className='new-event' style={{ margin: '0 auto' }} >
     {saved(props.Saved, props.toastClosed)}
-    <Heading strong uppercase tag='h1' align='center' margin='medium'>new event</Heading>
+    <h1>new event</h1>
 
-    <Table>
-      <tbody>
-        <Dropzone onDrop={props.imgChanged} >
+    <div>
+      <Dropzone onDrop={props.imgChanged} >
 
-          <Label>Try dropping some files here, or click to select files to upload.</Label>
-        </Dropzone>
+        <Label>Try dropping some files here, or click to select files to upload.</Label>
+      </Dropzone>
 
-        <TableRow>
-          <td><Label>Name:</Label></td>
-          <td><TextInput value={props.Name} onDOMChange={props.nameChanged} /></td>
-        </TableRow>
+      <div>
+        <div className='field-name'><CardTitle className='title'>Name:</CardTitle></div>
+        <Textfield
+          onChange={props.nameChanged}
+          label=''
+          floatingLabel
+          className='field-value' />
+      </div>
 
-        <TableRow>
-          <td><Label>Description:</Label></td>
-          <td><TextInput value={props.Description} onDOMChange={props.descriptionChanged} /></td>
-        </TableRow>
+      <div>
+        <div className='field-name'><CardTitle className='title'>Description:</CardTitle></div>
+        <Textfield
+          onChange={props.descriptionChanged}
+          label=''
+          floatingLabel
+          className='field-value' />
+      </div>
 
-        <TableRow>
-          <td><Label>Duration:</Label></td>
-          <td><NumberInput value={props.Duration} onChange={props.durationChanged} /></td>
-        </TableRow>
+      <div>
+        <div className='field-name'><CardTitle className='title'>Duration:</CardTitle></div>
+        <Textfield
+          onChange={props.durationChanged}
+          pattern='[0-9]*'
+          error='Input is not a number!'
+          label=''
+          floatingLabel
+          className='field-value' />
+      </div>
 
-        <TableRow>
-          <td><Label>Slots:</Label></td>
-          <td><NumberInput value={props.Slots} onChange={props.slotsChanged} /></td>
-        </TableRow>
+      <div>
+        <div className='field-name'><CardTitle className='title'>Slots:</CardTitle></div>
+        <Textfield
+          onChange={props.slotsChanged}
+          pattern='[0-9]*'
+          error='Input is not a number!'
+          label=''
+          floatingLabel
+          className='field-value' />
+      </div>
 
-        <TableRow>
-          <td><Label>Date:</Label></td>
-          <td><DatePicker onChange={props.startChanged} selected={props.Start} /></td>
-        </TableRow>
-      </tbody>
-    </Table>
+      <div>
+        <div className='field-name'><CardTitle className='title'>Date:</CardTitle></div>
+        <div className='field-value'><DatePicker onChange={props.startChanged} selected={props.Start} /></div>
+      </div>
+
+    </div>
     <Button onClick={props.submit} >Submit </Button>
   </div>
 )

@@ -1,0 +1,29 @@
+.new-event {
+  margin: 0 auto;
+  width: 100%;
+
+  .field-name,
+  .field-value {
+    width: 100%;
+    display: inline-block;
+  }
+}
+@media (min-width: 768px) {
+  .new-event {
+    .field-name,
+    .field-value {
+      width: 50%;
+    }
+
+    .field-name {
+      .title {
+        float: right;
+      }
+    }
+    .field-value{
+        input{
+            float: left;
+        }
+    }
+  }
+}
