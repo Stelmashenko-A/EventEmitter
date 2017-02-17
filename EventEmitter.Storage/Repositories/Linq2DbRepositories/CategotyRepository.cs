@@ -13,5 +13,13 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                 return db.Categories.ToList();
             }
         }
+
+        public Category Get(string code)
+        {
+            using (var db = new EventEmitterDatabase())
+            {
+                return db.Categories.FirstOrDefault(cat => cat.Code == code);
+            }
+        }
     }
 }

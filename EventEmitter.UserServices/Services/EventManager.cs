@@ -15,14 +15,16 @@ namespace EventEmitter.UserServices.Services
         protected readonly IEventRepository EventRepository;
         protected readonly ISettingRepository Settings;
         protected readonly IMapper Mapper;
+        protected readonly ICategoryRepository CategoryRepository;
 
         protected const string DefaultEventType = "DEFAULT_EVENT_TYPE";
 
-        public EventManager(IEventRepository eventRepository, IMapper mapper, IUserAccountRepository userAccountRepository, ISettingRepository settings)
+        public EventManager(IEventRepository eventRepository, IMapper mapper, IUserAccountRepository userAccountRepository, ISettingRepository settings, ICategoryRepository categoryRepository)
         {
             EventRepository = eventRepository;
             Mapper = mapper;
             Settings = settings;
+            CategoryRepository = categoryRepository;
         }
 
         public void Create(Event obj, User creator)
@@ -35,6 +37,7 @@ namespace EventEmitter.UserServices.Services
             obj.EventTypeId = new Guid(Settings.Get(DefaultEventType).Value);
             var storedEvent = Mapper.Map<Event, Storage.POCO.Event>(obj);
             storedEvent.EventCreatorId = creator.Id;
+            storedEvent.CategoryId = CategoryRepository.Get(obj.Category).Id;
             EventRepository.Insert(storedEvent);
             obj.Id = storedEvent.Id;
         }

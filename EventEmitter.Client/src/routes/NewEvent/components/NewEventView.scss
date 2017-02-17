@@ -1,5 +1,5 @@
 .new-event {
-  margin: 0 auto;
+  margin: 0 auto 40px;
   width: 100%;
 
   .field-name,
@@ -7,23 +7,62 @@
     width: 100%;
     display: inline-block;
   }
+
+  .field-value.datepicker {
+    position: relative;
+    font-size: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 300px;
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 0;
+
+    input {
+      border: none;
+      border-bottom: 1px solid rgba(0,0,0,.12);
+      display: block;
+      font-size: 16px;
+      font-family: Helvetica,Arial,sans-serif;
+      margin: 0;
+      padding: 4px 0;
+      width: 100%;
+      background: none;
+      text-align: left;
+      color: inherit;
+    }
+  }
+
+  .form {
+    overflow: hidden;
+  }
+
+  button {
+    margin: 0 auto;
+    display: block;
+  }
 }
 @media (min-width: 768px) {
   .new-event {
     .field-name,
     .field-value {
-      width: 50%;
+      width: 48%;
+      float: left;
     }
 
     .field-name {
+      padding-right: 1px;
+
       .title {
         float: right;
       }
     }
-    .field-value{
-        input{
-            float: left;
-        }
+
+    .field-value {
+      width: 50%;
+      padding-left: 1%;
+
+      &.datepicker {}
     }
   }
 }

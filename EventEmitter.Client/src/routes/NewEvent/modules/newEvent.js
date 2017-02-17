@@ -6,6 +6,7 @@ import fetch from 'isomorphic-fetch'
 export const NAME_CHANGED = 'NAME_CHANGED'
 export const DESCRIPCION_CHANGED = 'DESCRIPCION_CHANGED'
 export const DURATION_CHANGED = 'DURATION_CHANGED'
+export const CATEGORY_CHANGED = 'CATEGORY_CHANGED'
 export const SLOTS_CHANGED = 'SLOTS_CHANGED'
 export const START_CHANGED = 'START_CHANGED'
 export const IMG_CHANGED = 'IMG_CHANGED'
@@ -58,6 +59,13 @@ export function imgChanged (img) {
   }
 }
 
+export function categoryChanged (category) {
+  return {
+    type: CATEGORY_CHANGED,
+    payload: category
+  }
+}
+
 export function submit (date) {
   return (dispatch, getstate) => {
     return dispatch(createEvent(getstate().newEvent))
@@ -86,6 +94,7 @@ export const actions = {
   nameChanged,
   descriptionChanged,
   durationChanged,
+  categoryChanged,
   slotsChanged,
   startChanged,
   imgChanged,
@@ -123,6 +132,10 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, { Image: Object.assign(action.payload), Saved: false })
   },
 
+  [CATEGORY_CHANGED]: (state, action) => {
+    return Object.assign({}, state, { Category: Object.assign(action.payload), Saved: false })
+  },
+
   [ADDED]:(state, action) => {
     return Object.assign({}, initialState, { Saved: true })
   },
@@ -141,6 +154,7 @@ const initialState = {
   Start: moment(),
   Slots: 1,
   Duration: 1,
+  Category: '',
   Image: {},
   Saved: false
 }

@@ -25,5 +25,7 @@ namespace EventEmitter.UserServices.Models
         public double TimeStamp { get; set; }
 
         public string Image { get; set; }
+
+        public string Category { get; set; }
     }
 }

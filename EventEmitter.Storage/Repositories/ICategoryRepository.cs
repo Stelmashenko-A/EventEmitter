@@ -6,5 +6,6 @@ namespace EventEmitter.Storage.Repositories
     public interface ICategoryRepository : IRepository<Category>
     {
         IEnumerable<Category> GetAll();
+        Category Get(string code);
     }
 }
