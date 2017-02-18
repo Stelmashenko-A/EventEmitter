@@ -23,7 +23,8 @@ namespace EventEmitter.UserServices.Infrastructure
             kernel.Bind<IMessager>().To<Messager>();
             kernel.Bind<ICategoryRepository>().To<CategotyRepository>();
             kernel.Bind<ICategoryService>().To<CategoryService>();
-
+            kernel.Bind<IClaimManager>().To<ClaimManager>(); 
+            kernel.Bind<IUserTypeClaimRepository>().To<UserTypeClaimRepository>();
             /* AutoMapperSetup autoMapperSetup = new AutoMapperSetup();
              var config = autoMapperSetup.Setup();
              var mapper = config.CreateMapper();

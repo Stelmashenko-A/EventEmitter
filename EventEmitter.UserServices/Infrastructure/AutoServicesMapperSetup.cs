@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
 using EventEmitter.UserServices.Models;
 
 namespace EventEmitter.UserServices.Infrastructure
@@ -36,6 +38,7 @@ namespace EventEmitter.UserServices.Infrastructure
 
             cfg.CreateMap<Category, Storage.POCO.Category>();
             cfg.CreateMap<Storage.POCO.Category, Category>();
+            cfg.CreateMap<Dictionary<Guid, List<Storage.POCO.Enums.Claim>>, Dictionary<Guid, List<Claim>>>();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EventEmitter.UserServices
     {
         bool HasClaim(User user, Claim claim);
         IEnumerable<Claim> Claims(User user);
-        IEnumerable<Claim> Claims();
+        Dictionary<Guid, List<Claim>> Claims();
         IEnumerable<Claim> Claims(Guid userTypeId);
     }
 }

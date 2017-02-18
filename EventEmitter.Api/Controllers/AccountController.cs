@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using EventEmitter.Api.Authentification;
 using EventEmitter.Api.Models;
 using EventEmitter.Api.Results;
 using EventEmitter.UserServices;
@@ -14,7 +15,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using Claim = System.Security.Claims.Claim;
 
 namespace EventEmitter.Api.Controllers
 {
@@ -22,16 +22,24 @@ namespace EventEmitter.Api.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        private readonly IAccountManager _accountManager;
-        public AccountController(IAccountManager accountManager)
+        protected readonly IAccountManager AccountManager;
+        protected readonly IPropertyBuilder PropertyBuilder;
+        protected readonly IIdentetyBuilder IdentetyBuilder;
+        public AccountController(IAccountManager accountManager,
+            IPropertyBuilder propertyBuilder,
+            IIdentetyBuilder identetyBuilder)
         {
-            _accountManager = accountManager;
+            AccountManager = accountManager;
+            PropertyBuilder = propertyBuilder;
+            IdentetyBuilder = identetyBuilder;
         }
 
-        public AccountController(ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IAccountManager accountManager)
+        public AccountController(ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IAccountManager accountManager, IPropertyBuilder propertyBuilder, IIdentetyBuilder identetyBuilder)
         {
             AccessTokenFormat = accessTokenFormat;
-            _accountManager = accountManager;
+            AccountManager = accountManager;
+            PropertyBuilder = propertyBuilder;
+            IdentetyBuilder = identetyBuilder;
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
@@ -90,7 +98,7 @@ namespace EventEmitter.Api.Controllers
             }
 
 
-            var user = _accountManager.GetInfo(externalLogin.LoginProvider, externalLogin.ProviderKey);
+            var user = AccountManager.GetInfo(externalLogin.LoginProvider, externalLogin.ProviderKey);
 
             var hasRegistered = user != null;
 
@@ -104,15 +112,13 @@ namespace EventEmitter.Api.Controllers
                     Base64Secret = "eigiure",
                 };
 
-                _accountManager.Register(user);
+                AccountManager.Register(user);
             }
 
             Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identetyBuilder = new IdentetyBuilder();
-            var oAuthIdentity = identetyBuilder.Build(user, OAuthDefaults.AuthenticationType);
-            var cookieIdentity = identetyBuilder.Build(user, CookieAuthenticationDefaults.AuthenticationType);
-            var propertyBuilder = new PropertyBuilder();
-            var properties = propertyBuilder.Build(user);
+            var oAuthIdentity = IdentetyBuilder.Build(user, OAuthDefaults.AuthenticationType);
+            var cookieIdentity = IdentetyBuilder.Build(user, CookieAuthenticationDefaults.AuthenticationType);
+            var properties = PropertyBuilder.Build(user);
             Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
 
             return Ok();
@@ -218,31 +224,5 @@ namespace EventEmitter.Api.Controllers
         }
 
         #endregion
-    }
-
-    public class IdentetyBuilder
-    {
-        public ClaimsIdentity Build(User user, string authenticationType)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Name),
-
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-            };
-            return new ClaimsIdentity(claims, authenticationType);
-        }
-    }
-
-    public class PropertyBuilder
-    {
-        public AuthenticationProperties Build(User user)
-        {
-            IDictionary<string, string> data = new Dictionary<string, string>
-            {
-                { "userName", user.Name }
-            };
-            return new AuthenticationProperties(data);
-        }
     }
 }

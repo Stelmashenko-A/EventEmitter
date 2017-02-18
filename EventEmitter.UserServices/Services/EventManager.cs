@@ -29,7 +29,7 @@ namespace EventEmitter.UserServices.Services
 
         public void Create(Event obj, User creator)
         {
-            if (!CanCreate(creator)) return;
+            //if (!CanCreate(creator)) return;
             obj.Creator = creator;
             obj.TimeStamp = DateTime.Now.ToUniversalTime().Subtract(
                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using EventEmitter.Storage.Repositories;
 using EventEmitter.UserServices.Models;
@@ -28,9 +29,11 @@ namespace EventEmitter.UserServices.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Claim> Claims()
+        public Dictionary<Guid, List<Claim>> Claims()
         {
-            throw new NotImplementedException();
+            var claims = UserTypeClaimRepository.GetAll();
+            return claims.ToDictionary(claim => claim.Key, claim => claim.Value
+            .Select(claim1 => Mapper.Map<Storage.POCO.Enums.Claim, Claim>(claim1)).ToList());
         }
 
         public IEnumerable<Claim> Claims(Guid userTypeId)

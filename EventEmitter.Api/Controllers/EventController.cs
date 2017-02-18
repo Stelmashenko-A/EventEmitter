@@ -21,7 +21,7 @@ namespace EventEmitter.Api.Controllers
             EventManager = eventManager;
         }
 
-        [AllowAnonymous]
+
         public EventModel Get(int page)
         {
             var events = EventLine.Get(Account, page);
@@ -41,7 +41,9 @@ namespace EventEmitter.Api.Controllers
             var responce = new EventModel {events = events};
             return responce;
         }
+        
         // POST: api/Event
+        [Authorize(Roles = "CreateEvent")]
         public void Post([FromBody]Event value)
         {
             var @event = Mapper.Map<Event, UserServices.Models.Event>(value);
