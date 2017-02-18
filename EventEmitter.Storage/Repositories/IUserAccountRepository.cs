@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using EventEmitter.Storage.Models;
 using EventEmitter.Storage.POCO;
 
 namespace EventEmitter.Storage.Repositories
 {
     public interface IUserAccountRepository : IRepository<UserAccount>
     {
-        //IEnumerable<UserAccount> Contains(Event @event, EventType eventType);
+        IEnumerable<User> Get(int page, int pageSize);
         UserAccount Get(string loginProvider, string providerKey);
     }
 }

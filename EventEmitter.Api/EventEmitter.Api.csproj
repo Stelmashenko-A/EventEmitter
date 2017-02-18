@@ -220,6 +220,7 @@
     <Compile Include="Authentification\IPropertyBuilder.cs" />
     <Compile Include="Authentification\IdentetyBuilder.cs" />
     <Compile Include="Authentification\PropertyBuilder.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\Category\CategoryModel.cs" />
     <Compile Include="Models\Message\MessageModel.cs" />
     <Compile Include="Models\Event\EventModel.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Infrastructure\EventEmitterDependencyResolver.cs" />
     <Compile Include="Models\Account\ExternalLoginViewModel.cs" />
     <Compile Include="Models\ManageInfoViewModel.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserLoginInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -267,6 +269,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventEmitter.AdminServices\EventEmitter.AdminServices.csproj">
+      <Project>{3e50abea-e545-4e1b-8424-c8531e0d4352}</Project>
+      <Name>EventEmitter.AdminServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEmitter.UserServices\EventEmitter.UserServices.csproj">
       <Project>{04b68258-a846-43aa-99ef-088135b592f8}</Project>
       <Name>EventEmitter.UserServices</Name>

@@ -6,7 +6,7 @@ import LoginRoute from './Login'
 import NewEvent from './NewEvent'
 import Event from './Event'
 import Eventline from './Eventline'
-
+import AdministrateUsers from './AdministrateUsers'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -20,7 +20,8 @@ export const createRoutes = (store, qwer) => ({
     LoginRoute(store),
     NewEvent(store),
     Event(store),
-    Eventline(store)
+    Eventline(store),
+    AdministrateUsers(store)
   ]
 })
 

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using EventEmitter.Api.Authentification;
-using EventEmitter.UserServices.Infrastructure;
 
 namespace EventEmitter.Api.Infrastructure
 {
@@ -14,8 +13,10 @@ namespace EventEmitter.Api.Infrastructure
         public EventEmitterDependencyResolver(IKernel kernelParam)
         {
             _kernel = kernelParam;
-            var ninjectService = new NinjectServiceDependencyResolver();
-            ninjectService.AddBindings(kernelParam);
+            var ninjectUserService = new UserServices.Infrastructure.NinjectServiceDependencyResolver();
+            ninjectUserService.AddBindings(kernelParam);
+            var ninjectAdminService = new AdminServices.Infrastructure.NinjectServiceDependencyResolver();
+            ninjectAdminService.AddBindings(kernelParam);
             AddBindings();
         }
         public object GetService(Type serviceType)

@@ -15,6 +15,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using User = EventEmitter.UserServices.Models.User;
 
 namespace EventEmitter.Api.Controllers
 {
