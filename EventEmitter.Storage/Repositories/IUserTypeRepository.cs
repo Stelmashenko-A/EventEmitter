@@ -6,5 +6,6 @@ namespace EventEmitter.Storage.Repositories
     public interface IUserTypeRepository : IRepository<UserType>
     {
         IEnumerable<UserType> GetAll();
+        IEnumerable<Models.UserType> GetAllModels();
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventEmitter.Storage.POCO;
+using LinqToDB.Common;
 using Claim = EventEmitter.Storage.POCO.Enums.Claim;
 
 namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
@@ -18,6 +19,12 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
                             select item;
                 return query.FirstOrDefault();
             }
+        }
+
+        public UserTypeClaim Get(Guid userTypeId, Guid claimId)
+        {
+            var claim = ConvertTo<Claim>.From(claimId);
+            return Get(userTypeId, claim);
         }
 
         public Dictionary<Guid, List<Claim>> GetAll()

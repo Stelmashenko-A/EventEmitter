@@ -29,6 +29,10 @@ namespace EventEmitter.Api.Infrastructure
 
             cfg.CreateMap<AdminServices.Models.UserType, Models.UserType.UserType>();
             cfg.CreateMap<Models.UserType.UserType, AdminServices.Models.UserType>();
+
+            cfg.CreateMap<AdminServices.Models.Claim, Models.UserType.Claim>();
+            cfg.CreateMap<Models.UserType.Claim, AdminServices.Models.Claim>();
+
         }
     }
 }

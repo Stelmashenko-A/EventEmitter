@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserType.cs" />
     <Compile Include="POCO\Category.cs" />
     <Compile Include="POCO\Enums\Claim.cs" />
     <Compile Include="POCO\Enums\RegistrationType.cs" />
