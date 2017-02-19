@@ -1,7 +1,7 @@
 import { fetchEvents, initEvents } from '../store/eventList'
 import { initState } from '../store/location'
 import { startLoadEvent, startLoadMessages } from './Event/modules/event'
-import { fetchUsers } from './AdministrateUsers/modules/AdministrateUsers'
+import { fetchUsers, fetchUserTypes } from './AdministrateUsers/modules/AdministrateUsers'
 
 function _loadEvents (store, nextState) {
   var state = store.getState()
@@ -28,6 +28,7 @@ export const loadEvent = (store) => (nextState, replace) => {
 export const adminUsersOnEnter = (store) => (nextState, replace) => {
   var state = store.getState()
   store.dispatch(fetchUsers(state.user, 1))
+  store.dispatch(fetchUserTypes(state.user))
 }
 export const InitState = (store) => (nextState, replace) => {
   console.log(nextState)

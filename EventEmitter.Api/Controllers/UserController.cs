@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Results;
 using EventEmitter.AdminServices;
+using EventEmitter.Api.Models.User;
 
 namespace EventEmitter.Api.Controllers
 {
@@ -14,39 +16,17 @@ namespace EventEmitter.Api.Controllers
             UserAdmin = userAdmin;
         }
 
-        // GET: api/User
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/User/5
-        /*public string Get(int id)
-        {
-            return "value";
-        }*/
-
-        // GET: api/User/5
-
-        public IEnumerable<Models.User> Get(int page)
+        public IEnumerable<User> Get(int page)
         {
             var result = UserAdmin.GetPage(page);
-            return result.Select(x => Mapper.Map<Models.User>(x));
+            return result.Select(x => Mapper.Map<User>(x));
         }
 
-        // POST: api/User
-        public void Post([FromBody]string value)
+        public IHttpActionResult ChangeUserType([FromBody]ChangeUserTypeRequest request)
         {
+            UserAdmin.UpdateUserType(request.UserId,request.UserTypeId);
+            return Ok();
         }
-
-        // PUT: api/User/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/User/5
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

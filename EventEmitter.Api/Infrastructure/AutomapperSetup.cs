@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration;
 using EventEmitter.UserServices.Models;
+using User = EventEmitter.Api.Models.User.User;
 
 namespace EventEmitter.Api.Infrastructure
 {
@@ -23,8 +24,8 @@ namespace EventEmitter.Api.Infrastructure
             cfg.CreateMap<Models.Category.CategoryModel, Category>();
             cfg.CreateMap<Category, Models.Category.CategoryModel>();
 
-            cfg.CreateMap<AdminServices.Models.User, Models.User>();
-            cfg.CreateMap<Models.User, AdminServices.Models.User>();
+            cfg.CreateMap<AdminServices.Models.User, User>();
+            cfg.CreateMap<User, AdminServices.Models.User>();
 
             cfg.CreateMap<AdminServices.Models.UserType, Models.UserType.UserType>();
             cfg.CreateMap<Models.UserType.UserType, AdminServices.Models.UserType>();

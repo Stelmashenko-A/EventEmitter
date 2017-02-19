@@ -238,7 +238,8 @@
     <Compile Include="Infrastructure\EventEmitterDependencyResolver.cs" />
     <Compile Include="Models\Account\ExternalLoginViewModel.cs" />
     <Compile Include="Models\ManageInfoViewModel.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\User\ChangeUserTypeRequest.cs" />
+    <Compile Include="Models\User\User.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserLoginInfoViewModel.cs" />
     <Compile Include="Models\UserType\UserType.cs" />

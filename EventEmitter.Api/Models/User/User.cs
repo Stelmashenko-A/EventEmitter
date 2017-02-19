@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventEmitter.Api.Models
+namespace EventEmitter.Api.Models.User
 {
     public class User
     {
