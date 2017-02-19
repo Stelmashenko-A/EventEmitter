@@ -3,7 +3,7 @@ using LinqToDB.Mapping;
 
 namespace EventEmitter.Storage.POCO
 {
-    [Table(Name = "UserType")]
+    [Table(Name = "UserTypes")]
     public class UserType : IPoco
     {
         [PrimaryKey, Identity, Column(Name = "UserTypeId")]

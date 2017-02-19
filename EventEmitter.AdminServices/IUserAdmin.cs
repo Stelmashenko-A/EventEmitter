@@ -15,7 +15,7 @@ namespace EventEmitter.AdminServices
 
     class UserAdmin : IUserAdmin
     {
-        
+
         protected readonly IUserAccountRepository UserAccountRepository;
         protected readonly IMapper Mapper;
 
@@ -37,6 +37,29 @@ namespace EventEmitter.AdminServices
         {
             var result = UserAccountRepository.Get(page, 20);
             return result.Select(x => Mapper.Map<Storage.Models.User, User>(x));
+        }
+    }
+
+    public interface IUserTypeAdmin
+    {
+        IEnumerable<UserType> GetAll();
+    }
+
+    public class UserTypeAdmin : IUserTypeAdmin
+    {
+        protected readonly IUserTypeRepository UserTypeRepository;
+        protected readonly IMapper Mapper;
+
+        public UserTypeAdmin(IUserTypeRepository userTypeRepository, IMapper mapper)
+        {
+            UserTypeRepository = userTypeRepository;
+            Mapper = mapper;
+        }
+
+        public IEnumerable<UserType> GetAll()
+        {
+            var storedTypes = UserTypeRepository.GetAll();
+            return storedTypes.Select(x => Mapper.Map<UserType>(x));
         }
     }
 }

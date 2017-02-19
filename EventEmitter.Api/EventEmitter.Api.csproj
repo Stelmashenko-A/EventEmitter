@@ -221,6 +221,7 @@
     <Compile Include="Authentification\IdentetyBuilder.cs" />
     <Compile Include="Authentification\PropertyBuilder.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserTypeController.cs" />
     <Compile Include="Models\Category\CategoryModel.cs" />
     <Compile Include="Models\Message\MessageModel.cs" />
     <Compile Include="Models\Event\EventModel.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserLoginInfoViewModel.cs" />
+    <Compile Include="Models\UserType\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

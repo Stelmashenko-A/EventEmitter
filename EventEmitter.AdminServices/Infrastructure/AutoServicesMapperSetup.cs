@@ -9,6 +9,9 @@ namespace EventEmitter.AdminServices.Infrastructure
         {
             cfg.CreateMap<User, Storage.Models.User>();
             cfg.CreateMap<Storage.Models.User, User>();
+
+            cfg.CreateMap<Storage.POCO.UserType, UserType>();
+            cfg.CreateMap<UserType, Storage.POCO.UserType>();
         }
     }
 }
