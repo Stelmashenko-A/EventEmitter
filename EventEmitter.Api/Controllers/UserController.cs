@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using System.Web.Http.Results;
 using EventEmitter.AdminServices;
+using EventEmitter.AdminServices.Interfaces;
 using EventEmitter.Api.Models.User;
 
 namespace EventEmitter.Api.Controllers

@@ -1,4 +1,6 @@
-﻿using EventEmitter.Storage.Repositories;
+﻿using EventEmitter.AdminServices.Implementation;
+using EventEmitter.AdminServices.Interfaces;
+using EventEmitter.Storage.Repositories;
 using EventEmitter.Storage.Repositories.Linq2DbRepositories;
 using Ninject;
 

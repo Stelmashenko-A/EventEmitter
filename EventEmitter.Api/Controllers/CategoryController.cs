@@ -16,7 +16,6 @@ namespace EventEmitter.Api.Controllers
             CategoryService = categoryService;
         }
 
-        // GET: api/Category
         [AllowAnonymous]
         public IEnumerable<CategoryModel> Get()
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
 using EventEmitter.UserServices;
@@ -25,8 +24,6 @@ namespace EventEmitter.Api.Controllers
         public EventModel Get(int page)
         {
             var events = EventLine.Get(Account, page);
-
-
             var responce = new EventModel { events = events };
             return responce;
         }
@@ -42,7 +39,6 @@ namespace EventEmitter.Api.Controllers
             return responce;
         }
         
-        // POST: api/Event
         [Authorize(Roles = "CreateEvent")]
         public void Post([FromBody]Event value)
         {
@@ -50,16 +46,6 @@ namespace EventEmitter.Api.Controllers
 
             EventManager.Create(@event,Account);
 
-        }
-
-        // PUT: api/Event/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Event/5
-        public void Delete(int id)
-        {
         }
 
         [AllowAnonymous]
