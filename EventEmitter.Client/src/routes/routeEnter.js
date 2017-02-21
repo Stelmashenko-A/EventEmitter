@@ -2,6 +2,7 @@ import { fetchEvents, initEvents } from '../store/eventList'
 import { initState } from '../store/location'
 import { startLoadEvent, startLoadMessages } from './Event/modules/event'
 import { fetchUsers, fetchUserTypes } from './AdministrateUsers/modules/AdministrateUsers'
+import { fetchUserTypesStat, fetchClaims } from './AdministrateRoles/modules/AdministrateRoles'
 
 function _loadEvents (store, nextState) {
   var state = store.getState()
@@ -29,6 +30,12 @@ export const adminUsersOnEnter = (store) => (nextState, replace) => {
   var state = store.getState()
   store.dispatch(fetchUsers(state.user, 1))
   store.dispatch(fetchUserTypes(state.user))
+}
+
+export const adminRolesOnEnter = (store) => (nextState, replace) => {
+  var state = store.getState()
+  store.dispatch(fetchUserTypesStat(state.user))
+  store.dispatch(fetchClaims(state.user))
 }
 export const InitState = (store) => (nextState, replace) => {
   console.log(nextState)

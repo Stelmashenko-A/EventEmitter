@@ -40,7 +40,7 @@ export const userTypeUpdated = (userTypeId, userId) => {
 }
 
 
-export function fetchUsers(user, page) {
+export function fetchUsers (user, page) {
   return function (dispatch) {
     var fetchInit = {
       method: 'GET',
@@ -59,7 +59,7 @@ export function fetchUsers(user, page) {
   }
 }
 
-export function fetchUserTypes(user) {
+export function fetchUserTypes (user) {
   return function (dispatch) {
     var fetchInit = {
       method: 'GET',
@@ -142,7 +142,7 @@ const initialState = {
   'userTypes': []
 }
 
-export default function administrateUsersReducer(state = initialState, action) {
+export default function administrateUsersReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

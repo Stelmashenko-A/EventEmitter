@@ -45,10 +45,9 @@ namespace EventEmitter.AdminServices.Implementation
             return storedClaims.Select(x => Mapper.Map<Claim>(x));
         }
 
-        public IEnumerable<Claim> Get(Guid userTypeId)
+        public IEnumerable<Guid> Get(Guid userTypeId)
         {
-            var storedClaims = ClaimRepository.GetForUserType(userTypeId);
-            return storedClaims.Select(x => Mapper.Map<Claim>(x));
+            return ClaimRepository.GetForUserType(userTypeId);
         }
 
         public void RemoveClaim(Guid userTypeId, Guid claimId)

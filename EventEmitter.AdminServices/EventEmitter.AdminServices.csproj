@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementation\ClaimAdmin.cs" />
+    <Compile Include="Interfaces\IClaimAdmin.cs" />
     <Compile Include="Interfaces\IUserAdmin.cs" />
     <Compile Include="Infrastructure\AutoServicesMapperSetup.cs" />
     <Compile Include="Infrastructure\NinjectSetup.cs" />

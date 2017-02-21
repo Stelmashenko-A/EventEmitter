@@ -8,7 +8,7 @@ namespace EventEmitter.Storage.Repositories
     {
         IEnumerable<Claim> GetAll();
 
-        IEnumerable<Claim> GetForUserType(Guid userTypeId);
+        IEnumerable<Guid> GetForUserType(Guid userTypeId);
 
         POCO.Enums.Claim GetMapped(Guid claimId);
     }

@@ -7,6 +7,7 @@ import NewEvent from './NewEvent'
 import Event from './Event'
 import Eventline from './Eventline'
 import AdministrateUsers from './AdministrateUsers'
+import AdministrateRoles from './AdministrateRoles'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -21,7 +22,8 @@ export const createRoutes = (store, qwer) => ({
     NewEvent(store),
     Event(store),
     Eventline(store),
-    AdministrateUsers(store)
+    AdministrateUsers(store),
+    AdministrateRoles(store)
   ]
 })
 

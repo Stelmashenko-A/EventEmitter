@@ -9,7 +9,7 @@ namespace EventEmitter.AdminServices.Interfaces
         IEnumerable<UserType> GetAll();
         IEnumerable<UserType> GetAllWithStat();
         IEnumerable<Claim> Get();
-        IEnumerable<Claim> Get(Guid userTypeId);
+        IEnumerable<Guid> Get(Guid userTypeId);
         void RemoveClaim(Guid userTypeId, Guid claimId);
         void AddClaim(Guid userTypeId, Guid claimId);
     }

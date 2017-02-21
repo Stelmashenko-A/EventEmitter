@@ -16,16 +16,15 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
             }
         }
 
-        public IEnumerable<Claim> GetForUserType(Guid userTypeId)
+        public IEnumerable<Guid> GetForUserType(Guid userTypeId)
         {
             using (var db = new EventEmitterDatabase())
             {
-                var query = from claim in db.Claims
-                    join userTypeClaim in db.UserTypeClaims on claim.Id equals userTypeClaim.UserTypeId
-                    where userTypeClaim.UserTypeId == userTypeId
-                    select claim;
+                var query = from typeClaim in db.UserTypeClaims
+                    where typeClaim.UserTypeId == userTypeId
+                    select typeClaim.Claim;
 
-                return query.ToList();
+                return query.ToList().Select(x => new Guid(ConvertTo<string>.From(x))).ToList();
             }
         }
 

@@ -17,7 +17,7 @@ namespace EventEmitter.AdminServices.Infrastructure
             kernel.Bind<IUserTypeRepository>().To<UserTypeRepository>();
             kernel.Bind<IUserTypeAdmin>().To<UserTypeAdmin>();
             kernel.Bind<IClaimRepository>().To<ClaimRepository>();
-
+            kernel.Bind<IClaimAdmin>().To<ClaimAdmin>();
             /* AutoMapperSetup autoMapperSetup = new AutoMapperSetup();
              var config = autoMapperSetup.Setup();
              var mapper = config.CreateMapper();
