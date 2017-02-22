@@ -23,7 +23,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
 
         public UserTypeClaim Get(Guid userTypeId, Guid claimId)
         {
-            var claim = ConvertTo<Claim>.From(claimId);
+            var claim = ConvertTo<Claim>.From(claimId.ToString());
             return Get(userTypeId, claim);
         }
 

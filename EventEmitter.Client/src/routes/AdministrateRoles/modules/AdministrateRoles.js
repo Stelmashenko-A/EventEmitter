@@ -5,6 +5,8 @@ export const SET_USER_TYPES = 'SET_USER_TYPES'
 export const SET_CLAIMS = 'SET_CLAIMS'
 export const SET_GRANTED_CLAIMS = 'SET_GRANTED_CLAIMS'
 export const SELECTED_CHANGED = 'SELECTED_CHANGED'
+export const CLAIM_ADDED = 'CLAIM_ADDED'
+export const CLAIM_REMOVED = 'CLAIM_REMOVED'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -36,6 +38,20 @@ export const selectedChanged = (id) => {
     payload: id
   }
 }
+export const claimAdded = (id) => {
+  return {
+    type: CLAIM_ADDED,
+    payload: id
+  }
+}
+
+export const claimRemoved = (id) => {
+  return {
+    type: CLAIM_REMOVED,
+    payload: id
+  }
+}
+
 
 export function fetchUserTypesStat (user) {
   return function (dispatch) {
@@ -74,7 +90,7 @@ export function fetchClaims (user) {
 }
 
 export function fetchGrantedClaims (id) {
-  return function (dispatch, getstate) {
+  return function (dispatch, getstate, qwe) {
     var fetchInit = {
       method: 'GET',
       cache: 'default',
@@ -91,6 +107,37 @@ export function fetchGrantedClaims (id) {
   }
 }
 
+export function changeGrantedClaims (id) {
+  return function (dispatch, getstate) {
+    var state = getstate().administrateRoles
+    var selectedId = state.selectedId
+    console.log(state.grantedClaims)
+    console.log(id)
+    var added = state.grantedClaims.indexOf(id) === -1
+
+    var fetchInit = {
+      method: 'DELETE',
+      cache: 'default',
+      headers: {
+        'Authorization': 'Bearer ' + getstate().user.access_token
+      }
+    }
+    if (added) {
+      fetchInit.method = 'PUT'
+    }
+    var url = `http://localhost:3001/api/UserType/Claim?type=` + selectedId + '&claim=' + id
+    return fetch(url, fetchInit)
+      .then(response => {
+        if (response.status !== 200) return
+        if (added) {
+          dispatch(claimAdded(id))
+          return
+        }
+        dispatch(claimRemoved(id))
+      })
+  }
+}
+
 export const actions = {
   setUserTypes,
   setClaims,
@@ -98,7 +145,8 @@ export const actions = {
   fetchClaims,
   selectedChanged,
   setGrantedClaims,
-  fetchGrantedClaims
+  fetchGrantedClaims,
+  changeGrantedClaims
 }
 
 // ------------------------------------
@@ -121,6 +169,21 @@ const ACTION_HANDLERS = {
       fetchGrantedClaims(action.payload)
     }
     return Object.assign({}, state, { 'selectedId': action.payload === state.selectedId ? '' : action.payload })
+  },
+
+  [CLAIM_ADDED]: (state, action) => {
+    var claims = state.grantedClaims.slice()
+    claims.push(action.payload)
+    return Object.assign({}, state, { 'grantedClaims': claims })
+  },
+
+  [CLAIM_REMOVED]: (state, action) => {
+    var claims = state.grantedClaims.slice()
+    var index = claims.indexOf(action.payload)
+    if (index > -1) {
+      claims.splice(index, 1)
+    }
+    return Object.assign({}, state, { 'grantedClaims': claims })
   }
 }
 

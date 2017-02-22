@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Results;
 using EventEmitter.AdminServices.Interfaces;
 using EventEmitter.Api.Models.UserType;
 
@@ -52,6 +53,24 @@ namespace EventEmitter.Api.Controllers
         public IEnumerable<Guid> GrantedClaims(Guid id)
         {
             return UserTypeAdmin.Get(id);
+        }
+
+        [AllowAnonymous]
+        [HttpPut]
+        [Route("Claim")]
+        public OkResult ClaimAdd(Guid type, Guid claim)
+        {
+            UserTypeAdmin.AddClaim(type,claim);
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpDelete]
+        [Route("Claim")]
+        public OkResult ClaimRemove(Guid type, Guid claim)
+        {
+            UserTypeAdmin.RemoveClaim(type,claim);
+            return Ok();
         }
     }
 }

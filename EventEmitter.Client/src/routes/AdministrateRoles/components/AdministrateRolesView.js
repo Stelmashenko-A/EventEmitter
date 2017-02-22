@@ -25,12 +25,11 @@ function buildRows (userTypes, activeRole, selectedChanged, fetchGrantedClaims, 
   return rows
 }
 
-function renderEditTable (activeRole, claims, selectedClaims, dispatch) {
+function renderEditTable (activeRole, claims, selectedClaims, selectedChanged, dispatch) {
   if (activeRole === '') return
-
-  var callback = function () {
+  var callback = function (id) {
+    dispatch(selectedChanged(id))
   }
-
   return <EditClaims Claims={claims} SelectedClaims={selectedClaims} claimChanged={callback} />
 }
 
@@ -44,7 +43,7 @@ export const AdministrateRolesView = (props) => (
       <TableHeader numeric name="ClaimsNumber" tooltip="Number of materials">Claims number</TableHeader>
       <TableHeader name="Edit" tooltip="Number of materials">Edit</TableHeader>
     </DataTable>
-    {renderEditTable(props.ActiveRole, props.Claims, props.SelectedClaims, props.dispatch)}
+    {renderEditTable(props.ActiveRole, props.Claims, props.SelectedClaims, props.claimChanged, props.dispatch)}
   </div>
 )
 AdministrateRolesView.propTypes = {

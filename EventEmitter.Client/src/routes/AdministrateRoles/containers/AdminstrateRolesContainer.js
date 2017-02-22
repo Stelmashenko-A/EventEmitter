@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import AdministrateRolesView from '../components/AdministrateRolesView'
-import { selectedChanged, fetchGrantedClaims } from '../modules/AdministrateRoles'
+import { selectedChanged, fetchGrantedClaims, changeGrantedClaims } from '../modules/AdministrateRoles'
 const mapDispatchToProps = (dispatch) => ({
   selectedChanged : selectedChanged,
   fetchGrantedClaims: fetchGrantedClaims,
+  claimChanged: changeGrantedClaims,
   dispatch
 })
 

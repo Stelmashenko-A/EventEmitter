@@ -31,7 +31,7 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
         public POCO.Enums.Claim GetMapped(Guid claimId)
         {
             var storedClaim = Get(claimId);
-            return ConvertTo<POCO.Enums.Claim>.From(storedClaim);
+            return ConvertTo<POCO.Enums.Claim>.From(storedClaim.Id.ToString());
         }
     }
 }
