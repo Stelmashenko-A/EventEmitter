@@ -7,6 +7,8 @@ export const SET_GRANTED_CLAIMS = 'SET_GRANTED_CLAIMS'
 export const SELECTED_CHANGED = 'SELECTED_CHANGED'
 export const CLAIM_ADDED = 'CLAIM_ADDED'
 export const CLAIM_REMOVED = 'CLAIM_REMOVED'
+export const START_ADDING_USERTYPE = 'START_ADDING_USERTYPE'
+export const END_ADDING_USERTYPE = 'END_ADDING_USERTYPE'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -52,6 +54,18 @@ export const claimRemoved = (id) => {
   }
 }
 
+export const endAddingUserType = () => {
+  return {
+    type: END_ADDING_USERTYPE
+  }
+}
+
+export const startAddingUserType = (id) => {
+  return {
+    type: START_ADDING_USERTYPE,
+    payload: id
+  }
+}
 
 export function fetchUserTypesStat (user) {
   return function (dispatch) {
@@ -102,6 +116,7 @@ export function fetchGrantedClaims (id) {
     return fetch(url, fetchInit)
       .then(response => response.json())
       .then(json => {
+        console.log(json)
         dispatch(setGrantedClaims(json))
       })
   }
@@ -146,7 +161,9 @@ export const actions = {
   selectedChanged,
   setGrantedClaims,
   fetchGrantedClaims,
-  changeGrantedClaims
+  changeGrantedClaims,
+  endAddingUserType,
+  startAddingUserType
 }
 
 // ------------------------------------
@@ -184,7 +201,13 @@ const ACTION_HANDLERS = {
       claims.splice(index, 1)
     }
     return Object.assign({}, state, { 'grantedClaims': claims })
-  }
+  },
+
+  [START_ADDING_USERTYPE]: (state, action) =>
+    Object.assign({}, state, { 'addInProgress': true }),
+
+  [END_ADDING_USERTYPE]: (state, action) =>
+    Object.assign({}, state, { 'addInProgress': false })
 }
 
 // ------------------------------------
@@ -194,7 +217,8 @@ const initialState = {
   userTypes: [],
   selectedId: '',
   claims:[],
-  grantedClaims:[]
+  grantedClaims:[],
+  addInProgress: false
 }
 
 export default function administrateRolesReducer (state = initialState, action) {

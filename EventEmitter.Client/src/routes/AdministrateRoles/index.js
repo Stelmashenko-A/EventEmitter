@@ -10,14 +10,14 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const AdminstrateUsers = require('./containers/AdminstrateRolesContainer').default
+      const AdminstrateRoles = require('./containers/AdminstrateRolesContainer').default
       const reducer = require('./modules/AdministrateRoles').default
 
       /*  Add the reducer to the store on key 'counter'  */
       injectReducer(store, { key: 'administrateRoles', reducer })
 
       /*  Return getComponent   */
-      cb(null, AdminstrateUsers)
+      cb(null, AdminstrateRoles)
 
       /* Webpack named bundle   */
     }, 'administrateRoles')
