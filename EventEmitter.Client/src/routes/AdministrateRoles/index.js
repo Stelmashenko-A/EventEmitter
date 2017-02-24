@@ -12,10 +12,8 @@ export default (store) => ({
           dependencies for bundling   */
       const AdminstrateRoles = require('./containers/AdminstrateRolesContainer').default
       const reducer = require('./modules/AdministrateRoles').default
-
       /*  Add the reducer to the store on key 'counter'  */
       injectReducer(store, { key: 'administrateRoles', reducer })
-
       /*  Return getComponent   */
       cb(null, AdminstrateRoles)
 

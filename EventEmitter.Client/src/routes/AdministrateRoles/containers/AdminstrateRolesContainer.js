@@ -1,12 +1,19 @@
 import { connect } from 'react-redux'
 import AdministrateRolesView from '../components/AdministrateRolesView'
-import { selectedChanged, fetchGrantedClaims, changeGrantedClaims, endAddingUserType, startAddingUserType } from '../modules/AdministrateRoles'
+import { selectedChanged,
+  fetchGrantedClaims,
+  changeGrantedClaims,
+  endAddingUserType,
+  startAddingUserType,
+  userTypeNameChanged
+} from '../modules/AdministrateRoles'
 const mapDispatchToProps = {
   selectedChanged : selectedChanged,
   fetchGrantedClaims: fetchGrantedClaims,
   claimChanged: changeGrantedClaims,
   endAddingUserType,
-  startAddingUserType
+  startAddingUserType,
+  userTypeNameChanged
 }
 
 const mapStateToProps = (state) => ({
@@ -14,7 +21,8 @@ const mapStateToProps = (state) => ({
   ActiveRole: state.administrateRoles.selectedId,
   Claims: state.administrateRoles.claims,
   SelectedClaims: state.administrateRoles.grantedClaims,
-  AddInProgress:state.administrateRoles.addInProgress
+  AddInProgress: state.administrateRoles.addInProgress,
+  UserTypeName: state.administrateRoles.newUserType
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdministrateRolesView)

@@ -9,6 +9,7 @@ export const CLAIM_ADDED = 'CLAIM_ADDED'
 export const CLAIM_REMOVED = 'CLAIM_REMOVED'
 export const START_ADDING_USERTYPE = 'START_ADDING_USERTYPE'
 export const END_ADDING_USERTYPE = 'END_ADDING_USERTYPE'
+export const NAME_CHANGED = 'NAME_CHANGED'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -66,6 +67,14 @@ export const startAddingUserType = (id) => {
     payload: id
   }
 }
+
+export const userTypeNameChanged = (e) => {
+  return {
+    type: NAME_CHANGED,
+    payload: e.target.value
+  }
+}
+
 
 export function fetchUserTypesStat (user) {
   return function (dispatch) {
@@ -163,7 +172,8 @@ export const actions = {
   fetchGrantedClaims,
   changeGrantedClaims,
   endAddingUserType,
-  startAddingUserType
+  startAddingUserType,
+  userTypeNameChanged
 }
 
 // ------------------------------------
@@ -207,7 +217,11 @@ const ACTION_HANDLERS = {
     Object.assign({}, state, { 'addInProgress': true }),
 
   [END_ADDING_USERTYPE]: (state, action) =>
-    Object.assign({}, state, { 'addInProgress': false })
+    Object.assign({}, state, { 'addInProgress': false }),
+
+  [NAME_CHANGED]: (state, action) =>
+    Object.assign({}, state, { 'newUserType': action.payload })
+
 }
 
 // ------------------------------------
@@ -218,7 +232,8 @@ const initialState = {
   selectedId: '',
   claims:[],
   grantedClaims:[],
-  addInProgress: false
+  addInProgress: false,
+  newUserType:''
 }
 
 export default function administrateRolesReducer (state = initialState, action) {

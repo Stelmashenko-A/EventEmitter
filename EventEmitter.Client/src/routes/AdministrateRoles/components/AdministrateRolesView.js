@@ -1,6 +1,8 @@
 import React from 'react'
-import { DataTable, TableHeader, Button } from 'react-mdl'
-import EditClaims from '../containers/EditClaimsContainer'
+import { DataTable, TableHeader, Button, CardTitle, Textfield } from 'react-mdl'
+import { EditClaims } from './EditClaims'
+import { NewUserType, } from './NewUserType'
+
 import './AdministrateRolesView.scss'
 
 function button (callback, actived) {
@@ -33,12 +35,24 @@ function renderEditTable (activeRole, claims, selectedClaims, selectedChanged, d
   return <EditClaims Claims={claims} SelectedClaims={selectedClaims} claimChanged={selectedChanged} />
 }
 
-function renderAddEventButton (addInProgress, startAddingUserType) {
-  console.log(startAddingUserType)
+function renderAddUserTypeButton (addInProgress, startAddingUserType) {
   if (addInProgress) return
   return <Button onClick={startAddingUserType} >Submit </Button>
 }
-
+function renderNewUserTypeSection (addInProgress, userTypeName, userTypeNameChanged) {
+  console.log(NewUserType)
+  if (addInProgress) {
+    return <div>
+      <CardTitle> weff</CardTitle>
+      <Textfield
+        onChange={userTypeNameChanged}
+        value={userTypeName}
+        label="Text..."
+        floatingLabel
+    />
+    </div>
+  }
+}
 export const AdministrateRolesView = (props) => (
   <div className='admin-user'>
     <DataTable
@@ -49,7 +63,8 @@ export const AdministrateRolesView = (props) => (
       <TableHeader numeric name="ClaimsNumber" tooltip="Number of materials">Claims number</TableHeader>
       <TableHeader name="Edit" tooltip="Number of materials">Edit</TableHeader>
     </DataTable>
-    {renderAddEventButton(props.AddInProgress, props.startAddingUserType)}
+    {renderAddUserTypeButton(props.AddInProgress, props.startAddingUserType)}
+    {renderNewUserTypeSection(props.AddInProgress, props.UserTypeName, props.userTypeNameChanged)}
     {renderEditTable(props.ActiveRole, props.Claims, props.SelectedClaims, props.claimChanged)}
   </div>
 )
@@ -63,6 +78,8 @@ AdministrateRolesView.propTypes = {
   fetchGrantedClaims: React.PropTypes.func,
   endAddingUserType: React.PropTypes.func,
   startAddingUserType: React.PropTypes.func,
-  AddInProgress:React.PropTypes.bool
+  AddInProgress:React.PropTypes.bool,
+  userTypeNameChanged:React.PropTypes.func,
+  UserTypeName:React.PropTypes.string
 }
 export default AdministrateRolesView
