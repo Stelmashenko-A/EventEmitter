@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataMiner.App", "DataMiner.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.AdminServices", "EventEmitter.AdminServices\EventEmitter.AdminServices.csproj", "{3E50ABEA-E545-4E1B-8424-C8531E0D4352}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Jobs", "EventEmitter.Jobs\EventEmitter.Jobs.csproj", "{9280F62B-39F9-42D7-AA09-72DA5A203CEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{3E50ABEA-E545-4E1B-8424-C8531E0D4352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E50ABEA-E545-4E1B-8424-C8531E0D4352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E50ABEA-E545-4E1B-8424-C8531E0D4352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9280F62B-39F9-42D7-AA09-72DA5A203CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9280F62B-39F9-42D7-AA09-72DA5A203CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9280F62B-39F9-42D7-AA09-72DA5A203CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9280F62B-39F9-42D7-AA09-72DA5A203CEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
