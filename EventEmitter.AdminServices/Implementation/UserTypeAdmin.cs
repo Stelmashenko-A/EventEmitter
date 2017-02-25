@@ -39,6 +39,16 @@ namespace EventEmitter.AdminServices.Implementation
             return storedTypes.Select(x => Mapper.Map<UserType>(x));
         }
 
+        public UserType AddUserType(string name)
+        {
+            if(UserTypeRepository.Contains(x => x.Name==name)) throw new ArgumentException("Name exist");
+
+            var newUserType = new Storage.POCO.UserType {Name = name, Id = Guid.NewGuid()};
+            UserTypeRepository.Insert(newUserType);
+
+            return Mapper.Map<UserType>(newUserType);
+        }
+
         public IEnumerable<Claim> Get()
         {
             var storedClaims = ClaimRepository.GetAll();

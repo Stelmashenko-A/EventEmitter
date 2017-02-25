@@ -10,6 +10,7 @@ export const CLAIM_REMOVED = 'CLAIM_REMOVED'
 export const START_ADDING_USERTYPE = 'START_ADDING_USERTYPE'
 export const END_ADDING_USERTYPE = 'END_ADDING_USERTYPE'
 export const NAME_CHANGED = 'NAME_CHANGED'
+export const ADD_USER_TYPE = 'ADD_USER_TYPE'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -74,7 +75,12 @@ export const userTypeNameChanged = (e) => {
     payload: e.target.value
   }
 }
-
+export const addUserType = (userType) => {
+  return {
+    type: ADD_USER_TYPE,
+    payload: userType
+  }
+}
 
 export function fetchUserTypesStat (user) {
   return function (dispatch) {
@@ -162,6 +168,27 @@ export function changeGrantedClaims (id) {
   }
 }
 
+export function saveNewUserType () {
+  return function (dispatch, getstate) {
+    var fetchInit = {
+      method: 'PUT',
+      cache: 'default',
+      headers: {
+        'Authorization': 'Bearer ' + getstate().user.access_token
+      }
+    }
+    var url = `http://localhost:3001/api/UserType?name=` + getstate().administrateRoles.newUserType
+    return fetch(url, fetchInit)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json)
+        dispatch(addUserType(json))
+      })
+  }
+}
+
+
+
 export const actions = {
   setUserTypes,
   setClaims,
@@ -173,7 +200,8 @@ export const actions = {
   changeGrantedClaims,
   endAddingUserType,
   startAddingUserType,
-  userTypeNameChanged
+  userTypeNameChanged,
+  saveNewUserType
 }
 
 // ------------------------------------
@@ -220,7 +248,14 @@ const ACTION_HANDLERS = {
     Object.assign({}, state, { 'addInProgress': false }),
 
   [NAME_CHANGED]: (state, action) =>
-    Object.assign({}, state, { 'newUserType': action.payload })
+    Object.assign({}, state, { 'newUserType': action.payload }),
+
+  [ADD_USER_TYPE]: (state, action) => {
+    if (action.payload.Id === undefined) return state
+    var userTypes = state.userTypes.slice()
+    userTypes.push(action.payload)
+    return Object.assign({}, state, { 'userTypes' : userTypes, 'newUserType' : '', 'addInProgress' : false })
+  }
 
 }
 

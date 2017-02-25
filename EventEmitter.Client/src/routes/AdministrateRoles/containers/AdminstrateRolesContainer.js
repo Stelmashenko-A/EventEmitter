@@ -5,7 +5,8 @@ import { selectedChanged,
   changeGrantedClaims,
   endAddingUserType,
   startAddingUserType,
-  userTypeNameChanged
+  userTypeNameChanged,
+  saveNewUserType
 } from '../modules/AdministrateRoles'
 const mapDispatchToProps = {
   selectedChanged : selectedChanged,
@@ -13,7 +14,8 @@ const mapDispatchToProps = {
   claimChanged: changeGrantedClaims,
   endAddingUserType,
   startAddingUserType,
-  userTypeNameChanged
+  userTypeNameChanged,
+  saveNewUserType
 }
 
 const mapStateToProps = (state) => ({

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using LinqToDB;
 
 namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
@@ -52,6 +53,14 @@ namespace EventEmitter.Storage.Repositories.Linq2DbRepositories
             using (var db = new EventEmitterDatabase())
             {
                 return strategy.Execute(db.GetTable<T>().AsQueryable());
+            }
+        }
+
+        public bool Contains(Expression<Func<T,bool>> predicate)
+        {
+            using (var db = new EventEmitterDatabase())
+            {
+                return db.GetTable<T>().Any(predicate);
             }
         }
     }

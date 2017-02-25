@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataTable, TableHeader, Button, CardTitle, Textfield } from 'react-mdl'
+import { DataTable, TableHeader, Button, CardTitle, Card, Textfield } from 'react-mdl'
 import { EditClaims } from './EditClaims'
 import { NewUserType, } from './NewUserType'
 
@@ -35,22 +35,21 @@ function renderEditTable (activeRole, claims, selectedClaims, selectedChanged, d
   return <EditClaims Claims={claims} SelectedClaims={selectedClaims} claimChanged={selectedChanged} />
 }
 
-function renderAddUserTypeButton (addInProgress, startAddingUserType) {
-  if (addInProgress) return
-  return <Button onClick={startAddingUserType} >Submit </Button>
+function renderAddUserTypeButton (addInProgress, startAddingUserType, saveNewUserType) {
+  if (addInProgress) return <Button onClick={saveNewUserType} accent raised >Save New User Type</Button>
+  return <Button onClick={startAddingUserType} colored raised>Add New User Type</Button>
 }
 function renderNewUserTypeSection (addInProgress, userTypeName, userTypeNameChanged) {
-  console.log(NewUserType)
   if (addInProgress) {
-    return <div>
-      <CardTitle> weff</CardTitle>
+    return <Card>
+      <CardTitle>Enter new user type name</CardTitle>
       <Textfield
         onChange={userTypeNameChanged}
         value={userTypeName}
-        label="Text..."
         floatingLabel
-    />
-    </div>
+        label='Name'
+            />
+    </Card>
   }
 }
 export const AdministrateRolesView = (props) => (
@@ -63,7 +62,7 @@ export const AdministrateRolesView = (props) => (
       <TableHeader numeric name="ClaimsNumber" tooltip="Number of materials">Claims number</TableHeader>
       <TableHeader name="Edit" tooltip="Number of materials">Edit</TableHeader>
     </DataTable>
-    {renderAddUserTypeButton(props.AddInProgress, props.startAddingUserType)}
+    {renderAddUserTypeButton(props.AddInProgress, props.startAddingUserType, props.saveNewUserType)}
     {renderNewUserTypeSection(props.AddInProgress, props.UserTypeName, props.userTypeNameChanged)}
     {renderEditTable(props.ActiveRole, props.Claims, props.SelectedClaims, props.claimChanged)}
   </div>
@@ -80,6 +79,7 @@ AdministrateRolesView.propTypes = {
   startAddingUserType: React.PropTypes.func,
   AddInProgress:React.PropTypes.bool,
   userTypeNameChanged:React.PropTypes.func,
-  UserTypeName:React.PropTypes.string
+  UserTypeName:React.PropTypes.string,
+  saveNewUserType: React.PropTypes.func
 }
 export default AdministrateRolesView

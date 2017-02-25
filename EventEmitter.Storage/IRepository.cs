@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace EventEmitter.Storage
 {
@@ -11,5 +12,6 @@ namespace EventEmitter.Storage
         T Get(Guid id);
         IQueryable<T> Get(IStrategy<T> strategy);
         TOut Get<TOut>(IStrategy<T, TOut> strategy);
+        bool Contains(Expression<Func<T, bool>> predicate);
     }
 }

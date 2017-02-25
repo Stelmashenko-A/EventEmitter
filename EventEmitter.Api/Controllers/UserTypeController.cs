@@ -27,7 +27,13 @@ namespace EventEmitter.Api.Controllers
         }
 
         [AllowAnonymous]
-        [AcceptVerbs("GET", "POST")]
+        [HttpPut]
+        public UserType Put(string name)
+        {
+            return Mapper.Map<UserType>(UserTypeAdmin.AddUserType(name));
+        }
+
+        [AllowAnonymous]
         [HttpGet]
         [Route("Stat")]
         public IEnumerable<UserType> Stat()
@@ -37,7 +43,6 @@ namespace EventEmitter.Api.Controllers
         }
 
         [AllowAnonymous]
-        [AcceptVerbs("GET", "POST")]
         [HttpGet]
         [Route("Claims")]
         public IEnumerable<Claim> GetClaims()
@@ -47,7 +52,6 @@ namespace EventEmitter.Api.Controllers
         }
 
         [AllowAnonymous]
-        [AcceptVerbs("GET", "POST")]
         [HttpGet]
         [Route("GrantedClaims")]
         public IEnumerable<Guid> GrantedClaims(Guid id)
