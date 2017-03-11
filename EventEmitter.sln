@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.AdminServices"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Jobs", "EventEmitter.Jobs\EventEmitter.Jobs.csproj", "{9280F62B-39F9-42D7-AA09-72DA5A203CEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Core", "EventEmitter.Core\EventEmitter.Core.csproj", "{24936B63-9AF6-4DBF-9576-E88289B6FED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Queries", "EventEmitter.Queries\EventEmitter.Queries.csproj", "{6A315FEC-982A-4BAE-832C-31A6D6464883}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{9280F62B-39F9-42D7-AA09-72DA5A203CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9280F62B-39F9-42D7-AA09-72DA5A203CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9280F62B-39F9-42D7-AA09-72DA5A203CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24936B63-9AF6-4DBF-9576-E88289B6FED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24936B63-9AF6-4DBF-9576-E88289B6FED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24936B63-9AF6-4DBF-9576-E88289B6FED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24936B63-9AF6-4DBF-9576-E88289B6FED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A315FEC-982A-4BAE-832C-31A6D6464883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A315FEC-982A-4BAE-832C-31A6D6464883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A315FEC-982A-4BAE-832C-31A6D6464883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A315FEC-982A-4BAE-832C-31A6D6464883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

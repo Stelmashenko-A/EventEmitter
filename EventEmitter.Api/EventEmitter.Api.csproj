@@ -61,6 +61,10 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
@@ -277,6 +281,10 @@
       <Project>{3e50abea-e545-4e1b-8424-c8531e0d4352}</Project>
       <Name>EventEmitter.AdminServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EventEmitter.Core\EventEmitter.Core.csproj">
+      <Project>{24936b63-9af6-4dbf-9576-e88289b6fed3}</Project>
+      <Name>EventEmitter.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEmitter.UserServices\EventEmitter.UserServices.csproj">
       <Project>{04b68258-a846-43aa-99ef-088135b592f8}</Project>
       <Name>EventEmitter.UserServices</Name>
@@ -300,7 +308,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59033</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/EventEmitter.Api</IISUrl>
+          <IISUrl>http://localhost:3001</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
