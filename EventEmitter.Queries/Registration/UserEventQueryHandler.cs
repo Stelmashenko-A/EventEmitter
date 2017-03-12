@@ -1,18 +1,10 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventEmitter.Core.Query;
 using EventEmitter.Storage;
 
-namespace EventEmitter.Queries
+namespace EventEmitter.Queries.Registration
 {
-    public class UserEventQuery : IQuery
-    {
-        public Guid UserId { get; set; }
-        public int Page { get; set; }
-        public int PageSize { get; set; }
-    }
-
     public class UserEventQueryHandler : IQueryHandler<UserEventQuery,IEnumerable<Event>>
     {
         public IEnumerable<Event> Execute(UserEventQuery query)
@@ -37,15 +29,5 @@ namespace EventEmitter.Queries
                 return request;//.Skip(query.Page*query.PageSize).Take(query.Page);
             }
         }
-    }
-
-    public class Event
-    {
-        public string RegistrationType { get; set; }
-        public string Name { get; set; }
-        public DateTime Start { get; set; }
-        public int Price { get; set; }
-        public Guid RegistrationId { get; set; }
-        public Guid EventId { get; set; }
     }
 }

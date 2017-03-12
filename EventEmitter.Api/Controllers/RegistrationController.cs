@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using EventEmitter.Queries;
+using EventEmitter.Queries.Registration;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
+using Event = EventEmitter.Queries.Registration.Event;
 
 namespace EventEmitter.Api.Controllers
 {
@@ -48,10 +50,10 @@ namespace EventEmitter.Api.Controllers
             return BadRequest();
         }
         [AllowAnonymous]
-        public IEnumerable<Queries.Event> Get([FromUri] UserEventQuery query)
+        public IEnumerable<Event> Get([FromUri] UserEventQuery query)
         {
             query.UserId = Account.Id;
-            return QueryBus.Ask<UserEventQuery,IEnumerable<Queries.Event>>(query);
+            return QueryBus.Ask<UserEventQuery,IEnumerable<Event>>(query);
         }
     }
 }
