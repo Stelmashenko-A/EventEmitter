@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/core.scss'
 
 import EHeader from '../../components/Header'
 import EDrawer from '../../components/Drawer'

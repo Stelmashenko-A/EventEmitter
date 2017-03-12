@@ -285,6 +285,10 @@
       <Project>{24936b63-9af6-4dbf-9576-e88289b6fed3}</Project>
       <Name>EventEmitter.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EventEmitter.Queries\EventEmitter.Queries.csproj">
+      <Project>{6A315FEC-982A-4BAE-832C-31A6D6464883}</Project>
+      <Name>EventEmitter.Queries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEmitter.UserServices\EventEmitter.UserServices.csproj">
       <Project>{04b68258-a846-43aa-99ef-088135b592f8}</Project>
       <Name>EventEmitter.UserServices</Name>

@@ -19,6 +19,9 @@ html {
 *:before {
   box-sizing: inherit;
 }
+.center{
+  margin: 0 auto;
+}
 @media (max-width: 767px) {
   .hidden-mobile {
     display: none;

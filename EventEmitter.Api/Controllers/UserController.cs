@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using EventEmitter.AdminServices;
 using EventEmitter.AdminServices.Interfaces;
 using EventEmitter.Api.Models.User;
 

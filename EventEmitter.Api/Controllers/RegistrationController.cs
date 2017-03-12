@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
+using EventEmitter.Queries;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
 
@@ -44,6 +46,12 @@ namespace EventEmitter.Api.Controllers
                 return Ok();
             }
             return BadRequest();
+        }
+        [AllowAnonymous]
+        public IEnumerable<Queries.Event> Get([FromUri] UserEventQuery query)
+        {
+            query.UserId = Account.Id;
+            return QueryBus.Ask<UserEventQuery,IEnumerable<Queries.Event>>(query);
         }
     }
 }

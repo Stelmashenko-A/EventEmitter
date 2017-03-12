@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
 using EventEmitter.Core;
 using EventEmitter.Core.Command;
+using EventEmitter.Core.Query;
+using EventEmitter.Queries;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
 using Event = EventEmitter.Api.Models.Event.Event;
@@ -15,12 +18,11 @@ namespace EventEmitter.Api.Controllers
     {
         protected readonly IEventLine EventLine;
         protected readonly IEventManager EventManager;
-        protected readonly ICommandBus CommandBus;
-        public EventController(IEventLine eventLine, IEventManager eventManager, ICommandBus commandBus)
+
+        public EventController(IEventLine eventLine, IEventManager eventManager)
         {
             EventLine = eventLine;
             EventManager = eventManager;
-            CommandBus = commandBus;
         }
 
 
@@ -58,11 +60,11 @@ namespace EventEmitter.Api.Controllers
         }
         [AllowAnonymous]
         [Route("qwer")]
-        public NamedEvent Get()
+        public IEnumerable<Queries.Event> Get([FromUri] UserEventQuery query)
         {
-            var command = new SignOnCommand();
-            CommandBus.Execute(command);
-            return new NamedEvent();
+            //var query = new UserEventQuery() {PageSize = 100};
+            return QueryBus.Ask<UserEventQuery,IEnumerable<EventEmitter.Queries.Event>>(query);
+            //return new NamedEvent();
         }
     }
 }

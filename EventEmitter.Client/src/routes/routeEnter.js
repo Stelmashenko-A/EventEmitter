@@ -3,7 +3,7 @@ import { initState } from '../store/location'
 import { startLoadEvent, startLoadMessages } from './Event/modules/event'
 import { fetchUsers, fetchUserTypes } from './AdministrateUsers/modules/AdministrateUsers'
 import { fetchUserTypesStat, fetchClaims } from './AdministrateRoles/modules/AdministrateRoles'
-
+import { fetchRegistrations } from './Registrations/modules/Registrations'
 function _loadEvents (store, nextState) {
   var state = store.getState()
   var code = nextState.location.query.cat !== undefined ? nextState.location.query.cat : ''
@@ -37,6 +37,11 @@ export const adminRolesOnEnter = (store) => (nextState, replace) => {
   store.dispatch(fetchUserTypesStat(state.user))
   store.dispatch(fetchClaims(state.user))
 }
+
+export const registrationsOnEnter = (store) => (nextState, replace) => {
+  store.dispatch(fetchRegistrations())
+}
+
 export const InitState = (store) => (nextState, replace) => {
   console.log(nextState)
   store.dispatch(initState())

@@ -55,6 +55,13 @@ namespace EventEmitter.Api.Infrastructure
              _kernel.Bind(x => x.From(typeof(ICommand).Assembly)
                      .SelectAllClasses().InheritedFrom<ICommandHandler<ICommand>>()
                      .BindAllInterfaces());*/
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "EventEmitter.Queries");
+            _kernel.Bind(x => x
+  .From(assembly) // 1
+                  // .IncludingNonePublicTypes()
+  .SelectAllClasses() // 2
+  .BindAllInterfaces() // 3
+  .Configure(b => b.InSingletonScope()));
             _kernel.Bind(x => x
    .From(typeof(ICommand).Assembly) // 1
                                     // .IncludingNonePublicTypes()

@@ -82,8 +82,6 @@ export const startLoadMessages = (id) => {
   }
 }
 
-
-
 export function registerStart () {
   return {
     type: REGISTER_START

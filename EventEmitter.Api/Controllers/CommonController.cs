@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Http;
 using AutoMapper;
+using EventEmitter.Core.Command;
+using EventEmitter.Core.Query;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
 using Microsoft.AspNet.Identity;
@@ -18,6 +20,12 @@ namespace EventEmitter.Api.Controllers
 
         [Inject]
         public IMapper Mapper { get; set; }
+
+        [Inject]
+        public IQueryBus QueryBus { get; set; }
+
+        [Inject]
+        public ICommandBus CommandBus { get; set; }
 
         public User Account
         {

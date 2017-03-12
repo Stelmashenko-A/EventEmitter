@@ -24,6 +24,7 @@ namespace EventEmitter.Api.Controllers
         protected readonly IAccountManager AccountManager;
         protected readonly IPropertyBuilder PropertyBuilder;
         protected readonly IIdentetyBuilder IdentetyBuilder;
+
         public AccountController(IAccountManager accountManager,
             IPropertyBuilder propertyBuilder,
             IIdentetyBuilder identetyBuilder)

@@ -1,4 +1,8 @@
-﻿namespace EventEmitter.Core.Command
+﻿using System;
+using System.Linq;
+using System.Reflection;
+
+namespace EventEmitter.Core.Command
 {
     public interface ICommandDispatcher
     {
@@ -20,19 +24,19 @@
 
     public class SignOnCommandHandler : ICommandHandler<SignOnCommand>
     {
-
         public void Execute(SignOnCommand command)
         {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "EventEmitter.Core");
             var t = 0;
             t = 10;
         }
     }
 
-    public class SignOnCommandValidator:ICommandValidator<SignOnCommand>
+    public class SignOnCommandValidator : ICommandValidator<SignOnCommand>
     {
         public bool IsValid(SignOnCommand command, Context context)
         {
-            return false;
+            return true;
         }
     }
 }
