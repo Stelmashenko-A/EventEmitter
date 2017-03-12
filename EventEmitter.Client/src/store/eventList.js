@@ -1,3 +1,4 @@
+import axios from 'axios'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -68,23 +69,12 @@ export const loading = () => {
 export function fetchEvents (user, page, categoryCode) {
   return function (dispatch) {
     dispatch(loadingStart())
-    var fetchInit = { method: 'GET',
-      cache: 'default',
-      headers: {
-        'Authorization': 'Bearer ' + user.access_token
-      }
-    }
     var url = `http://localhost:3001/api/Event?page=` + page
     if (categoryCode !== '' && categoryCode !== undefined) {
       url = url + '&cat=' + categoryCode
     }
-    console.log(url)
-    return fetch(url, fetchInit)
-      .then(response => response.json())
-      .then(json => {
-        console.log(json)
-        dispatch(addEvents(json))
-      })
+    console.log(axios.defaults.baseURL)
+    return axios.get(url).then(response => dispatch(addEvents(response.data)))
   }
 }
 export const actions = {

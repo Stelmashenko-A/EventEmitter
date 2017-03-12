@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { browserHistory } from 'react-router'
+import axios from 'axios'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -65,6 +66,7 @@ function getInitialSate () {
   var storedUser = JSON.parse(localStorage.getItem('user'))
   console.log(storedUser)
   if (storedUser !== null) {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + storedUser.access_token
     return storedUser
   }
   return { login: false }
