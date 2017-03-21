@@ -4,10 +4,7 @@ import Image from 'grommet/components/Image'
 import Tiles from 'grommet/components/Tiles'
 import Tile from 'grommet/components/Tile'
 import { Button } from 'react-mdl'
-import Form from 'grommet/components/Form'
-import FormFields from 'grommet/components/FormFields'
-import FormField from 'grommet/components/FormField'
-import Footer from 'grommet/components/Footer'
+
 import './EventView.scss'
 
 function renderButtons (registrationType, go, interested, dismiss) {
@@ -45,19 +42,9 @@ export const Event = (props) => (
     {row('Name:', props.Name)}
     {renderButtons(props.RegistrationType, props.register, props.interested, props.dismiss)}
 
+    <input id='input-id' name='name' type='text' value={props.Message} onChange={props.messageChanged} />
+    <Button onClick={props.sendMessage} >Send message</Button>
 
-    <Form>
-      <FormFields>
-        <fieldset>
-          <FormField label='Field name' htmlFor='input-id'>
-            <input id='input-id' name='name' type='text' value={props.Message} onChange={props.messageChanged} />
-          </FormField>
-        </fieldset>
-      </FormFields>
-      <Footer pad={{ vertical: 'medium' }}>
-        <Button onClick={props.sendMessage} >Send message</Button>
-      </Footer>
-    </Form>
   </div>
 )
 

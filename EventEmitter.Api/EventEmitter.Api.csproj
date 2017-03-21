@@ -281,6 +281,10 @@
       <Project>{3e50abea-e545-4e1b-8424-c8531e0d4352}</Project>
       <Name>EventEmitter.AdminServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EventEmitter.Commands\EventEmitter.Commands.csproj">
+      <Project>{3ab42eef-f669-45a6-957d-bd1989c6339e}</Project>
+      <Name>EventEmitter.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEmitter.Core\EventEmitter.Core.csproj">
       <Project>{24936b63-9af6-4dbf-9576-e88289b6fed3}</Project>
       <Name>EventEmitter.Core</Name>

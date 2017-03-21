@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using EventEmitter.Api.Models.Message;
+using EventEmitter.Commands.SendMessage;
 using EventEmitter.UserServices;
 
 namespace EventEmitter.Api.Controllers
@@ -21,9 +21,10 @@ namespace EventEmitter.Api.Controllers
             return Messager.GetAll(id).Select(item => item.Text);
         }
 
-        public IHttpActionResult Post([FromBody] MessageModel data)
+        public IHttpActionResult Post([FromBody] SendMessageCommand command)
         {
-            Messager.Send(data.eventId,Account,data.text);
+            command.Author = Account.Id;
+            CommandBus.Execute(command);
             return Ok();
         }
     }
