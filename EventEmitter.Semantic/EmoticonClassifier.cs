@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace EventEmitter.Semantic
 {
-    public class EmoticonClassifier
+    public class EmoticonClassifier : IEmoticonClassifier
     {
         protected Dictionary<string, int> Emoticons { get; set; }
 

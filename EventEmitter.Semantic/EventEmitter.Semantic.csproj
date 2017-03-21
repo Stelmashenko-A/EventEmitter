@@ -43,6 +43,9 @@
     <Compile Include="ClassifierLoader.cs" />
     <Compile Include="DictionaryClassifier.cs" />
     <Compile Include="EmoticonClassifier.cs" />
+    <Compile Include="IClassifierLoader.cs" />
+    <Compile Include="IDictionaryClassifier.cs" />
+    <Compile Include="IEmoticonClassifier.cs" />
     <Compile Include="SentimenClassifier.cs" />
     <Compile Include="EmoticonBush.cs" />
     <Compile Include="EmoticonNode.cs" />

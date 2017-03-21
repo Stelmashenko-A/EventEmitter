@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace EventEmitter.Semantic
 {
-    public class DictionaryClassifier
+    public class DictionaryClassifier : IDictionaryClassifier
     {
         public DictionaryClassifier(Dictionary<string, double> words)
         {

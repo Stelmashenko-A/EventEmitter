@@ -4,7 +4,12 @@ using System.Linq;
 
 namespace EventEmitter.Semantic
 {
-    public class SentimenClassifier
+    public interface ISentimenClassifier
+    {
+        int Classify(string str);
+    }
+
+    public class SentimenClassifier : ISentimenClassifier
     {
         public int Classify(string str)
         {
@@ -17,6 +22,7 @@ namespace EventEmitter.Semantic
 
         }
         protected List<string> Emoticons = new List<string>() { "}:{", ";)", ":)", ":(" };
+
         private int CalcBySegments(List<string> segments)
         {
             throw new NotImplementedException();
@@ -35,8 +41,6 @@ namespace EventEmitter.Semantic
         private List<string> Segmenting(string str)
         {
             throw new NotImplementedException();
-        }
-
-        
+        }        
     }
 }
