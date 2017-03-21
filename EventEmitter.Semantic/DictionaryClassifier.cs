@@ -14,7 +14,7 @@ namespace EventEmitter.Semantic
         public double Classify(List<string> strs)
         {
             var strsTmp = strs.Select(x => x.ToLower());
-            return Words.Where(x => strsTmp.Contains(x.Key)).Select(x => x.Value).Sum();
+            return Words.Where(x => strsTmp.Contains(x.Key.ToLower())).Select(x => x.Value).Sum();
         }
     }
 }

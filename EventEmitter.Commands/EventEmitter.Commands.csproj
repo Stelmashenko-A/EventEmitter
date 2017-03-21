@@ -47,9 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\EmoticonClassifierProvider.cs" />
+    <Compile Include="Infrastructure\NinjectCommandsDependencyResolver.cs" />
     <Compile Include="SendMessage\SendMessageCommand.cs" />
-    <Compile Include="Infrastructure\NinjectSetup.cs" />
+    <Compile Include="Infrastructure\DictionaryClassifierProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendMessage\SendMessageCommandHandrler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataMiner.Services\DataMiner.Services.csproj">

@@ -20,5 +20,8 @@ namespace EventEmitter.Storage.POCO
 
         [Column(Name = "EventId"), NotNull]
         public Guid EventId { get; set; }
+
+        [Column(Name = "Sentiment"), NotNull]
+        public int Sentiment { get; set; }
     }
 }

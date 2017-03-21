@@ -11,27 +11,31 @@ namespace EventEmitter.Semantic
 
     public class SentimenClassifier : ISentimenClassifier
     {
+        protected IEmoticonClassifier EmoticonClassifier { get; set; }
+        protected IDictionaryClassifier DictionaryClassifier { get; set; }
         public int Classify(string str)
         {
             List<string> emoticons = DetectEmoticons(str);
             if (emoticons.Any())
             {
-                return CalclByEmoticons(emoticons);
+                return EmoticonClassifier.Classify(emoticons);
             }
-            return 1;
-
+            return DictionaryClassifier.Classify(str.Split(' ').ToList()) >= 0 ? 1 : -1;
         }
         protected List<string> Emoticons = new List<string>() { "}:{", ";)", ":)", ":(" };
+
+        public SentimenClassifier(IEmoticonClassifier emoticonClassifier, IDictionaryClassifier dictionaryClassifier)
+        {
+            EmoticonClassifier = emoticonClassifier;
+            DictionaryClassifier = dictionaryClassifier;
+        }
 
         private int CalcBySegments(List<string> segments)
         {
             throw new NotImplementedException();
         }
 
-        private int CalclByEmoticons(List<string> emoticons)
-        {
-            throw new NotImplementedException();
-        }
+
 
         private List<string> DetectEmoticons(string str)
         {
@@ -41,6 +45,6 @@ namespace EventEmitter.Semantic
         private List<string> Segmenting(string str)
         {
             throw new NotImplementedException();
-        }        
+        }
     }
 }

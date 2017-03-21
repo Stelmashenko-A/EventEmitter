@@ -2,13 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Configuration;
-using System.Reflection;
 using System.Web.Mvc;
 using AutoMapper;
 using EventEmitter.Api.Authentification;
-using EventEmitter.Core;
-using EventEmitter.Core.Command;
 using Ninject.Extensions.Conventions;
 
 namespace EventEmitter.Api.Infrastructure
@@ -24,6 +20,9 @@ namespace EventEmitter.Api.Infrastructure
             ninjectUserService.AddBindings(kernelParam);
             var ninjectAdminService = new AdminServices.Infrastructure.NinjectServiceDependencyResolver();
             ninjectAdminService.AddBindings(kernelParam);
+            var ninjectCommands = new Commands.Infrastructure.NinjectCommandsDependencyResolver();
+
+            ninjectCommands.AddBindings(kernelParam);
             AddBindings();
         }
 

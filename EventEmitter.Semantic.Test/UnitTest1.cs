@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace EventEmitter.Semantic.Test
 {
-    [TestClass]
+    /*[TestClass]
     public class EmoticoBushTest
     {
         [TestMethod]
@@ -26,6 +26,6 @@ namespace EventEmitter.Semantic.Test
             var d = 0;
 
         }
-    }
+    }*/
     
 }
