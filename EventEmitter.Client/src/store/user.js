@@ -56,6 +56,8 @@ const ACTION_HANDLERS = {
 }
 function receiveUserHandler (state, action) {
   var newState = Object.assign({ login: true }, action.user, action.login)
+  newState.Expired = new Date()
+  newState.Expired.setSeconds(newState.Expired.getSeconds() + Number(newState.expires_in))
   localStorage.setItem('user', JSON.stringify(newState))
   return newState
 }
@@ -64,8 +66,8 @@ function receiveUserHandler (state, action) {
 // ------------------------------------
 function getInitialSate () {
   var storedUser = JSON.parse(localStorage.getItem('user'))
-  console.log(storedUser)
-  if (storedUser !== null) {
+  storedUser.Expired = new Date(storedUser.Expired)
+  if (storedUser !== null && new Date() < storedUser.Expired) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + storedUser.access_token
     return storedUser
   }
