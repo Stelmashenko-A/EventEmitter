@@ -9,6 +9,7 @@ import Eventline from './Eventline'
 import AdministrateUsers from './AdministrateUsers'
 import AdministrateRoles from './AdministrateRoles'
 import Registrations from './Registrations'
+import Calendar from './Calendar'
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
@@ -24,7 +25,8 @@ export const createRoutes = (store) => ({
     Eventline(store),
     AdministrateUsers(store),
     AdministrateRoles(store),
-    Registrations(store)
+    Registrations(store),
+    Calendar(store)
   ]
 })
 

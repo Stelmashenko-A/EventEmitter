@@ -1,43 +1,43 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using EventEmitter.Core.Query;
 using EventEmitter.Storage;
-using Ical.Net;
-using Ical.Net.DataTypes;
-using Ical.Net.Serialization;
-using Ical.Net.Serialization.iCalendar.Serializers;
 
 namespace EventEmitter.Queries.Calendar
 {
-    public class CalendarQueryHandler : IQueryHandler<CalendarQuery, string>
+    public class CalendarQueryHandler : IQueryHandler<CalendarQuery, IEnumerable<Event>>
     {
-        public string Execute(CalendarQuery query)
+        public IEnumerable<Event> Execute(CalendarQuery query)
         {
-            Storage.POCO.Event @event;
+            Normalize(query);
+
             using (var db = new EventEmitterDatabase())
             {
-                @event = db.Events.FirstOrDefault(x => x.Id == query.EventId);
-
+                var request = from registration in db.Registrations
+                    where registration.UserAccountId == query.UserId
+                    join @event in db.Events on registration.EventId equals @event.Id
+                    where @event.Start > query.Start
+                          && @event.Start < query.End
+                    orderby @event.Start
+                    select
+                        new Event
+                        {
+                            Title = @event.Name,
+                            Start = @event.Start,
+                            End = @event.Start.AddMinutes(@event.Duration),
+                            Description = @event.ShortDescription
+                        };
+                return request;
             }
-            if (@event == null)
-            {
-                return string.Empty;
-            }
-            var start = @event.Start;
-            var end = start.AddMinutes(@event.Duration);
+        }
 
-            var e = new Event
-            {
-                DtStart = new CalDateTime(start),
-                DtEnd = new CalDateTime(end),
-            
-            };
-
-            var calendar = new Ical.Net.Calendar();
-            calendar.Events.Add(e);
-            calendar.Version = "2.0";
-
-            var serializer = new CalendarSerializer(new SerializationContext());
-            return serializer.SerializeToString(calendar);
+        protected void Normalize(CalendarQuery query)
+        {
+            if (query.Start != default(DateTime) && query.Start != default(DateTime)) return;
+            var now = DateTime.Now;
+            query.Start = new DateTime(now.Year, now.Month, 1);
+            query.End = query.Start.AddMonths(1);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
-using EventEmitter.Queries.Calendar;
+using EventEmitter.Queries.ICalendar;
 using EventEmitter.Queries.Registration;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
@@ -71,9 +71,9 @@ namespace EventEmitter.Api.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("cal")]
-        public HttpResponseMessage Calendar([FromUri] CalendarQuery query)
+        public HttpResponseMessage Calendar([FromUri] IcalendarQuery query)
         {
-            var calendar = QueryBus.Ask<CalendarQuery, string>(query);
+            var calendar = QueryBus.Ask<IcalendarQuery, string>(query);
 
             var stream = new MemoryStream();
             var writer = new StreamWriter(stream);

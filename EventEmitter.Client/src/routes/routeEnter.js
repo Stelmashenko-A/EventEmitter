@@ -4,6 +4,7 @@ import { startLoadEvent, startLoadMessages } from './Event/modules/event'
 import { fetchUsers, fetchUserTypes } from './AdministrateUsers/modules/AdministrateUsers'
 import { fetchUserTypesStat, fetchClaims } from './AdministrateRoles/modules/AdministrateRoles'
 import { fetchRegistrations } from './Registrations/modules/Registrations'
+import { loadEvents } from './Calendar/modules/Calendar'
 function _loadEvents (store, nextState) {
   var state = store.getState()
   var code = nextState.location.query.cat !== undefined ? nextState.location.query.cat : ''
@@ -46,3 +47,8 @@ export const InitState = (store) => (nextState, replace) => {
   console.log(nextState)
   store.dispatch(initState())
 }
+
+export const loadCalendarOnEnter = (store) => (nextState, replace) => {
+  store.dispatch(loadEvents())
+}
+

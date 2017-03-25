@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,9 @@
   <ItemGroup>
     <Compile Include="Calendar\CalendarQuery.cs" />
     <Compile Include="Calendar\CalendarQueryHandler.cs" />
+    <Compile Include="Calendar\Event.cs" />
+    <Compile Include="ICalendar\IcalendarQuery.cs" />
+    <Compile Include="ICalendar\IcalendarQueryHandler.cs" />
     <Compile Include="Registration\UserEventQuery.cs" />
     <Compile Include="Registration\Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RegistrationList\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
