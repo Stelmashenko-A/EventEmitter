@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
+using EventEmitter.Queries.BlackList;
 using EventEmitter.Queries.ICalendar;
 using EventEmitter.Queries.Registration;
 using EventEmitter.UserServices;
@@ -94,6 +95,14 @@ namespace EventEmitter.Api.Controllers
                 new MediaTypeHeaderValue("application/octet-stream");
 
             return result;
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("blacklist")]
+        public BlackListQueryResponce BlackList([FromUri] BlackListQuery query)
+        {
+            return QueryBus.Ask<BlackListQuery, BlackListQueryResponce>(query);
         }
     }
 }

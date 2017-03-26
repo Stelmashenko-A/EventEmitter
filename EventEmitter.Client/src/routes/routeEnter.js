@@ -5,6 +5,8 @@ import { fetchUsers, fetchUserTypes } from './AdministrateUsers/modules/Administ
 import { fetchUserTypesStat, fetchClaims } from './AdministrateRoles/modules/AdministrateRoles'
 import { fetchRegistrations } from './Registrations/modules/Registrations'
 import { loadEvents } from './Calendar/modules/Calendar'
+import { loadBlackList } from './BlackList/modules/BlackList'
+
 function _loadEvents (store, nextState) {
   var state = store.getState()
   var code = nextState.location.query.cat !== undefined ? nextState.location.query.cat : ''
@@ -49,4 +51,9 @@ export const InitState = (store) => (nextState, replace) => {
 export const loadCalendarOnEnter = (store) => (nextState, replace) => {
   store.dispatch(loadEvents())
 }
+
+export const blackListViewOnEnter = (store) => (nextState, replace) => {
+  store.dispatch(loadBlackList(nextState.params.eventId))
+}
+
 

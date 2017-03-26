@@ -61,6 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlackList\BlackListQuery.cs" />
+    <Compile Include="BlackList\BlackListQueryHandler.cs" />
+    <Compile Include="BlackList\BlackListQueryResponce.cs" />
+    <Compile Include="BlackList\BlackListRecord.cs" />
     <Compile Include="Calendar\CalendarQuery.cs" />
     <Compile Include="Calendar\CalendarQueryHandler.cs" />
     <Compile Include="Calendar\Event.cs" />
