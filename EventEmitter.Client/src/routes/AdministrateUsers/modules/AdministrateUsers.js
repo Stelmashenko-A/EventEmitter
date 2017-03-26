@@ -53,7 +53,6 @@ export function fetchUsers (user, page) {
     return fetch(url, fetchInit)
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         dispatch(addUsers(json))
       })
   }
@@ -78,7 +77,6 @@ export function fetchUserTypes (user) {
 }
 export const postUserTypeChanged = (newUserTypeId, userId) => {
   return function (dispatch, getstate) {
-    console.log(newUserTypeId)
     var state = getstate()
     var fetchInit = {
       method: 'POST',

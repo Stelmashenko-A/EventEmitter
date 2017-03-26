@@ -57,7 +57,6 @@ export const loading = () => {
     if (state.eventList.categoryCode !== '') {
       url = url + '&category' + state.eventList.categoryCode
     }
-    console.log(url)
     return fetch(url, fetchInit)
       .then(response => response.json())
       .then(json => {
@@ -73,7 +72,6 @@ export function fetchEvents (user, page, categoryCode) {
     if (categoryCode !== '' && categoryCode !== undefined) {
       url = url + '&cat=' + categoryCode
     }
-    console.log(axios.defaults.baseURL)
     return axios.get(url).then(response => dispatch(addEvents(response.data)))
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { DataTable, TableHeader, Button, CardTitle, Card, Textfield } from 'react-mdl'
 import { EditClaims } from './EditClaims'
-import { NewUserType, } from './NewUserType'
+import { NewUserType } from './NewUserType'
 
 import './AdministrateRolesView.scss'
 
@@ -10,7 +10,6 @@ function button (callback, actived) {
 }
 function buildRows (userTypes, activeRole, selectedChanged, fetchGrantedClaims) {
   var rows = []
-  console.log(selectedChanged)
   userTypes.forEach(function (item, i, arr) {
     var callback = function () {
       selectedChanged(item.Id)

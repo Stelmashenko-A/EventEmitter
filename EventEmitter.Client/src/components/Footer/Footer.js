@@ -28,7 +28,6 @@ function renderCategories (categories, columnsNumber) {
     columns.push(data.slice(skip + colunmSize * i,
        skip + colunmSize * (i + 1)))
   }
-  console.log(columns)
   return columns.map((column, i) =>
     <FooterLinkList key={i}>
       {column.map((category, j) =>

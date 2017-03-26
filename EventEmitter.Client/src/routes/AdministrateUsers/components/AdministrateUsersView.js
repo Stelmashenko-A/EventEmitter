@@ -17,7 +17,6 @@ function block (className, value) {
 
 function buildRows (users, userTypes, postUserTypeChanged, dispatch) {
   var rows = []
-  console.log(dispatch)
   users.forEach(function (item, i, arr) {
     function callback (data) {
       dispatch(postUserTypeChanged(data, item.Id))

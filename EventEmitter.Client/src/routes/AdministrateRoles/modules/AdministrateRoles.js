@@ -131,7 +131,6 @@ export function fetchGrantedClaims (id) {
     return fetch(url, fetchInit)
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         dispatch(setGrantedClaims(json))
       })
   }
@@ -141,8 +140,6 @@ export function changeGrantedClaims (id) {
   return function (dispatch, getstate) {
     var state = getstate().administrateRoles
     var selectedId = state.selectedId
-    console.log(state.grantedClaims)
-    console.log(id)
     var added = state.grantedClaims.indexOf(id) === -1
 
     var fetchInit = {
@@ -181,7 +178,6 @@ export function saveNewUserType () {
     return fetch(url, fetchInit)
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         dispatch(addUserType(json))
       })
   }

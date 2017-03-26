@@ -12,7 +12,6 @@ function buildLinkForCalendar (id) {
 }
 function buildRows (registrations) {
   var rows = []
-  console.log(registrations)
   registrations.forEach(function (item, i, arr) {
     var obj = {
       Name: buildLink(item.Name, item.EventId),

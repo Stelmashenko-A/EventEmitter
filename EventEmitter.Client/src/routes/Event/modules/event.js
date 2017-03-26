@@ -216,7 +216,6 @@ export const dismissRequest = (id) => {
     }
     return fetch(`http://localhost:3001/api/Registration/Dismiss?id=` + id, fetchInit)
       .then(response => {
-        console.log(response.status)
         if (response.status === 200) {
           dispatch(dismissSuccess())
         }
@@ -242,7 +241,7 @@ export const sendMessageRequest = (eventId, message) => {
     }
     return fetch(`http://localhost:3001/api/Message`, fetchInit)
       .then(response => {
-        console.log(response.status)
+
         if (response.status === 200) {
           dispatch(sendMessageSuccess(message))
         }

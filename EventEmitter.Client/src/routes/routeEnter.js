@@ -22,7 +22,6 @@ export const loadEventsOnChange = (store) => (prevState, nextState, replace) => 
 }
 
 export const loadEvent = (store) => (nextState, replace) => {
-  console.log(nextState)
   store.dispatch(startLoadEvent(nextState.params.userId))
   store.dispatch(startLoadMessages(nextState.params.userId))
 }
@@ -44,7 +43,6 @@ export const registrationsOnEnter = (store) => (nextState, replace) => {
 }
 
 export const InitState = (store) => (nextState, replace) => {
-  console.log(nextState)
   store.dispatch(initState())
 }
 

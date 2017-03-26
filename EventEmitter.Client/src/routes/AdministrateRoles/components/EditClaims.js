@@ -7,11 +7,9 @@ function checkbox (checked, claimChanged) {
 
 function buildRows (claims, selectedClaims, claimChanged) {
   var rows = []
-  console.log(selectedClaims)
   claims.forEach(function (item, i, arr) {
     var callback = function () {
       claimChanged(item.Id)
-      console.log(claimChanged)
     }
     var obj = {
       Name: item.Name,
