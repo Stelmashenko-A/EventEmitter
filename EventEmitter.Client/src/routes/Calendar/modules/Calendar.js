@@ -21,14 +21,15 @@ function transformData (arr) {
   })
 }
 
-export const loadEvents = (start, end) => {
+export const loadEvents = (date) => {
   return (dispatch, getstate) => {
-    return axios.post('http://localhost:3001/api/calendar', { Start:start, End:end })
+    return axios.post('http://localhost:3001/api/calendar', { Date:date })
         .then(response => dispatch(eventsLoaded(transformData(response.data))))
   }
 }
-export const actions = {
 
+export const actions = {
+  loadEvents
 }
 
 // ------------------------------------
@@ -37,7 +38,22 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [EVENTS_LOADED] : (state, action) =>
-  Object.assign({}, { 'events':state.events.concat(action.payload) })
+  Object.assign({}, { 'events': getNewEvents(state.events, action.payload) })
+}
+function getNewEvents (currentEvents, newEvents) {
+  if (currentEvents.length === 0) {
+    return newEvents
+  }
+  if (newEvents.length === 0) {
+    return currentEvents
+  }
+  var forAdding = newEvents.filter((item) => {
+    return currentEvents.map((ev) => ev.id).indexOf(item.id) === -1
+  })
+  if (forAdding === null || forAdding === undefined) {
+    currentEvents
+  }
+  return currentEvents.concat(forAdding)
 }
 
 // ------------------------------------

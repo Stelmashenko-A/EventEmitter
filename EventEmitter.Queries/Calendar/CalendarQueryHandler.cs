@@ -8,6 +8,9 @@ namespace EventEmitter.Queries.Calendar
 {
     public class CalendarQueryHandler : IQueryHandler<CalendarQuery, IEnumerable<Event>>
     {
+        protected DateTime Start { get; set; }
+        protected DateTime End { get; set; }
+
         public IEnumerable<Event> Execute(CalendarQuery query)
         {
             Normalize(query);
@@ -17,8 +20,8 @@ namespace EventEmitter.Queries.Calendar
                 var request = from registration in db.Registrations
                     where registration.UserAccountId == query.UserId
                     join @event in db.Events on registration.EventId equals @event.Id
-                    where @event.Start > query.Start
-                          && @event.Start < query.End
+                    where @event.Start > Start
+                          && @event.Start < End
                     orderby @event.Start
                     select
                         new Event
@@ -26,7 +29,8 @@ namespace EventEmitter.Queries.Calendar
                             Title = @event.Name,
                             Start = @event.Start,
                             End = @event.Start.AddMinutes(@event.Duration),
-                            Description = @event.ShortDescription
+                            Description = @event.ShortDescription,
+                            EventId = @event.Id
                         };
                 return request;
             }
@@ -34,10 +38,12 @@ namespace EventEmitter.Queries.Calendar
 
         protected void Normalize(CalendarQuery query)
         {
-            if (query.Start != default(DateTime) && query.Start != default(DateTime)) return;
-            var now = DateTime.Now;
-            query.Start = new DateTime(now.Year, now.Month, 1);
-            query.End = query.Start.AddMonths(1);
+            if (query.Date == default(DateTime))
+            {
+                query.Date = DateTime.Now;
+            }
+            Start = new DateTime(query.Date.Year, query.Date.Month, 1);
+            End = Start.AddMonths(1);
         }
     }
 }

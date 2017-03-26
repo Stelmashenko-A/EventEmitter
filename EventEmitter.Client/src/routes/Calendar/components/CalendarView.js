@@ -16,7 +16,7 @@ BigCalendar.setLocalizer(
 export const Calendar = (props) => (
   <div className='calendar'>
       <BigCalendar
-              {...props}
+        onNavigate={props.loadEvents}
         events={props.events}
         defaultDate={new Date()}
 />
@@ -24,7 +24,8 @@ export const Calendar = (props) => (
 )
 
 Calendar.propTypes = {
-  events: React.PropTypes.array
+  events: React.PropTypes.array,
+  loadEvents: React.PropTypes.func
 }
 
 export default Calendar
