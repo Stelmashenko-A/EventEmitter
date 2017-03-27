@@ -9,10 +9,6 @@ BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 )
 
-
-
-
-
 export const Calendar = (props) => (
   <div className='calendar'>
       <BigCalendar

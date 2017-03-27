@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
+using EventEmitter.Commands.AddToBlackList;
 using EventEmitter.Queries.BlackList;
 using EventEmitter.Queries.ICalendar;
 using EventEmitter.Queries.Registration;
@@ -103,6 +104,15 @@ namespace EventEmitter.Api.Controllers
         public BlackListQueryResponce BlackList([FromUri] BlackListQuery query)
         {
             return QueryBus.Ask<BlackListQuery, BlackListQueryResponce>(query);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("blacklist")]
+        public IHttpActionResult AddBlackList([FromBody] AddToBlackListCommand command)
+        {
+            CommandBus.Execute(command);
+            return Ok();
         }
     }
 }

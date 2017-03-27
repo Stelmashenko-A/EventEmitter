@@ -7,7 +7,7 @@ using Ninject;
 
 namespace EventEmitter.Commands.SendMessage
 {
-    public class SendMessageCommandHandrler : ICommandHandler<SendMessageCommand>
+    public class SendMessageCommandHandler : ICommandHandler<SendMessageCommand>
     {
         [Inject]
         public ISentimenClassifier Classifier { get; set; }
