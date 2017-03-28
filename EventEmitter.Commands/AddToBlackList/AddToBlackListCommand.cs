@@ -8,12 +8,14 @@ namespace EventEmitter.Commands.AddToBlackList
     public class AddToBlackListCommand : ICommand
     {
         [DataMember(Name = "user")]
-        public string User { get; set; }
+        public Guid UserId { get; set; }
 
         [DataMember(Name = "eventId")]
         public Guid EventId { get; set; }
 
         [DataMember(Name = "reason")]
         public string Reason { get; set; }
+
+        public Guid Id { get; set; }
     }
 }

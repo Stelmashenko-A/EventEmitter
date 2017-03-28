@@ -109,10 +109,10 @@ namespace EventEmitter.Api.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("blacklist")]
-        public IHttpActionResult AddBlackList([FromBody] AddToBlackListCommand command)
+        public Guid AddToBlackList([FromBody] AddToBlackListCommand command)
         {
             CommandBus.Execute(command);
-            return Ok();
+            return command.Id;
         }
     }
 }

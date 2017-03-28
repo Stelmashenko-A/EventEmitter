@@ -15,9 +15,10 @@ namespace EventEmitter.Commands.AddToBlackList
                 db.Insert(new Storage.POCO.StopListRecord
                 {
                     EventId = command.EventId,
-                    UserAccountId = db.UserAccounts.First(x => x.Name == command.User).Id,
+                    UserAccountId = command.UserId,
                     Added = DateTime.Now,
-                    Description = command.Reason
+                    Description = command.Reason,
+                    Id = command.Id
                 });
             }
         }

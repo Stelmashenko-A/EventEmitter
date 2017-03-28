@@ -1,9 +1,7 @@
 import React from 'react'
 import { DataTable, TableHeader, Button, Textfield } from 'react-mdl'
-
+import UserLoader from '../../../components/UserLoader'
 import './BlackListView.scss'
-
-
 
 export const BlackListView = (props) => (
   <div className='blackList'>
@@ -11,12 +9,7 @@ export const BlackListView = (props) => (
       <h1 className='eventName'>{props.name}</h1>
       <h1 className='eventStart'>{props.start}</h1>
 
-      <Textfield
-        onChange={props.forAddingChanged}
-        label='Text...'
-        floatingLabel
-        value={props.forAdding}
-        style={{ width: '200px' }} />
+      <UserLoader value={props.user} onChange={props.userChanged} />
 
       <Textfield
         onChange={props.reasonChanged}
@@ -45,6 +38,10 @@ BlackListView.propTypes = {
   reasonChanged: React.PropTypes.func,
   addToBlackList: React.PropTypes.func,
   reason:React.PropTypes.string,
-  forAdding:React.PropTypes.string
+  forAdding:React.PropTypes.string,
+  users: React.PropTypes.array,
+  loadUsers: React.PropTypes.func,
+  user: React.PropTypes.object,
+  userChanged: React.PropTypes.func
 }
 export default BlackListView
