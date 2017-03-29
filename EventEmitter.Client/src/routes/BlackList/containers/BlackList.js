@@ -1,11 +1,13 @@
 import { connect } from 'react-redux'
 import BlackListView from '../components/BlackListView'
-import { reasonChanged, addToBlackList, loadUsers, userChanged } from '../modules/BlackList'
+import { reasonChanged, addToBlackList, loadUsers, userChanged, selectedChanged, deleteUsers } from '../modules/BlackList'
 const mapDispatchToProps = {
   reasonChanged,
   addToBlackList,
   loadUsers,
-  userChanged
+  userChanged,
+  selectedChanged,
+  deleteUsers
 }
 
 const mapStateToProps = (state) => ({

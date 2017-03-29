@@ -51,6 +51,8 @@
     <Compile Include="AddToBlackList\AddToBlackListCommandHandler.cs" />
     <Compile Include="Infrastructure\EmoticonClassifierProvider.cs" />
     <Compile Include="Infrastructure\NinjectCommandsDependencyResolver.cs" />
+    <Compile Include="RemoveFromBlackList\RemoveFromBlackListCommand.cs" />
+    <Compile Include="RemoveFromBlackList\RemoveFromBlackListCommandHandler.cs" />
     <Compile Include="SendMessage\SendMessageCommand.cs" />
     <Compile Include="Infrastructure\DictionaryClassifierProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

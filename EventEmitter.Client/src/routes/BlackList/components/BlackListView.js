@@ -19,9 +19,12 @@ export const BlackListView = (props) => (
         style={{ width: '200px' }} />
 
       <Button onClick={props.addToBlackList} colored raised>Add To Black List</Button>
-
+      <Button onClick={props.deleteUsers} colored raised>Remove from black list</Button>
       <DataTable
+        selectable
+        onSelectionChanged={props.selectedChanged}
         shadow={0}
+        selectedRows={[]}
         rows={props.blackList}>
         <TableHeader name='user' tooltip='User name' className='row-name'>User name</TableHeader>
         <TableHeader name='added' tooltip='Date of adding'>Date of adding</TableHeader>
@@ -42,6 +45,8 @@ BlackListView.propTypes = {
   users: React.PropTypes.array,
   loadUsers: React.PropTypes.func,
   user: React.PropTypes.object,
-  userChanged: React.PropTypes.func
+  userChanged: React.PropTypes.func,
+  selectedChanged: React.PropTypes.func,
+  deleteUsers: React.PropTypes.func
 }
 export default BlackListView

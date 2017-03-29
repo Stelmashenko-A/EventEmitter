@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
 using EventEmitter.Commands.AddToBlackList;
+using EventEmitter.Commands.RemoveFromBlackList;
 using EventEmitter.Queries.BlackList;
 using EventEmitter.Queries.ICalendar;
 using EventEmitter.Queries.Registration;
@@ -113,6 +114,15 @@ namespace EventEmitter.Api.Controllers
         {
             CommandBus.Execute(command);
             return command.Id;
+        }
+
+        [AllowAnonymous]
+        [HttpDelete]
+        [Route("blacklist")]
+        public IHttpActionResult RemoveFromBlackList([FromBody] RemoveFromBlackListCommand command)
+        {
+            CommandBus.Execute(command);
+            return Ok();
         }
     }
 }
