@@ -11,6 +11,8 @@ import AdministrateRoles from './AdministrateRoles'
 import Registrations from './Registrations'
 import Calendar from './Calendar'
 import BlackList from './BlackList'
+import WhiteList from './WhiteList'
+
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
@@ -28,7 +30,8 @@ export const createRoutes = (store) => ({
     AdministrateRoles(store),
     Registrations(store),
     Calendar(store),
-    BlackList(store)
+    BlackList(store),
+    WhiteList(store)
   ]
 })
 

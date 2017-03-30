@@ -1,10 +1,10 @@
 import React from 'react'
 import { DataTable, TableHeader, Button, Textfield } from 'react-mdl'
 import UserLoader from '../../../components/UserLoader'
-import './BlackListView.scss'
+import './WhiteListView.scss'
 
-export const BlackListView = (props) => (
-  <div className='blackList'>
+export const WhiteListView = (props) => (
+  <div className='whiteList'>
     <div className='wrapper'>
       <h1 className='eventName'>{props.name}</h1>
       <h1 className='eventStart'>{props.start}</h1>
@@ -18,13 +18,13 @@ export const BlackListView = (props) => (
         value={props.reason}
         style={{ width: '200px' }} />
 
-      <Button onClick={props.addToBlackList} colored raised>Add To Black List</Button>
-      <Button onClick={props.deleteUsers} colored raised>Remove from black list</Button>
+      <Button onClick={props.addToWhiteList} colored raised>Add To White List</Button>
+      <Button onClick={props.deleteUsers} colored raised>Remove from wite list</Button>
       <DataTable
         selectable
         onSelectionChanged={props.selectedChanged}
         shadow={0}
-        rows={props.blackList}>
+        rows={props.whiteList}>
         <TableHeader name='user' tooltip='User name' className='row-name'>User name</TableHeader>
         <TableHeader name='added' tooltip='Date of adding'>Date of adding</TableHeader>
         <TableHeader name='desc' tooltip='Description'>Description</TableHeader>
@@ -32,13 +32,13 @@ export const BlackListView = (props) => (
     </div>
   </div>
 )
-BlackListView.propTypes = {
-  blackList: React.PropTypes.array,
+WhiteListView.propTypes = {
+  whiteList: React.PropTypes.array,
   name: React.PropTypes.string,
   start: React.PropTypes.string,
   forAddingChanged: React.PropTypes.func,
   reasonChanged: React.PropTypes.func,
-  addToBlackList: React.PropTypes.func,
+  addToWhiteList: React.PropTypes.func,
   reason:React.PropTypes.string,
   forAdding:React.PropTypes.string,
   users: React.PropTypes.array,
@@ -48,4 +48,4 @@ BlackListView.propTypes = {
   selectedChanged: React.PropTypes.func,
   deleteUsers: React.PropTypes.func
 }
-export default BlackListView
+export default WhiteListView

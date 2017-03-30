@@ -7,10 +7,13 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using EventEmitter.Api.Models.Event;
 using EventEmitter.Commands.AddToBlackList;
+using EventEmitter.Commands.AddToWhiteList;
 using EventEmitter.Commands.RemoveFromBlackList;
+using EventEmitter.Commands.RemoveFromWhiteList;
 using EventEmitter.Queries.BlackList;
 using EventEmitter.Queries.ICalendar;
 using EventEmitter.Queries.Registration;
+using EventEmitter.Queries.WhiteList;
 using EventEmitter.UserServices;
 using EventEmitter.UserServices.Models;
 using Event = EventEmitter.Api.Models.Event.Event;
@@ -120,6 +123,33 @@ namespace EventEmitter.Api.Controllers
         [HttpDelete]
         [Route("blacklist")]
         public IHttpActionResult RemoveFromBlackList([FromBody] RemoveFromBlackListCommand command)
+        {
+            CommandBus.Execute(command);
+            return Ok();
+        }
+
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("whitelist")]
+        public WhiteListQueryResponce WhiteList([FromUri] WhiteListQuery query)
+        {
+            return QueryBus.Ask<WhiteListQuery, WhiteListQueryResponce>(query);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("whitelist")]
+        public Guid AddToWhiteList([FromBody] AddToWhiteListCommand command)
+        {
+            CommandBus.Execute(command);
+            return command.Id;
+        }
+
+        [AllowAnonymous]
+        [HttpDelete]
+        [Route("whitelist")]
+        public IHttpActionResult RemoveFromWhiteList([FromBody] RemoveFromWhiteListCommand command)
         {
             CommandBus.Execute(command);
             return Ok();

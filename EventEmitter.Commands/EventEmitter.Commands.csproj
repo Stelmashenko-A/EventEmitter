@@ -49,10 +49,14 @@
   <ItemGroup>
     <Compile Include="AddToBlackList\AddToBlackListCommand.cs" />
     <Compile Include="AddToBlackList\AddToBlackListCommandHandler.cs" />
+    <Compile Include="AddToWhiteList\AddToWhiteListCommand.cs" />
+    <Compile Include="AddToWhiteList\AddToWhiteListCommandHandler.cs" />
     <Compile Include="Infrastructure\EmoticonClassifierProvider.cs" />
     <Compile Include="Infrastructure\NinjectCommandsDependencyResolver.cs" />
     <Compile Include="RemoveFromBlackList\RemoveFromBlackListCommand.cs" />
     <Compile Include="RemoveFromBlackList\RemoveFromBlackListCommandHandler.cs" />
+    <Compile Include="RemoveFromWhiteList\RemoveFromWhiteListCommand.cs" />
+    <Compile Include="RemoveFromWhiteList\RemoveFromWhiteListCommandHandler.cs" />
     <Compile Include="SendMessage\SendMessageCommand.cs" />
     <Compile Include="Infrastructure\DictionaryClassifierProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +80,7 @@
       <Name>EventEmitter.Storage</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

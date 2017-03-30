@@ -14,5 +14,11 @@ namespace EventEmitter.Storage.POCO
 
         [Column(Name = "EventId"), NotNull]
         public Guid EventId { get; set; }
+
+        [Column(Name = "Description")]
+        public string Description { get; set; }
+
+        [Column(Name = "Added"), NotNull]
+        public DateTime Added { get; set; }
     }
 }

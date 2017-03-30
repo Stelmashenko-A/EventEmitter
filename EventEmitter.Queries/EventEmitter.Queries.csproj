@@ -77,6 +77,10 @@
     <Compile Include="User\User.cs" />
     <Compile Include="User\UserQuery.cs" />
     <Compile Include="User\UserQueryHandler.cs" />
+    <Compile Include="WhiteList\WhiteListQuery.cs" />
+    <Compile Include="WhiteList\BlackListQueryHandler.cs" />
+    <Compile Include="WhiteList\WhiteListQueryResponce.cs" />
+    <Compile Include="WhiteList\WhiteListRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventEmitter.Core\EventEmitter.Core.csproj">
