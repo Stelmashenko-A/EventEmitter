@@ -11,6 +11,7 @@ using EventEmitter.Commands.AddToWhiteList;
 using EventEmitter.Commands.RemoveFromBlackList;
 using EventEmitter.Commands.RemoveFromWhiteList;
 using EventEmitter.Queries.BlackList;
+using EventEmitter.Queries.EventPage;
 using EventEmitter.Queries.ICalendar;
 using EventEmitter.Queries.Registration;
 using EventEmitter.Queries.WhiteList;
@@ -37,7 +38,7 @@ namespace EventEmitter.Api.Controllers
         public EventModel Get(int page)
         {
             var events = EventLine.Get(Account, page);
-            var responce = new EventModel {events = events};
+            var responce = new EventModel { events = events };
             return responce;
         }
 
@@ -48,7 +49,7 @@ namespace EventEmitter.Api.Controllers
                 ? EventLine.Get(Account, page)
                 : EventLine.Get(Account, page, cat);
 
-            var responce = new EventModel {events = events};
+            var responce = new EventModel { events = events };
             return responce;
         }
 
@@ -62,9 +63,10 @@ namespace EventEmitter.Api.Controllers
         }
 
         [AllowAnonymous]
-        public NamedEvent Get(Guid id)
+        public EventPage Get([FromUri] EventPageQuery query)
         {
-            return EventManager.Get(Account, id);
+            query.UserId = Account.Id;
+            return QueryBus.Ask<EventPageQuery, EventPage>(query);
         }
 
         [AllowAnonymous]

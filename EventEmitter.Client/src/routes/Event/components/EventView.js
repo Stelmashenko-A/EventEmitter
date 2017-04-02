@@ -14,6 +14,11 @@ function renderButtons (registrationType, go, interested, dismiss) {
       <Button raised accent onClick={interested} >Interested</Button>
     </div>
   }
+  if (registrationType === 3) {
+    return <div className='buttons'>
+      <span>Sorry you do not have permissions for registering</span>
+    </div>
+  }
   return <div className='buttons'>
     <Button onClick={dismiss} >Remove registration</Button>
   </div>
