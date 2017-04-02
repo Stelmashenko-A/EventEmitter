@@ -24,7 +24,7 @@ namespace EventEmitter.Queries.EventPage
                                       Id = @event.Id,
                                       Name = @event.Name,
                                       Duration = @event.Duration,
-                                      EventTypeId = @event.EventTypeId,
+                                      EventType = (EventType)@event.EventType,
                                       Price = @event.Price,
                                       Slots = @event.Slots,
                                       Start = @event.Start,
@@ -32,10 +32,18 @@ namespace EventEmitter.Queries.EventPage
                                       Author = account.Name,
                                       Image = @event.Image,
                                       Description = @event.Description,
-                                      Type = db.StopListRecords.Any(x => x.UserAccountId == query.UserId && x.EventId == query.Id)
-                                      ? RegistrationType.Forbidden
-                                      : (RegistrationType)db.Registrations.Where(item => item.EventId == @event.Id && item.UserAccountId == query.UserId)
+                                      Type = @event.EventType == Storage.POCO.Enums.EventType.Default
+                                      ? 
+                                        db.StopListRecords.Any(x => x.UserAccountId == query.UserId && x.EventId == query.Id)
+                                        ? RegistrationType.Forbidden
+                                        : (RegistrationType)db.Registrations.Where(item => item.EventId == @event.Id && item.UserAccountId == query.UserId)
                                           .Select(x => x.Type).FirstOrDefault()
+                                      :
+                                        db.WhiteListRecords.Any(x => x.EventId == query.Id && x.UserAccountId == query.UserId)
+                                        ? (RegistrationType)db.Registrations.Where(item => item.EventId == @event.Id && item.UserAccountId == query.UserId)
+                                          .Select(x => x.Type).FirstOrDefault()
+                                        : RegistrationType.Forbidden
+
                                   };
                 return mappedQuery.FirstOrDefault();
             }
@@ -50,5 +58,10 @@ namespace EventEmitter.Queries.EventPage
             Start = new DateTime(query.Date.Year, query.Date.Month, 1);
             End = Start.AddMonths(1);
         }
+    }
+    public enum EventType
+    {
+        Default = 0,
+        UseWhiteList = 1
     }
 }

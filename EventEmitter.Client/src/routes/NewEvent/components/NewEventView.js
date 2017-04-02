@@ -1,7 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { Button, Textfield, CardTitle, Snackbar } from 'react-mdl'
+import { Button, Textfield, CardTitle, Snackbar, Checkbox } from 'react-mdl'
 import { SelectField, Option } from 'react-mdl-extra'
 import Label from 'grommet/components/Label'
 import Dropzone from 'react-dropzone'
@@ -81,17 +81,23 @@ export const NewEvent = (props) => (
             value={props.Slots} />
         </div>
       </div>
-
+      <div>
+        <div className='field-name'><CardTitle className='title'>Block event</CardTitle></div>
+        <div className='field-value'>
+          <Checkbox onChange={props.blockedChanged} checked={props.Blocked} className='mdl-textfield__input' />
+        </div>
+      </div>
       <div>
         <div className='field-name'><CardTitle className='title'>Date:</CardTitle></div>
         <div className='field-value datepicker'>
           <DatePicker onChange={props.startChanged} selected={props.Start} className='mdl-textfield__input' />
         </div>
       </div>
+
       <div>
         <div className='field-name'><CardTitle className='title'>Category:</CardTitle></div>
         <div className='field-value'>
-          <SelectField label={'Select me'} value={props.Categories[0].Code} onChange={props.categoryChanged}>
+          <SelectField label={'Select me'} value={props.Category.toString()} onChange={props.categoryChanged}>
             {(toArray(props.Categories).map((category, i) =>
               <Option value={category.Code}>{category.Name}</Option>
             ))}
@@ -112,7 +118,9 @@ NewEvent.propTypes = {
   Description: React.PropTypes.string,
   Slots: React.PropTypes.number,
   Image: React.PropTypes.object,
+  Blocked: React.PropTypes.bool,
   Name: React.PropTypes.string,
+  Category: React.PropTypes.object,
   Categories: React.PropTypes.object,
   descriptionChanged: React.PropTypes.func.isRequired,
   slotsChanged: React.PropTypes.func.isRequired,
@@ -121,6 +129,7 @@ NewEvent.propTypes = {
   nameChanged: React.PropTypes.func.isRequired,
   categoryChanged: React.PropTypes.func.isRequired,
   imgChanged: React.PropTypes.func.isRequired,
+  blockedChanged: React.PropTypes.func.isRequired,
   submit: React.PropTypes.func.isRequired,
   toastClosed: React.PropTypes.func.isRequired
 }

@@ -20,7 +20,7 @@ namespace EventEmitter.Queries.EventPage
 
         public double TimeStamp { get; set; }
 
-        public Guid EventTypeId { get; set; }
+        public EventType EventType { get; set; }
 
         public string Author { get; set; }
 

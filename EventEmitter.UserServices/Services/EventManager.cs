@@ -6,6 +6,7 @@ using EventEmitter.Storage.POCO;
 using EventEmitter.Storage.Repositories;
 using EventEmitter.UserServices.Models;
 using Event = EventEmitter.UserServices.Models.Event;
+using EventType = EventEmitter.Storage.POCO.Enums.EventType;
 using RegistrationType = EventEmitter.UserServices.Models.RegistrationType;
 
 namespace EventEmitter.UserServices.Services
@@ -34,8 +35,12 @@ namespace EventEmitter.UserServices.Services
             obj.TimeStamp = DateTime.Now.ToUniversalTime().Subtract(
                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 ).TotalMilliseconds;
-            obj.EventTypeId = new Guid(Settings.Get(DefaultEventType).Value);
             var storedEvent = Mapper.Map<Event, Storage.POCO.Event>(obj);
+            storedEvent.EventType = EventType.Default;
+            if (obj.Blocked)
+            {
+                storedEvent.EventType = EventType.UseWhiteList;
+            }
             storedEvent.EventCreatorId = creator.Id;
             storedEvent.CategoryId = CategoryRepository.Get(obj.Category).Id;
             EventRepository.Insert(storedEvent);

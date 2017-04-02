@@ -13,5 +13,6 @@ namespace EventEmitter.Api.Models.Event
         public string Slots { get; set; }
         public string Image { get; set; }
         public string Category { get; set; }
+        public bool Blocked { get; set; }
     }
 }

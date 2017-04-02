@@ -71,6 +71,7 @@
     <Compile Include="EventPage\EventPageQuery.cs" />
     <Compile Include="EventPage\EventPageQueryHandler.cs" />
     <Compile Include="EventPage\EventPage.cs" />
+    <Compile Include="EventPage\EventType.cs" />
     <Compile Include="EventPage\RegistrationType.cs" />
     <Compile Include="ICalendar\IcalendarQuery.cs" />
     <Compile Include="ICalendar\IcalendarQueryHandler.cs" />

@@ -10,6 +10,7 @@ export const CATEGORY_CHANGED = 'CATEGORY_CHANGED'
 export const SLOTS_CHANGED = 'SLOTS_CHANGED'
 export const START_CHANGED = 'START_CHANGED'
 export const IMG_CHANGED = 'IMG_CHANGED'
+export const BLOCKED_CHANGED = 'BLOCKED_CHANGED'
 export const IMG_CONVERTED = 'IMG_CONVERTED'
 export const SUBMITED = 'SUBMITED'
 export const ADDED = 'ADDED'
@@ -59,6 +60,12 @@ export function imgChanged (img) {
   }
 }
 
+export function blockedChanged (img) {
+  return {
+    type: BLOCKED_CHANGED
+  }
+}
+
 export function categoryChanged (category) {
   return {
     type: CATEGORY_CHANGED,
@@ -98,6 +105,7 @@ export const actions = {
   slotsChanged,
   startChanged,
   imgChanged,
+  blockedChanged,
   submit,
   toastClosed,
   added
@@ -132,6 +140,10 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, { Image: Object.assign(action.payload), Saved: false })
   },
 
+  [BLOCKED_CHANGED]: (state, action) => {
+    return Object.assign({}, state, { Blocked: !state.Blocked, Saved: false })
+  },
+
   [CATEGORY_CHANGED]: (state, action) => {
     return Object.assign({}, state, { Category: Object.assign(action.payload), Saved: false })
   },
@@ -156,6 +168,7 @@ const initialState = {
   Duration: 1,
   Category: '',
   Image: {},
+  Blocked: false,
   Saved: false
 }
 export default function loginReducer (state = initialState, action) {

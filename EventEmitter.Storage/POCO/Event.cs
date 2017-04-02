@@ -31,8 +31,8 @@ namespace EventEmitter.Storage.POCO
         public double TimeStamp { get; set; }
 
         [Column(Name = "EventTypeId"), NotNull]
-        public Guid EventTypeId { get; set; }
-
+        public Enums.EventType EventType { get; set; }
+        
         [Column(Name = "EventCreatorId"), NotNull]
         public Guid EventCreatorId { get; set; }
 

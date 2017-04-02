@@ -13,7 +13,7 @@ namespace EventEmitter.Storage.Models
         public int Slots { get; set; }
         public int Price { get; set; }
         public double TimeStamp { get; set; }
-        public Guid EventTypeId { get; set; }
+        public POCO.Enums.EventType EventType { get; set; }
         public string Author { get; set; }
         public string Image { get; set; }
         public RegistrationType Type { get; set; }
