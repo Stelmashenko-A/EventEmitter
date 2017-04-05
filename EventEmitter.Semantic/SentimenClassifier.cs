@@ -18,16 +18,17 @@ namespace EventEmitter.Semantic
             List<string> emoticons = DetectEmoticons(str);
             if (emoticons.Any())
             {
-                return EmoticonClassifier.Classify(emoticons);
+                return EmoticonClassifier.Classify(emoticons) > 0 ? 1 : 0;
             }
-            return DictionaryClassifier.Classify(str.Split(' ').ToList()) >= 0 ? 1 : -1;
+            return DictionaryClassifier.Classify(str.Split(' ').ToList()) > 0 ? 1 : 0;
         }
         protected List<string> Emoticons = new List<string>() { "}:{", ";)", ":)", ":(" };
 
-        public SentimenClassifier(IEmoticonClassifier emoticonClassifier, IDictionaryClassifier dictionaryClassifier)
+        public SentimenClassifier(IEmoticonClassifier emoticonClassifier, IDictionaryClassifier dictionaryClassifier, List<string> emoticons)
         {
             EmoticonClassifier = emoticonClassifier;
             DictionaryClassifier = dictionaryClassifier;
+            Emoticons = emoticons;
         }
 
         private int CalcBySegments(List<string> segments)
@@ -37,11 +38,11 @@ namespace EventEmitter.Semantic
 
 
 
-        private List<string> DetectEmoticons(string str)
+        public List<string> DetectEmoticons(string str)
         {
             return Emoticons.Where(str.Contains).ToList();
         }
-
+        
         private List<string> Segmenting(string str)
         {
             throw new NotImplementedException();

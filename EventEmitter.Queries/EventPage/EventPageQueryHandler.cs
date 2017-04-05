@@ -59,9 +59,4 @@ namespace EventEmitter.Queries.EventPage
             End = Start.AddMonths(1);
         }
     }
-    public enum EventType
-    {
-        Default = 0,
-        UseWhiteList = 1
-    }
 }

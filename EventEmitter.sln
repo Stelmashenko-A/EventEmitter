@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Semantic.Test"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEmitter.Commands", "EventEmitter.Commands\EventEmitter.Commands.csproj", "{3AB42EEF-F669-45A6-957D-BD1989C6339E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SentimentDetection", "SentimentDetection", "{4C2F001D-2AF5-4AB2-8887-BDE652270D9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentDetection.Research", "SentimentDetection.Research\SentimentDetection.Research.csproj", "{B098E4E5-63E0-4833-B41A-C3A97BDCEEB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +111,10 @@ Global
 		{3AB42EEF-F669-45A6-957D-BD1989C6339E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AB42EEF-F669-45A6-957D-BD1989C6339E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AB42EEF-F669-45A6-957D-BD1989C6339E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B098E4E5-63E0-4833-B41A-C3A97BDCEEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B098E4E5-63E0-4833-B41A-C3A97BDCEEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B098E4E5-63E0-4833-B41A-C3A97BDCEEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B098E4E5-63E0-4833-B41A-C3A97BDCEEB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,5 +123,6 @@ Global
 		{90E3CC8E-2347-44FA-A70C-04D00030B2ED} = {834A31D0-3F61-45F5-B90E-5DF494766BC4}
 		{E03AC76F-C7BC-4E9F-BD6E-3235B3C85C91} = {834A31D0-3F61-45F5-B90E-5DF494766BC4}
 		{84FB182D-497F-470D-8884-E72028BB5F6F} = {834A31D0-3F61-45F5-B90E-5DF494766BC4}
+		{B098E4E5-63E0-4833-B41A-C3A97BDCEEB4} = {4C2F001D-2AF5-4AB2-8887-BDE652270D9A}
 	EndGlobalSection
 EndGlobal

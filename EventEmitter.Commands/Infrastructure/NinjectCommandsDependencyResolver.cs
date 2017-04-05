@@ -7,9 +7,9 @@ namespace EventEmitter.Commands.Infrastructure
     {
         public void AddBindings(IKernel kernel)
         {
-            kernel.Bind<IEmoticonClassifier>().ToProvider<EmoticonClassifierProvider>();
-            kernel.Bind<IDictionaryClassifier>().ToProvider<DictionaryClassifierProvider>();
-            kernel.Bind<ISentimenClassifier>().To<SentimenClassifier>();
+            //kernel.Bind<IEmoticonClassifier>().ToProvider<EmoticonClassifierProvider>();
+            //kernel.Bind<IDictionaryClassifier>().ToProvider<DictionaryClassifierProvider>();
+            kernel.Bind<ISentimenClassifier>().ToProvider<SentimenClassifierProvider>();
         }
     }
 }

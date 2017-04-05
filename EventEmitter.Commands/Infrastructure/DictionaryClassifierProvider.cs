@@ -6,7 +6,7 @@ using Ninject.Activation;
 
 namespace EventEmitter.Commands.Infrastructure
 {
-    public class DictionaryClassifierProvider : Provider<IDictionaryClassifier>
+   /* public class DictionaryClassifierProvider : Provider<IDictionaryClassifier>
     {
         [Inject]
         public ISettingRepository SettingRepository { get; set; }
@@ -18,5 +18,5 @@ namespace EventEmitter.Commands.Infrastructure
             var words = loader.LoadWords(pathWords);
             return words;
         }
-    }
+    }*/
 }
