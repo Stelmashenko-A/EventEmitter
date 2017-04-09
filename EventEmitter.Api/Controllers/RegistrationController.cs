@@ -53,7 +53,7 @@ namespace EventEmitter.Api.Controllers
         public IEnumerable<Event> Get([FromUri] UserEventQuery query)
         {
             query.UserId = Account.Id;
-            return QueryBus.Ask<UserEventQuery,IEnumerable<Event>>(query);
+            return QueryDispatcher.Ask<UserEventQuery,IEnumerable<Event>>(query);
         }
     }
 }

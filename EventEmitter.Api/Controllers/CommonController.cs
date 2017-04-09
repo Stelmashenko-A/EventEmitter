@@ -22,10 +22,10 @@ namespace EventEmitter.Api.Controllers
         public IMapper Mapper { get; set; }
 
         [Inject]
-        public IQueryBus QueryBus { get; set; }
+        public IQueryDispatcher QueryDispatcher { get; set; }
 
         [Inject]
-        public ICommandBus CommandBus { get; set; }
+        public ICommandDispatcher CommandDispatcher { get; set; }
 
         public User Account
         {

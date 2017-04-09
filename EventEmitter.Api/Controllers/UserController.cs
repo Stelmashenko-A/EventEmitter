@@ -37,7 +37,7 @@ namespace EventEmitter.Api.Controllers
         public IEnumerable<Queries.User.User> GetByPartOfName([FromUri] UserQuery query)
         {
             query.Count = 10;
-            return QueryBus.Ask<UserQuery, IEnumerable<Queries.User.User>>(query);
+            return QueryDispatcher.Ask<UserQuery, IEnumerable<Queries.User.User>>(query);
         } 
         
     }

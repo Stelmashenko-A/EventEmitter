@@ -17,7 +17,7 @@ namespace EventEmitter.Api.Controllers
             }
 
             query.UserId = Account.Id;
-            return QueryBus.Ask<CalendarQuery,IEnumerable<Event>>(query);
+            return QueryDispatcher.Ask<CalendarQuery,IEnumerable<Event>>(query);
         }
     }
 }

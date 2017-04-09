@@ -66,14 +66,14 @@ namespace EventEmitter.Api.Controllers
         public EventPage Get([FromUri] EventPageQuery query)
         {
             query.UserId = Account.Id;
-            return QueryBus.Ask<EventPageQuery, EventPage>(query);
+            return QueryDispatcher.Ask<EventPageQuery, EventPage>(query);
         }
 
         [AllowAnonymous]
         [Route("qwer")]
         public IEnumerable<Queries.Registration.Event> Get([FromUri] UserEventQuery query)
         {
-            return QueryBus.Ask<UserEventQuery, IEnumerable<Queries.Registration.Event>>(query);
+            return QueryDispatcher.Ask<UserEventQuery, IEnumerable<Queries.Registration.Event>>(query);
         }
 
         [AllowAnonymous]
@@ -81,7 +81,7 @@ namespace EventEmitter.Api.Controllers
         [Route("cal")]
         public HttpResponseMessage Calendar([FromUri] IcalendarQuery query)
         {
-            var calendar = QueryBus.Ask<IcalendarQuery, string>(query);
+            var calendar = QueryDispatcher.Ask<IcalendarQuery, string>(query);
 
             var stream = new MemoryStream();
             var writer = new StreamWriter(stream);
@@ -109,7 +109,7 @@ namespace EventEmitter.Api.Controllers
         [Route("blacklist")]
         public BlackListQueryResponce BlackList([FromUri] BlackListQuery query)
         {
-            return QueryBus.Ask<BlackListQuery, BlackListQueryResponce>(query);
+            return QueryDispatcher.Ask<BlackListQuery, BlackListQueryResponce>(query);
         }
 
         [AllowAnonymous]
@@ -117,7 +117,7 @@ namespace EventEmitter.Api.Controllers
         [Route("blacklist")]
         public Guid AddToBlackList([FromBody] AddToBlackListCommand command)
         {
-            CommandBus.Execute(command);
+            CommandDispatcher.Execute(command);
             return command.Id;
         }
 
@@ -126,7 +126,7 @@ namespace EventEmitter.Api.Controllers
         [Route("blacklist")]
         public IHttpActionResult RemoveFromBlackList([FromBody] RemoveFromBlackListCommand command)
         {
-            CommandBus.Execute(command);
+            CommandDispatcher.Execute(command);
             return Ok();
         }
 
@@ -136,7 +136,7 @@ namespace EventEmitter.Api.Controllers
         [Route("whitelist")]
         public WhiteListQueryResponce WhiteList([FromUri] WhiteListQuery query)
         {
-            return QueryBus.Ask<WhiteListQuery, WhiteListQueryResponce>(query);
+            return QueryDispatcher.Ask<WhiteListQuery, WhiteListQueryResponce>(query);
         }
 
         [AllowAnonymous]
@@ -144,7 +144,7 @@ namespace EventEmitter.Api.Controllers
         [Route("whitelist")]
         public Guid AddToWhiteList([FromBody] AddToWhiteListCommand command)
         {
-            CommandBus.Execute(command);
+            CommandDispatcher.Execute(command);
             return command.Id;
         }
 
@@ -153,7 +153,7 @@ namespace EventEmitter.Api.Controllers
         [Route("whitelist")]
         public IHttpActionResult RemoveFromWhiteList([FromBody] RemoveFromWhiteListCommand command)
         {
-            CommandBus.Execute(command);
+            CommandDispatcher.Execute(command);
             return Ok();
         }
     }

@@ -1,33 +1,34 @@
-using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace EventEmitter.Core.Query
 {
     public class QueryDispatcher : IQueryDispatcher
     {
-        private readonly IDependencyResolver _resolver;
+        public Context Context { get; set; }
+        public readonly IQueryBus QueryBus;
 
-        public QueryDispatcher(IDependencyResolver resolver)
+        public TResult Ask<TQuery, TResult>(TQuery query) where TQuery : IQuery
         {
-            _resolver = resolver;
+            Validate(query);
+            return QueryBus.Execute<TQuery, TResult>(query);
         }
 
-        public TResult Execute<TQuery, TResult>(TQuery query)
-            where TQuery : IQuery
+        protected readonly IDependencyResolver DependencyResolver;
+
+        public QueryDispatcher(IDependencyResolver dependencyResolver, IQueryBus queryBus)
         {
-            if (query == null)
+            DependencyResolver = dependencyResolver;
+            QueryBus = queryBus;
+        }
+
+        protected void Validate<TQuery>(TQuery query) where TQuery : IQuery
+        {
+            var validators = DependencyResolver.GetServices(typeof(IQueryValidator<TQuery>)).Select(x => x as IQueryValidator<TQuery>);
+            foreach (var validator in validators.Where(validator => !validator.IsValid(query, Context)))
             {
-                throw new ArgumentNullException("query");
+                throw new QueryValidationException(query.GetType().FullName + " falid on " + validator.GetType().FullName);
             }
-
-            var handler = _resolver.GetService(typeof(IQueryHandler<TQuery, TResult>)) as IQueryHandler<TQuery, TResult>;
-
-            if (handler == null)
-            {
-                throw new QueryHandlerNotFoundException(typeof(TQuery));
-            }
-
-            return handler.Execute(query);
         }
     }
 }

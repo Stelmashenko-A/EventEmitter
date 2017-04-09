@@ -24,7 +24,7 @@ namespace EventEmitter.Api.Controllers
         public IHttpActionResult Post([FromBody] SendMessageCommand command)
         {
             command.Author = Account.Id;
-            CommandBus.Execute(command);
+            CommandDispatcher.Execute(command);
             return Ok();
         }
     }

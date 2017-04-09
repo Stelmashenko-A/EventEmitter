@@ -1,33 +1,32 @@
-﻿using System.Linq;
+﻿using System;
 using System.Web.Mvc;
 
 namespace EventEmitter.Core.Command
 {
     public class CommandBus : ICommandBus
     {
-        public Context Context { get; set; }
-        public readonly ICommandDispatcher CommandDispatcher;
-        public void Execute<TCommand>(TCommand command) where TCommand : ICommand
+        private readonly IDependencyResolver _resolver;
+
+        public CommandBus(IDependencyResolver resolver)
         {
-            Validate(command);
-            CommandDispatcher.Execute(command);
+            _resolver = resolver;
         }
 
-        protected readonly IDependencyResolver DependencyResolver;
-
-        public CommandBus(IDependencyResolver dependencyResolver, ICommandDispatcher commandDispatcher)
+        public void Execute<TCommand>(TCommand command)
+            where TCommand : ICommand
         {
-            DependencyResolver = dependencyResolver;
-            CommandDispatcher = commandDispatcher;
-        }
-
-        protected void Validate<TCommand>(TCommand command) where TCommand : ICommand
-        {
-            var validators = DependencyResolver.GetServices(typeof(ICommandValidator<TCommand>)).Select(x => x as ICommandValidator<TCommand>);
-            foreach (var validator in validators.Where(validator => !validator.IsValid(command, Context)))
+            if (command == null)
             {
-                throw new CommandValidationException(command.GetType().FullName + " falid on " + validator.GetType().FullName);
+                throw new ArgumentNullException("command");
             }
+            var handler = _resolver.GetService(typeof(ICommandHandler<TCommand>)) as ICommandHandler<TCommand>;
+            
+            if (handler == null)
+            {
+                throw new CommandHandlerNotFoundException(typeof(TCommand));
+            }
+
+            handler.Execute(command);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IQueryBus
     {
-        TResult Ask<TQuery, TResult>(TQuery query)
+        TResult Execute<TQuery, TResult>(TQuery query)
             where TQuery : IQuery;
     }
 }

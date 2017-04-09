@@ -1,32 +1,33 @@
-﻿using System;
+﻿using System.Linq;
 using System.Web.Mvc;
 
 namespace EventEmitter.Core.Command
 {
     public class CommandDispatcher : ICommandDispatcher
     {
-        private readonly IDependencyResolver _resolver;
-
-        public CommandDispatcher(IDependencyResolver resolver)
+        public Context Context { get; set; }
+        public readonly ICommandBus CommandBus;
+        public void Execute<TCommand>(TCommand command) where TCommand : ICommand
         {
-            _resolver = resolver;
+            Validate(command);
+            CommandBus.Execute(command);
         }
 
-        public void Execute<TCommand>(TCommand command)
-            where TCommand : ICommand
-        {
-            if (command == null)
-            {
-                throw new ArgumentNullException("command");
-            }
-            var handler = _resolver.GetService(typeof(ICommandHandler<TCommand>)) as ICommandHandler<TCommand>;
-            
-            if (handler == null)
-            {
-                throw new CommandHandlerNotFoundException(typeof(TCommand));
-            }
+        protected readonly IDependencyResolver DependencyResolver;
 
-            handler.Execute(command);
+        public CommandDispatcher(IDependencyResolver dependencyResolver, ICommandBus commandBus)
+        {
+            DependencyResolver = dependencyResolver;
+            CommandBus = commandBus;
+        }
+
+        protected void Validate<TCommand>(TCommand command) where TCommand : ICommand
+        {
+            var validators = DependencyResolver.GetServices(typeof(ICommandValidator<TCommand>)).Select(x => x as ICommandValidator<TCommand>);
+            foreach (var validator in validators.Where(validator => !validator.IsValid(command, Context)))
+            {
+                throw new CommandValidationException(command.GetType().FullName + " falid on " + validator.GetType().FullName);
+            }
         }
     }
 }
