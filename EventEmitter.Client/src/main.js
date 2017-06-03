@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'react-mdl/extra/material.css'
+import 'react-mdl/extra/css/material.blue_grey-green.min.css'
+import 'react-mdl/extra/material.js'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 import { connect } from 'react-redux'
-import 'react-mdl/extra/material.css'
-import 'react-mdl/extra/material.js'
+
 
 
 // ========================================================

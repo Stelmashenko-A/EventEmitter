@@ -11,10 +11,14 @@ BigCalendar.setLocalizer(
 
 export const Calendar = (props) => (
   <div className='calendar'>
-      <BigCalendar
-        onNavigate={props.loadEvents}
-        events={props.events}
-        defaultDate={new Date()}
+    <div style={{ width:'100%', textAlign: 'right' }}>
+      <h1>Calendar</h1>
+      <Button style={{ right:0, marginBottom: 20 }}>Export Calendar</Button>
+    </div>
+    <BigCalendar
+      onNavigate={props.loadEvents}
+      events={props.events}
+      defaultDate={new Date()}
 />
   </div>
 )

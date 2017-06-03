@@ -20,3 +20,48 @@
     margin: 0 auto;
   }
 }
+
+h1,
+h2,
+h3,
+h4,
+strong {
+  color: #2c3e50 !important;
+}
+
+.mdl-card__title-text {
+  color: white !important;
+}
+
+#root {
+  .mdl-button--accent.mdl-button--accent.mdl-button--fab,
+  .mdl-button--accent.mdl-button--accent.mdl-button--raised {
+    background-color: white;
+
+    font-weight: bold !important;
+
+  }
+
+  .mdl-button {
+    border: 3px solid #42b983 !important;
+    border-radius: 20px;
+    line-height: 10px;
+    line-height: 31px;
+    font-size: 17px;
+    color: #42b983 !important;
+  }
+
+  .mdl-button--raised.mdl-button--colored {
+    background-color: #42b983;
+    color: white !important;
+  }
+}
+@media (max-width: 767px) {
+  h2 {
+    font-size: 27px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+}

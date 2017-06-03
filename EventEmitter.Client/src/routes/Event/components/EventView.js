@@ -1,9 +1,6 @@
 import React from 'react'
-import Label from 'grommet/components/Label'
 import Image from 'grommet/components/Image'
-import Tiles from 'grommet/components/Tiles'
-import Tile from 'grommet/components/Tile'
-import { Button } from 'react-mdl'
+import { Button, Grid, Cell } from 'react-mdl'
 
 import './EventView.scss'
 
@@ -23,33 +20,42 @@ function renderButtons (registrationType, go, interested, dismiss) {
     <Button onClick={dismiss} >Remove registration</Button>
   </div>
 }
-function row (label, value) {
-  return <Tiles>
-    <Tile>
-      <Label>{label}</Label>
-    </Tile>
-    <Tile>
-      <Label>{value}</Label>
-    </Tile>
-  </Tiles>
+function rowH4 (label, value) {
+  console.log(value)
+  return <h4 style={{ marginTop: '0' }}>{label} {value}</h4>
+}
+function rowH2 (label, value) {
+  return <h2 style={{ margin: '0' }}>{label} {value}</h2>
+}
+function rowH6 (label, value) {
+  return <h6 style={{ margin: '0' }}>{label} {value}</h6>
 }
 
 
 export const Event = (props) => (
   <div className='event'>
-    <Image src={props.Image} />
-
-    {row('Start', props.Start)}
-    {row('Duration:', props.Duration)}
-    {row('Price:', props.Price)}
-    {row('Description:', props.Description)}
-    {row('Slots:', props.Slots)}
-    {row('Name:', props.Name)}
-    {renderButtons(props.RegistrationType, props.register, props.interested, props.dismiss)}
-
-    <input id='input-id' name='name' type='text' value={props.Message} onChange={props.messageChanged} />
-    <Button onClick={props.sendMessage} >Send message</Button>
-
+    <Grid>
+      <Cell col={12}>
+        {rowH2('', props.Name)}
+      </Cell>
+      <Cell col={6}>
+        <Image src={props.Image} />
+      </Cell>
+      <Cell col={6}>
+        {rowH4('Start', props.Start)}
+        {rowH4('Duration:', props.Duration)}
+        {rowH4('Price:', props.Price === undefined ? 'Free' : props.Price)}
+        {rowH4('Slots:', props.Slots)}
+        {renderButtons(props.RegistrationType, props.register, props.interested, props.dismiss)}
+      </Cell>
+      <Cell col={12}>
+        {rowH6('', props.Description)}
+        <textarea id='input-id' name='name' type='text' value={props.Message} onChange={props.messageChanged} />    
+      </Cell>
+      <Cell col={12}>
+        <Button onClick={props.sendMessage} >Send feedback</Button>
+      </Cell>
+    </Grid>
   </div>
 )
 

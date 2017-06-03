@@ -1,73 +1,10 @@
-/*.header{
-  border-width: 0 0 1px;
-      .navbar-header{
-        display: inline-block;
-        width: 100%;
+header {
+  background-color: #2c3e50 !important;
 
-      border-bottom: 3px solid #DDDDDD;
-
-        .logo{
-          float: left;
-          padding: 20px;
-          font-size: 30px;
-          line-height: 30px;
-          color: #ff40ac;
-          
-        }
-
-        .navbar-toggle{
-          height: 30px;
-          width: 40px;
-          margin: 20px;
-          padding: 0 8px;
-          border: 2px solid #DDDDDD;
-          background-color: #FFF;
-          border-radius: 4px;
-          float: right;
-          &:hover{
-            background-color: #DDDDDD;
-          }
-          &:focus{
-            outline-color: #DDDDDD;
-          }
-          span{
-            display: block;
-          }
-          .icon-bar{
-            height: 2px;
-            width: 20px;
-            background-color: #888;
-            margin-top: 3px;
-
-            &:first-child{
-              margin-top: 0px;
-            }
-          }        
-        }
-      }
-
-      .navbar-collapse{
-        padding: 0;
-        border: 1px solid #DDDDDD;
-        position: absolute;
-        width: 85%;
-        margin-left: 15%;
-        background: white;
-
-        .navbar-nav{
-          padding-left: 55px;
-          li{
-            list-style-type: none;
-            text-align: left;
-            color: #30BFB0;
-            font-size: 20px;
-            margin-top: 10px;
-          }
-        }
-      }
-    
-  
-}*/
+  .mdl-layout-title {
+    color: #42b983 !important;
+  }
+}
 
 .header {
   .navbar-header {
@@ -109,8 +46,7 @@
         padding: 0;
         margin: auto auto 3px;
 
-        &:first-child {
-          }
+        &:first-child {}
       }
     }
   }
@@ -145,54 +81,6 @@
   }
 
 }
-
-/*@media (min-width: 768px) {
-  .header{
-
-      .navbar-header{
-                display: inline;
-        .logo{
-        }
-
-        .navbar-toggle{
-          display: none;
-
-          &:hover{
-          }
-          .icon-bar{
-
-            &:first-child{
-            }
-          }        
-        }
-      }
-
-      .navbar-collapse{
-        display: inline;
-        margin: 0;
-        position: relative;
-        background: white;
-        border: none;
-        .navbar-nav{
-              float: right;
-              margin: 0;
-          li{
-            margin: 0;
-            font-size: 22px;
-            padding: 20px;
-            display: inline-block;
-
-            &:hover{
-              border-bottom: 2px solid;
-              padding-bottom: 18px;
-            }
-          }
-        }
-      }
-    }
-  
-
-}*/
 @media (min-width: 768px) {
   .header {
     border-bottom: 1px solid #DDDDDD;

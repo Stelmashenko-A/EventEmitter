@@ -1,9 +1,12 @@
 import EHeader from './Header'
 import { connect } from 'react-redux'
 import { switchMobileMenu } from './../../store/header'
+import { logout } from './../../store/user'
+
 
 const mapDispatchToProps = {
-  switchMobileMenu
+  switchMobileMenu,
+  logout
 }
 
 const mapStateToProps = (state) => ({

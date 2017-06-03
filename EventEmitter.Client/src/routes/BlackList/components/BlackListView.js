@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataTable, TableHeader, Button, Textfield } from 'react-mdl'
+import { DataTable, TableHeader, Button, Textfield, Grid, Cell } from 'react-mdl'
 import UserLoader from '../../../components/UserLoader'
 import './BlackListView.scss'
 
@@ -10,16 +10,22 @@ export const BlackListView = (props) => (
       <h1 className='eventStart'>{props.start}</h1>
 
       <UserLoader value={props.user} onChange={props.userChanged} />
-
-      <Textfield
-        onChange={props.reasonChanged}
-        label='Text...'
-        floatingLabel
-        value={props.reason}
-        style={{ width: '200px' }} />
-
-      <Button onClick={props.addToBlackList} colored raised>Add To Black List</Button>
-      <Button onClick={props.deleteUsers} colored raised>Remove from black list</Button>
+      <Grid>
+        <Cell col={4} phone={12}>
+          <Textfield
+            onChange={props.reasonChanged}
+            label='Reason...'
+            floatingLabel
+            value={props.reason}
+            style={{ width: '200px' }} />
+        </Cell>
+        <Cell col={4} phone={12}>
+          <Button onClick={props.addToBlackList} colored raised style={{ marginTop:15 }}>Add To Black List</Button>
+        </Cell>
+        <Cell col={4} phone={12}>
+          <Button onClick={props.deleteUsers} colored raised style={{ marginTop:15 }}>Remove from black list</Button>
+        </Cell>
+      </Grid>
       <DataTable
         selectable
         onSelectionChanged={props.selectedChanged}

@@ -14,9 +14,15 @@ export const EHeader = (props) => (
         className={(props.user.login ? '' : 'hidden')}
         to='/newEvent'
         activeClassName='route--active'>New Event</Link>
-
-      <li>Support</li>
-      <li>Support</li>
+      <Link
+        className={(props.user.login ? '' : 'hidden')}
+        to='/calendar'
+        activeClassName='route--active'>New Event</Link>
+      <Link
+        className={(props.user.login ? '' : 'hidden')}
+        to='/admin/users'
+        activeClassName='route--active'>Administrate System</Link>
+      <li className={(props.user.login ? '' : 'hidden')} onClick={props.logout}>Log Out</li>
     </Navigation>
   </Header>
 )
@@ -24,7 +30,8 @@ export const EHeader = (props) => (
 EHeader.propTypes = {
   switchMobileMenu: React.PropTypes.func.isRequired,
   header: React.PropTypes.bool.isRequired,
-  user: React.PropTypes.object
+  user: React.PropTypes.object,
+  logout: React.PropTypes.func.isRequired
 }
 
 export default EHeader

@@ -9,6 +9,7 @@ export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
 export const REQUEST_USER = 'REQUEST_USER'
 export const RECEIVE_USER = 'RECEIVE_USER'
 export const REQUEST_LOGIN = 'REQUEST_LOGIN'
+export const LOGOUT = 'LOGOUT'
 
 // ------------------------------------
 // Actions
@@ -27,7 +28,11 @@ export const requestUser = () => {
     type: REQUEST_USER
   }
 }
-
+export function logout () {
+  return {
+    type: LOGOUT
+  }
+}
 export const receiveUser = (login, user) => {
   return {
     type: RECEIVE_USER,
@@ -52,7 +57,13 @@ export const actions = {
 // ------------------------------------
 
 const ACTION_HANDLERS = {
-  [RECEIVE_USER] : (state, action) => receiveUserHandler(state, action)
+  [RECEIVE_USER] : (state, action) => receiveUserHandler(state, action),
+  [LOGOUT]: (state, action) => {
+    localStorage.removeItem('user')
+    axios.defaults.headers.common['Authorization'] = ''
+    window.location.replace('login')
+    return Object.assign({}, { 'login': false })
+  }
 }
 function receiveUserHandler (state, action) {
   var newState = Object.assign({ login: true }, action.user, action.login)
@@ -66,6 +77,9 @@ function receiveUserHandler (state, action) {
 // ------------------------------------
 function getInitialSate () {
   var storedUser = JSON.parse(localStorage.getItem('user'))
+  if (storedUser === null) {
+    return { login: false }
+  }
   storedUser.Expired = new Date(storedUser.Expired)
   if (storedUser !== null && new Date() < storedUser.Expired) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + storedUser.access_token
